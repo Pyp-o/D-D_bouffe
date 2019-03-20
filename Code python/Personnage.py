@@ -42,7 +42,7 @@ class Personnage :
     def getAgilite(self):
         return self.__agilite
     def setAgilite(self, agilite):
-        self.__PV = agilite
+        self.__agilite = agilite
 
     def getInitiative(self):
         return self.__initiative

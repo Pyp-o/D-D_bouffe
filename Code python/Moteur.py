@@ -1,1 +1,5 @@
-print("salut les srabs")
+class Moteur :
+    def __init__(self):
+        self.team=0
+
+
