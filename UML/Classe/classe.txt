@@ -201,6 +201,7 @@ Salle salles[][]
 Map()
 genererMap()
 recupérerSalle(int x, int y)
+se deplacer
 }
 
 class Salle{

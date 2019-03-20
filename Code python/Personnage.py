@@ -74,5 +74,11 @@ class Personnage :
     def setArmure(self, armure):
         self.__armure = armure
 
+    def getCompetence(self):
+        return self.__competence
+
+
+    def prendreDecision(self):
+
 
 a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)

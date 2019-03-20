@@ -1,0 +1,13 @@
+1- Use Case
+
+2- Diagramme de séquence
+
+3- Diagramme de sénario
+
+4- Diagramme d'activité
+
+5- Diagramme d'état
+
+6- Corriger erreurs de mise en forme du diagramme de classe
+
+7- Implémenter les classes
