@@ -186,11 +186,11 @@ retirerItem(Item item)
 }
 
 class Map{
-Salle salles[][]
-Map()
-genererMap()
-recupérerSalle(int x, int y)
-se deplacer
+-Salle salles[][]
++Map(tailleX, tailleY)
++genererMap()
++recupérerSalle(int x, int y)
++seDeplacer()
 }
 
 class Salle{
