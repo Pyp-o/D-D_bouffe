@@ -79,6 +79,7 @@ class Personnage :
 
 
     def prendreDecision(self):
+        raise NotImplementedError("abstract method")
 
 
 a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)

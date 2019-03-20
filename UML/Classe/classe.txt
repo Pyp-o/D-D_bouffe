@@ -58,15 +58,6 @@ abstract class Statut{
 +activer_statut()
 }
 
-Class Empoisonné{}
-
-Class Paralysé{}
-
-class Ralenti{}
-
-class Endormi{}
-
-class Ivre{}
 
 abstract class Competence{
 -String nom
@@ -84,24 +75,24 @@ abstract class Competence{
 
 class CompetenceHeal{
 -int soin
-+CompetenceHeal(string nom, string description, int cout, int soin, bool groupe, int tauxReussite)
++CompetenceHeal(...)
 }
 
 class CompetenceAttaque{
 -int degat
-+CompetenceAttaque(string nom, string description, int cout, int attaque, bool groupe, int tauxReussite)
++CompetenceAttaque(...)
 }
 
 class CompetenceBuff{
 -int degatBuff
 -int armureBuff
 -int agiliteBuff
-+CompetenceBuff(string nom, string description, int cout, int degatBuff, int armureBuff, int agiliteBuff bool groupe, int tauxReussite)
++CompetenceBuff(...)
 }
 
 Class CompetenceStatut{
 - Statut statut
-+ CompetenceStatut(string nom, string description, int cout, Statut statut, bool groupe, int tauxReussite)
++ CompetenceStatut(...)
 }
 
 abstract class Equipement{
