@@ -136,12 +136,14 @@ Class Ennemi{
 }
 
 class Combattant{
+-bool teamHero
 -Personnage combattant
 -bool tourFini
 +setTourFini(bool tourFini)
 +getTourFini() : bool
 +attaquer(Personnage combattant)
 +seDefendre()
++isTeamHero() : bool
 }
 
 class Team{
