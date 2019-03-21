@@ -7,7 +7,7 @@ declancherEvenement()
 abstract class Item{
 -String nom
 +getNom() : string 
-+setNom(string nom)
++getDescription() : string
 }
 
 abstract class Personnage{
@@ -94,9 +94,10 @@ Class CompetenceStatut{
 }
 
 abstract class Equipement{
--porteur(Personnage perso)
-+changerDePorteur(Personnge perso)
+-porteur : Personnage
++setPorteur(Personnge perso)
 +getPorteur() : Personnage
++retirerPorteur()
 }
 
 class Moteur{
@@ -158,7 +159,6 @@ class Arme{
 
 class Armure{
 -int bloquage
-+setBloquage(int bloquage)
 +getBloquage() : int
 }
 
@@ -175,15 +175,14 @@ ArmeConsommable(int degat, int soin, int energie, bool faitRevivre)
 }
 
 class Ressource{
-string description
-setDescription(string description)
-getDescription() : string
+
 }
 
 class Inventaire{
-Item items[]
-ajouterItem(Item item)
-retirerItem(Item item)
+-Item items[]
++ajouterItem(Item item)
++retirerItem(Item item)
++getItems() : Items[]
 }
 
 class Map{
