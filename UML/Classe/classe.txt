@@ -1,18 +1,18 @@
 @startuml
 
 abstract class SalleEvenement{
-declancherEvenement()
++declancherEvenement()
 }
 
 abstract class Item{
--String nom
+-nom : string
 +getNom() : string 
 +getDescription() : string
 }
 
 abstract class Personnage{
 -nom : string
--Competence listCompetence[]
+-listCompetence[] : Competence
 -Pvmax : int
 -Pv : int
 -Pcmax : int
@@ -50,7 +50,7 @@ abstract class Personnage{
 }
 
 abstract class Statut{
--tour_restnt : int
+-tourRestnt : int
 +setTourRestant(int tour)
 +getTourRestant() : int
 +activerStatut()
@@ -58,12 +58,12 @@ abstract class Statut{
 
 
 abstract class Competence{
--String nom
--int cout
--String description
--bool groupe
-- int tauxReussite
-+ getTauxReussite() : int
+-nom : string
+-cout : int
+-description : string
+-groupe : bool
+-tauxReussite : int
++getTauxReussite() : int
 +getNom() : string
 +getDescription() : string
 +setCout(int cout)
@@ -72,25 +72,25 @@ abstract class Competence{
 }
 
 class CompetenceHeal{
--int soin
+-soin : int
 +CompetenceHeal(...)
 }
 
 class CompetenceAttaque{
--int degat
+-degat : int
 +CompetenceAttaque(...)
 }
 
 class CompetenceBuff{
--int degatBuff
--int armureBuff
--int agiliteBuff
+-degatBuff : int
+-armureBuff : int
+-agiliteBuff : int
 +CompetenceBuff(...)
 }
 
 Class CompetenceStatut{
-- Statut statut
-+ CompetenceStatut(...)
+-statut : Statut
++CompetenceStatut(...)
 }
 
 abstract class Equipement{
@@ -101,8 +101,8 @@ abstract class Equipement{
 }
 
 class Moteur{
-map : Map
-Team teamHero
++map : Map
++teamHero : Team
 
 +Moteur()
 -main()
@@ -118,9 +118,9 @@ class MiniMap{
 }
 
 class Combat{
-Team teamHero
-Team teamEnnemi
-Personnage ordre
+-teamHero : Team
+-teamEnnemi : Team
+-ordre : Personnage
 +Combat(Team heros, Team ennemis)
 -lancerCombat()
 -finDuTour()
@@ -136,9 +136,9 @@ Class Ennemi{
 }
 
 class Combattant{
--bool teamHero
--Personnage combattant
--bool tourFini
+-teamHero : bool
+-combattant : Personnage
+-tourFini : bool
 +setTourFini(bool tourFini)
 +getTourFini() : bool
 +attaquer(Personnage combattant)
@@ -147,33 +147,33 @@ class Combattant{
 }
 
 class Team{
-Personnage listPerso[]
+-listPerso[] : Personnage
 +Team()
 +ajouterPersonnage(Personnage perso)
 +enleverPersonnage(Personnage perso)
 }
 
 class Arme{
--int degat
+-degat : int
 +setDegat(int degat)
 +getDegat() : int
 }
 
 class Armure{
--int bloquage
+-bloquage : int
 +getBloquage() : int
 }
 
 class Consommable{
-int soin
-int energie
-bool faitRevivre
-Consommable(int soin, int energie, bool faitRevivre)
-utiliser(Personnage perso)
+-soin : int
+-energie : int
+-faitRevivre : bool
++Consommable(int soin, int energie, bool faitRevivre)
++utiliser(Personnage perso)
 }
 
 class ArmeConsommable{
-ArmeConsommable(int degat, int soin, int energie, bool faitRevivre)
++ArmeConsommable(int degat, int soin, int energie, bool faitRevivre)
 }
 
 class Ressource{
@@ -181,14 +181,14 @@ class Ressource{
 }
 
 class Inventaire{
--Item items[]
+-items[] : Items
 +ajouterItem(Item item)
 +retirerItem(Item item)
 +getItems() : Items[]
 }
 
 class Map{
--Salle salles[][]
+-salles[][] : Salle
 +Map(tailleX, tailleY)
 +genererMap()
 +recupérerSalle(int x, int y)
@@ -196,14 +196,14 @@ class Map{
 }
 
 class Salle{
--bool isExplore
--int x
--int y
-Salle(int x, int y)
-getX() : int
-getY() : int
-isExplore() : bool
-setExplore(bool isExplore)
+-isExplore : bool
+-x : int
+-y : int
++Salle(int x, int y)
++getX() : int
++getY() : int
++isExplore() : bool
++setExplore(bool isExplore)
 }
 
 
