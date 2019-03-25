@@ -8,6 +8,4 @@
 
 5- Diagramme d'état
 
-6- Corriger erreurs de mise en forme du diagramme de classe
-
-7- Implémenter les classes
+6- Implémenter les classes
