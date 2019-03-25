@@ -3,3 +3,5 @@
 
 Joueur --> (Lancer partie)
 @enduml
+
+/'commande : java -jar plantuml.jar case.txt '/
