@@ -1,0 +1,32 @@
+@startuml
+start
+:lancer Combat;
+:créer Combattant;
+:Définir ordre des combattants;
+repeat
+	:lancer Tour;
+	
+	while (rester combattant?) is (yes)
+		if (Hero?) then (yes)
+  			split
+				:attaquer;
+			split again
+				:defendre;
+			split again
+				:utiliser competence;
+			split again
+				:fuir;
+				if (reussie?) then (yes)
+					stop
+				else (no)
+				endif
+			end split
+		else (no)
+			:Choix fait par l'IA;
+		endif
+	endwhile (no)
+
+repeat while (un team morte?) 
+
+stop
+@enduml
