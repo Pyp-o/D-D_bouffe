@@ -4,14 +4,15 @@ left to right direction
 
 rectangle Jeu{
     Joueur --> (Lancer partie)
-    (Lancer partie) ..> (se deplacer) : extend
+    (Lancer partie) --> (choisir personnage) : include
+    (choisir personnage) ..> (se deplacer) : include
     (se deplacer) ..> (interagir salle) : extend
-    (interagir salle) ..> (combattre) : extend
+    
     note left of (interagir salle) : Possibilité d'évènement aléatoire avec combat et/ou loot ou rien
 
     rectangle Combat{
         top to bottom direction
-        (combattre) ..> (donner ordre) : include
+        (interagir salle) ..> (donner ordre) : include
         (donner ordre) ..> (attaquer) : extend
         (donner ordre) ..> (defendre) : extend
         (donner ordre) ..> (utiliser objet) : extend
@@ -20,7 +21,7 @@ rectangle Jeu{
 
     rectangle Inventaire{
         top to bottom direction
-        (Lancer partie) ..> (gerer inventaire) : extend
+        (choisir personnage) ..> (gerer inventaire) : extend
         (gerer inventaire) ..> (equiper arme): extend
         (gerer inventaire) ..> (equiper armure): extend
         (gerer inventaire) ..> (utiliser consommable): extend
