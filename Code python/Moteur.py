@@ -23,26 +23,28 @@ class Moteur :
         print("Toujours aussi saoul que le pillier de bar, il est pas vraiment copain avec tout le monde... \n\tMais il lance des trucs avec assez de précision pour blesser des gens à chaque coup, ça pourrait être utilse.\n\n")
 
         a='9'
-        while(a>'5' or a<'1'):
-            print("debug")
-            print("Choisir le premier personnage : ")
-            a=input()
-            if(a=='1'):
-                Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)      #TODO : Statut, Arme, Armure, Compétences
-                self.__teamHero.ajouterPersonnage(Charcutier)
-            elif(a=='3'):
-                Pilier = Personnage("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences
-                self.__teamHero.ajouterPersonnage(Pilier)
-            elif(a=='3'):
-                Creve = Personnage("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)  # TODO : Statut, Arme, Armure, Compétences
-                self.__teamHero.ajouterPersonnage(Creve)
-            elif(a=='4'):
-                Cuistot = Personnage("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences
-                self.__teamHero.ajouterPersonnage(Cuistot)
-            elif(a=='5'):
-                Poivrot = Personnage("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences
-                self.__teamHero.ajouterPersonnage(Poivrot)
-            else: print("Le code ne correspond à aucun personnage")
+        for i in range(1, 4):
+            while(a>'5' or a<'1'):
+                print("Choisir le personnage", i," : ")
+                a=input()
+                if(a=='1'):
+                    Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)      #TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
+                    self.__teamHero.ajouterPersonnage(Charcutier)
+                elif(a=='3'):
+                    Pilier = Personnage("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
+                    self.__teamHero.ajouterPersonnage(Pilier)
+                elif(a=='3'):
+                    Creve = Personnage("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
+                    self.__teamHero.ajouterPersonnage(Creve)
+                elif(a=='4'):
+                    Cuistot = Personnage("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences,Equilibrage caracteristiques
+                    self.__teamHero.ajouterPersonnage(Cuistot)
+                elif(a=='5'):
+                    Poivrot = Personnage("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
+                    self.__teamHero.ajouterPersonnage(Poivrot)
+                else: print("Le code ne correspond à aucun personnage")
 
 
+
+############# TEST #############
 m = Moteur()
