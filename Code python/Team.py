@@ -2,9 +2,8 @@ from Personnage import *
 from Inventaire import *
 
 class Team:
-    def __init__(self, personnages):
+    def __init__(self):
         self.__personnages = []
-        self.__personnages.append(personnages)
         self.__inventaire = Inventaire()
 
     def ajouterPersonnage(self, personnage):
@@ -19,7 +18,8 @@ class Team:
 
 ###########test#################
 a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
-t = Team(a)
+t = Team()
+t.ajouterPersonnage(a)
 t.enelverPersonnage(a)
 for p in t.getPersonnages():
     print(":"+p.getNom())
