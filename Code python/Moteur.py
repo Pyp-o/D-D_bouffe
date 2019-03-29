@@ -22,29 +22,94 @@ class Moteur :
         print("5- Poivrot :\t")
         print("Toujours aussi saoul que le pillier de bar, il est pas vraiment copain avec tout le monde... \n\tMais il lance des trucs avec assez de précision pour blesser des gens à chaque coup, ça pourrait être utilse.\n\n")
 
-        a='9'
-        for i in range(1, 4):
-            while(a>'5' or a<'1'):
-                print("Choisir le personnage", i," : ")
+        choixPrecedent='12'
+        for i in range(1, 3):
+            print("Choisir le personnage ", i)
+            a = input()
+            while(a==choixPrecedent or a<'1' or a>'5'):
+                if(a==choixPrecedent) :
+                    print("Ce personnage a déjà rejoint votre équipe\n")
+                else :
+                    print("Le personnage choisi n'existe pas\n")
+                print("Choisir un autre personnage : \n")
                 a=input()
-                if(a=='1'):
-                    Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)      #TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
-                    self.__teamHero.ajouterPersonnage(Charcutier)
-                elif(a=='3'):
-                    Pilier = Personnage("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
-                    self.__teamHero.ajouterPersonnage(Pilier)
-                elif(a=='3'):
-                    Creve = Personnage("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau", None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
-                    self.__teamHero.ajouterPersonnage(Creve)
-                elif(a=='4'):
-                    Cuistot = Personnage("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences,Equilibrage caracteristiques
-                    self.__teamHero.ajouterPersonnage(Cuistot)
-                elif(a=='5'):
-                    Poivrot = Personnage("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",None)  # TODO : Statut, Arme, Armure, Compétences, Equilibrage caracteristiques
-                    self.__teamHero.ajouterPersonnage(Poivrot)
-                else: print("Le code ne correspond à aucun personnage")
+
+            if (a == '1' and a != choixPrecedent):
+                Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                                        None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                self.__teamHero.ajouterPersonnage(Charcutier)
+            elif (a == '3' and choixPrecedent):
+                Pilier = Personnage("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                                    None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                self.__teamHero.ajouterPersonnage(Pilier)
+            elif (a == '3' and choixPrecedent):
+                Creve = Personnage("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                                   None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                self.__teamHero.ajouterPersonnage(Creve)
+            elif (a == '4' and choixPrecedent):
+                Cuistot = Personnage("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                                     None)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
+                self.__teamHero.ajouterPersonnage(Cuistot)
+            elif (a == '5' and choixPrecedent):
+                Poivrot = Personnage("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                                     None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                self.__teamHero.ajouterPersonnage(Poivrot)
+            elif (a == choixPrecedent):
+                print("Ce personnage a déjà rejoins votre équipe\n")
+
+
+            choixPrecedent = a
+
+
+
+
+
+
 
 
 
 ############# TEST #############
 m = Moteur()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############### Memo ######################
+
+
