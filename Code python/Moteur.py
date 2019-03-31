@@ -1,11 +1,17 @@
 from Team import *
 from Hero import *
 from Arme import *
+from Map import *
 
 class Moteur :
     def __init__(self):
         self.__teamHero=Team()
         self.initTeam()
+        self.__map = Map()
+        self.__map.genererMap(5,5)
+        self.end = 0
+        while(self.end != 1):
+            end = self.tour()
 
     def initTeam(self):
         print("---- HEROS ----\n")
@@ -63,7 +69,10 @@ class Moteur :
             choixPrecedent = a
 
 
-
+    def tour(self):
+        self.__map.display_maze()
+        self.__map.seDeplacer()
+        return 0
 
 
 
