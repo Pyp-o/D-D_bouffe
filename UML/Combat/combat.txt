@@ -5,7 +5,7 @@ start
 :Définir ordre des combattants;
 repeat
 	:lancer Tour;
-	
+
 	while (rester combattant?) is (yes)
 		if (Hero?) then (yes)
   			split
@@ -26,7 +26,8 @@ repeat
 		endif
 	endwhile (no)
 
-repeat while (un team morte?) 
+repeat while (une team morte?) is (no)
+
 
 stop
 @enduml

@@ -1,0 +1,27 @@
+@startuml
+start
+	if (salle sortie?) then (yes)
+        if(Boss tué?) then (yes)
+            stop
+            else (no)
+            stop
+            endif
+    else (no)
+    endif
+   repeat
+       :Quelle direction ?;
+       split
+       :Avant;
+       split again
+       :Arriere;
+       split again
+       :Gauche;
+       split again
+       :Droite;
+       end split
+   repeat while(Possible?)
+    stop
+
+
+
+@enduml
