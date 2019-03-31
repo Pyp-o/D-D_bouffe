@@ -3,14 +3,15 @@ from Salle import *
 import sys
 
 class Map:
-    def __init__(self, tailleX, tailleY):
-        self.__tailleX = tailleX
-        self.__tailleY = tailleY
+    def __init__(self):
+        self.__tailleX = 0
+        self.__tailleY = 0
         self.__positionX = 0
         self.__positionY = 0
 
-    def genererMap(self):
-
+    def genererMap(self, tailleX, tailleY):
+        self.__tailleX = tailleX
+        self.__tailleY = tailleY
 
         ##
         # Dimensions du labyrinthe
@@ -31,37 +32,36 @@ class Map:
         self.frontier = set()
         ##
         # Exécution du script
-        if __name__ == '__main__':
-            from sys import argv
+        from sys import argv
 
-            if len(argv) == 3:
-                self.width, self.height = map(int, argv[1:])
-                self.__grid = [[0] * self.width for _ in range(self.height)]
-                self.__salles = [([0] * self.width) for _ in range(self.height)]
+        if len(argv) == 3:
+            self.width, self.height = map(int, argv[1:])
+            self.__grid = [[0] * self.width for _ in range(self.height)]
+            self.__salles = [([0] * self.width) for _ in range(self.height)]
 
-            self.creerSalle()
+        self.creerSalle()
 
-            self.mark(rand(self.width), rand(self.height))
-            while self.frontier:
-                ##
-                # Choix d'un voisin à la frontière
-                x, y = choice(list(self.frontier))
-                self.frontier.remove((x, y))
-                nx, ny = choice(list(self.neighbors(x, y)))
+        self.mark(rand(self.width), rand(self.height))
+        while self.frontier:
+            ##
+            # Choix d'un voisin à la frontière
+            x, y = choice(list(self.frontier))
+            self.frontier.remove((x, y))
+            nx, ny = choice(list(self.neighbors(x, y)))
 
-                ##
-                # Création d'un passage
-                dir = self.direction(x, y, nx, ny)
-                self.__grid[y][x] |= dir
-                self.__grid[ny][nx] |= self.OPPOSITE[dir]
+            ##
+            # Création d'un passage
+            dir = self.direction(x, y, nx, ny)
+            self.__grid[y][x] |= dir
+            self.__grid[ny][nx] |= self.OPPOSITE[dir]
 
-                self.mark(x, y)
+            self.mark(x, y)
 
-                ## DEBUG :
-                #print("frontier =", self.frontier)
-                #print("(%d, %d) -> (%d, %d)" % (x, y, nx, ny))
-                #self.display_maze()
-                #input("Appuyez sur Entree pour continuer")
+            ## DEBUG :
+            #print("frontier =", self.frontier)
+            #print("(%d, %d) -> (%d, %d)" % (x, y, nx, ny))
+            #self.display_maze()
+            #input("Appuyez sur Entree pour continuer")
 
             #self.display_maze()
         #print("générer map")
@@ -202,8 +202,3 @@ class Map:
         print("Vous vous déplacer")
 
 
-m = Map(10,10)
-m.genererMap()
-while(1):
-    m.display_maze()
-    m.seDeplacer()
