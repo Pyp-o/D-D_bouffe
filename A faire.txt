@@ -4,7 +4,7 @@
 
 3- Diagramme de sénario
 
-4- Diagramme d'activité
+4- Diagramme d'activité des salles a evenement et refaire deplacement (test de la possibilite de la direction avant)
 
 5- Diagramme d'état
 
