@@ -71,7 +71,6 @@ class Moteur :
 
 
 ############# TEST #############
-m = Moteur()
 
 
 
