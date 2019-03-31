@@ -1,0 +1,22 @@
+@startuml
+start
+
+repeat
+    if (que faire?) then (equipement)
+        -afficher equipement
+        split
+            :equiper;
+        split again
+            :desequiper;
+         endsplit
+    elseif (que faire?) then (consommable)
+        -afficher consommables
+        :manger;
+    elseif(que faire ?) then (combiner)
+        -afficher ressources
+        :combiner;
+    else
+        stop
+    endif
+
+@enduml
