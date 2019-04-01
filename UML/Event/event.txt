@@ -1,5 +1,54 @@
 @startuml
 start
+if (salle sortie?) then (yes)
+    if (Boss tué ?) then (yes)
+        if (changer d'etage ?) then (yes)
+            :passer a l'etage superieur;
+            stop
+        else (no)
+            stop
+        endif;
+    else (no)
+        :lancer combat;
+        stop
+    endif
+endif
+
+if (salle piegee ?) then (yes)
+    if (combat gagné) then (yes)
+        stop
+    else
+        :lancer combat;
+    endif
+elseif (gardemanger) then (yes)
+    if (interragir ?) then (yes)
+        :activer effet;
+    else (no)
+        stop
+     endif
+elseif (buffet ?) then (yes)
+    if (interragir ?) then (yes)
+        :activer effet;
+    else (no)
+        stop
+     endif
+elseif (salle levier) then (yes)
+    if (interragir ?) then (yes)
+        :activer effet;
+    else (no)
+        stop
+     endif
+elseif (salle cachée) then (yes)
+    if (levier activé ?) then (yes)
+        if (entrer ?) then (yes)
+            :activer effet;
+        else (no)
+            stop
+         endif
+    else (no)
+        stop
+     endif
+endif
 
 stop
 

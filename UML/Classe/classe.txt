@@ -206,6 +206,26 @@ class Salle{
 +setExplore(bool isExplore)
 }
 
+class SalleSortie{
+-bossTué : bool
+}
+
+class SalleBuffet{
+-eventActive : bool
+}
+
+class SalleGardeManger{
+-eventActive : bool
+}
+
+class SalleLevier{
+-eventActive : bool
+-levierActive : bool
+}
+
+class SalleCache{
+-eventActive : bool
+}
 
 Personnage "1" -- "*" Competence
 CompetenceHeal --|> Competence
@@ -238,7 +258,7 @@ Moteur "1" -- "1" InterfaceGraphique
 Moteur "1" -- "1" Map
 Map "1" *-- "*" Salle
 SalleEntree --|> SalleEvenement
-salleSortie --|> SalleEvenement
+SalleSortie --|> SalleEvenement
 SalleEvenement --|> Salle
 SallePiege --|> SalleEvenement
 SalleBuffet --|> SalleEvenement
