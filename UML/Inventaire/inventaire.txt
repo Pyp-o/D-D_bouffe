@@ -1,22 +1,30 @@
 @startuml
 start
+    repeat
+        repeat
+        :que voulez-vous faire ?;
+        repeat while (choix impossible) i (yes)
 
-repeat
-    if (que faire?) then (equipement)
-        -afficher equipement
         split
-            :equiper;
+            :gestion equipement;
+            :afficher equipement;
+                split
+                    :equiper;
+                split again
+                    :desequiper;
+                 endsplit
         split again
-            :desequiper;
-         endsplit
-    elseif (que faire?) then (consommable)
-        -afficher consommables
-        :manger;
-    elseif(que faire ?) then (combiner)
-        -afficher ressources
-        :combiner;
-    else
-        stop
-    endif
+            :utilisation consommables;
+            :afficher consommables;
+            :manger;
 
+        split again
+            if (dans cuisine) then (yes)
+                :creer potions;
+                :afficher ressources
+                :combiner;
+            endif
+        endsplit
+        repeat while(terminer) is (no)
+    stop
 @enduml
