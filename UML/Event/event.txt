@@ -1,6 +1,9 @@
 @startuml
 start
-if (salle sortie?) then (yes)
+:declencher event;
+
+split
+    :salleSortie;
     if (Boss tué ?) then (yes)
         if (changer d'etage ?) then (yes)
             :passer a l'etage superieur;
@@ -12,43 +15,51 @@ if (salle sortie?) then (yes)
         :lancer combat;
         stop
     endif
-endif
-
-if (salle piegee ?) then (yes)
-    if (combat gagné) then (yes)
+split again
+    if (effet déjà activé) then (yes)
         stop
-    else
-        :lancer combat;
-    endif
-elseif (gardemanger) then (yes)
-    if (interragir ?) then (yes)
-        :activer effet;
-    else (no)
-        stop
-     endif
-elseif (buffet ?) then (yes)
-    if (interragir ?) then (yes)
-        :activer effet;
-    else (no)
-        stop
-     endif
-elseif (salle levier) then (yes)
-    if (interragir ?) then (yes)
-        :activer effet;
-    else (no)
-        stop
-     endif
-elseif (salle cachée) then (yes)
-    if (levier activé ?) then (yes)
-        if (entrer ?) then (yes)
+       endif
+    split
+        :sallePiege;
+        if (combat gagné) then (yes)
+            stop
+        else
+            :lancer combat;
+        endif
+    split again
+        :gardeManger;
+        if (interragir ?) then (yes)
             :activer effet;
         else (no)
             stop
          endif
-    else (no)
-        stop
-     endif
-endif
+    split again
+        :buffet;
+        if (interragir ?) then (yes)
+            :activer effet;
+        else (no)
+            stop
+         endif
+    split again
+        :levier;
+        if (interragir ?) then (yes)
+            :activer effet;
+        else (no)
+            stop
+         endif
+    split again
+        :cache;
+        if (levier activé ?) then (yes)
+            if (entrer ?) then (yes)
+                :activer effet;
+            else (no)
+                stop
+             endif
+        else (no)
+            stop
+         endif
+    endsplit
+endsplit
 
 stop
 
