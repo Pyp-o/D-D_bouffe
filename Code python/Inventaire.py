@@ -11,3 +11,8 @@ class Inventaire():
     def getitems(self):
         return self.__items
 
+    def gestionInventaire(self):
+        print("Que faire ?\n1-Gestion de l'équipement\n2-Utilisation de consommables\3-Création de potions")
+        choix=input()
+        while(choix)
+            choix=input()
