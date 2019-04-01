@@ -1,27 +1,37 @@
 @startuml
 start
-	if (salle sortie?) then (yes)
-        if(Boss tué?) then (yes)
-            stop
-            else (no)
-            stop
-            endif
-    else (no)
+fork
+    if (Possibilité gauche ?) then (yes)
+        :afficher g;
     endif
-   repeat
-       :Quelle direction ?;
-       split
-       :Avant;
-       split again
-       :Arriere;
-       split again
-       :Gauche;
-       split again
-       :Droite;
-       end split
-   repeat while(Possible?)
-    stop
+fork again
+    if (Possibilité droite ?) then (yes)
+        :afficher d;
+    endif
+fork again
+    if (Possibilité haut ?) then (yes)
+        :afficher h;
+    endif
+fork again
+    if (Possibilité bas ?) then (yes)
+        :afficher b;
+    endif
+endfork
 
+repeat
+    repeat
+    :saisir entrée;
 
+    repeat while(Entrée invalide) is (no)
+repeat while(Mouvement Possible) is (no)
+
+:Effectuer mouvement;
+
+    if (Event ?) then (yes)
+        :activer event;
+    else (no)
+        stop
+    endif
+stop
 
 @enduml
