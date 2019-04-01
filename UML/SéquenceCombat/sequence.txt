@@ -1,0 +1,49 @@
+@startuml
+create Moteur
+create Combat
+Moteur -> Combat : new
+Moteur -> Combat : lancerCombat()
+Combat -> teamHero: Récupération team hero
+teamHero --> Combat
+
+create teamEnnemi
+Combat -> teamEnnemi: new
+loop for each ennemi
+	Combat -> Personnage: new 
+end
+
+loop for each combattant dans chaque team
+	note left: les ennemies et hero sont cloné en combattant
+	create Combattant
+	Combat -> Combattant : new
+end
+
+loop while il reste des combattants dans les deux teams ou le combat n'est pas fuit
+	Combat -> Combat : debut du tour
+
+	loop for each combattant		
+		alt choisir d'attaquer
+			Combattant -> Combattant : attaquer un autre combattant
+			note right : les ennemies agissent via une IA (contrairement aux hero)
+		else choisir de se defendre
+			Combattant -> Combattant : le combattant se défend
+		else choisir d'utiliser un sort
+			Combattant -> Competence : Choisir et lancer sort
+			Competence -->Combattant : Impacter Combattant(s)
+		else choisir de fuir
+			Combattant -> Combat : Tenter fuite
+			Combat -> Combat : Test de la fuite
+			
+		end	
+	end
+end
+loop pour chaque combattant dans la team hero
+	Combat -> Combattant : Redistribuer les stats au personnage correspondant (pv, pc, status...)
+	Combattant --> Personnage
+end
+
+Combat --> Moteur : fin combat
+destroy Combat
+@enduml
+
+/'commande : java -jar plantuml.jar sequence.txt '/
