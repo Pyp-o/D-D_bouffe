@@ -21,5 +21,5 @@ class Competence:
     def getCout(self):
         return self.__cout
 
-    def activerCompetence():
+    def activerCompetence(self, combattant, teamAllie, teamEnnemi):
         raise NotImplementedError

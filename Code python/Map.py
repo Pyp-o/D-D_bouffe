@@ -162,7 +162,10 @@ class Map:
 
 
     def recupererSalle(self, x, y):
-        return 0
+        return self.__salles[x][y]
+
+    def recupererSalleActuelle(self):
+        return self.__salles[self.getPositionX()][self.getPositionY()]
 
     def seDeplacer(self):
         print("Vous etes en "+str(self.__positionX)+":"+str(self.__positionY))
