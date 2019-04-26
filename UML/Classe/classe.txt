@@ -54,8 +54,8 @@ abstract class Statut{
 -tourRestnt : int
 +setTourRestant(int tour)
 +getTourRestant() : int
-+activerStatut()
-+retirerStatut()
++activerStatut(Combattant combattant)
++retirerStatut(Combattant combattant)
 }
 
 
@@ -141,11 +141,14 @@ class Combattant{
 -teamHero : bool
 -combattant : Personnage
 -tourFini : bool
+-statuts : Statut[]
 +setTourFini(bool tourFini)
 +getTourFini() : bool
 +attaquer(Personnage combattant)
 +seDefendre()
 +isTeamHero() : bool
++ajouterStatut(Statut)
++retirerStatut(Statut)
 }
 
 class Team{
@@ -191,10 +194,14 @@ class Inventaire{
 
 class Map{
 -salles[][] : Salle
+-positionX : int
+-positionY : int
 +Map(tailleX, tailleY)
 +genererMap()
 +recupérerSalle(int x, int y)
 +seDeplacer()
++getPositionX() : Int
++getPositionY() : int
 }
 
 class Salle{
