@@ -8,6 +8,7 @@ class Combattant(Personnage):
         self.__perso = personnage
         self.__tourFini = False
         self.__teamHero = teamHero
+        self.__statuts = []
 
     def setTourFini(self, isTourFini):
         self.__tourFini = isTourFini
@@ -23,6 +24,12 @@ class Combattant(Personnage):
 
     def isTeamHero(self):
         return self.__teamHero
+    
+    def ajouterStatut(self, statut):
+		self.__statuts += statut
+	
+	def retirerStatut(self, statut):
+		self.__statut.remove(statut)
 
 a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
 b = Combattant(a)
