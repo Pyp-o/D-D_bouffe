@@ -10,10 +10,11 @@ class Map:
         self.__positionY = 0
 
     def getPositionX(self):
-		return self.__positionX
-	
+        return self.__positionX
+
     def getPositionY(self):
-		return self.__positionY
+        return self.__positionY
+
 
     def genererMap(self, tailleX, tailleY):
         self.__tailleX = tailleX
