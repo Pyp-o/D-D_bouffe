@@ -219,6 +219,10 @@ class SalleSortie{
 -bossTué : bool
 }
 
+class SalleCuisine{
+-cuisine : bool
+}
+
 class SalleBuffet{
 -eventActive : bool
 }
@@ -274,6 +278,7 @@ SalleBuffet --|> SalleEvenement
 SalleGardeManger --|> SalleEvenement
 SalleCache --|> SalleEvenement
 SalleLevier --|> SalleEvenement
+SalleCuisine --|> SalleEvenement
 
 Team "1" o-- "*" Personnage
 Team "1" -- "1" Inventaire
