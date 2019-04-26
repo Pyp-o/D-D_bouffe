@@ -1,5 +1,5 @@
 class Statut:
-    def __init__(self,tourRestant):
+    def __init__(self,tourRestant, personnage):
         self.__tourRestant=tourRestant
 
 
@@ -9,6 +9,8 @@ class Statut:
     def getTourRestant(self):
         return self.__tourRestant
 
-    def activerStatut(self):
+    def activerStatut(self, combattant):
         raise NotImplementedError
 
+	def retirerStatut(self, combattant):
+        raise NotImplementedError

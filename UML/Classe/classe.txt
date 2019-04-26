@@ -55,6 +55,7 @@ abstract class Statut{
 +setTourRestant(int tour)
 +getTourRestant() : int
 +activerStatut()
++retirerStatut()
 }
 
 
