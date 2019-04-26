@@ -13,4 +13,4 @@ class Statut:
         raise NotImplementedError
 
     def retirerStatut(self, combattant):
-        raise NotImplementedError
+        combattant.retirerStatut(self)

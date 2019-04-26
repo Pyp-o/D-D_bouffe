@@ -6,9 +6,9 @@ class Endormi(Statut):
 
     def activerStatut(self, combattant):
         self.setTourRestant(self.getTourRestant()-1)
-
-    def retirerStatut(self, combattant):
-        raise NotImplementedError
-
+        combattant.setTourFini(True)
+        if (self.getTourRestant()==0):
+            self.retirerStatut(combattant)
+            
     def retirerStatut(self, combattant):
         combattant.retirerStatut(self)
