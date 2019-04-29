@@ -26,9 +26,7 @@ class Combattant(Personnage):
         return self.__teamHero
     
     def ajouterStatut(self, statut):
-		self.__statuts += statut
-	
+        self.__statuts += statut
+
     def retirerStatut(self, statut):
-		self.__statut.remove(statut)
-
-
+        self.__statut.remove(statut)

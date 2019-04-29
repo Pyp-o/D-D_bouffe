@@ -16,10 +16,10 @@ class Team:
         return self.__personnages
     
     def getPersonnage(self, i):
-		return self.__personnages[i]
+        return self.__personnages[i]
         
     def getLenPersonnage(self):
-		return len(self.__personnages)
+        return len(self.__personnages)
 
 
 ###########test#################
