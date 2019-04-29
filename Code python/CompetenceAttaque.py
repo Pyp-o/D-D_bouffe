@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-import random
 from Competence import *
-from Combattant import *
-from Team import *
+
 
 class CompetenceAttaque(Competence):
     def __init__(self, nom, cout, description, groupe, tauxReussite, degat):
@@ -14,9 +12,9 @@ class CompetenceAttaque(Competence):
             print("qui attaquer? (utiliser les z et q pour choisir et entrée pour selectionner)")
             rep = "0x00"
             i=0
-            maxRange = tEnn.getLenPersonnage()
+            maxRange = teamEnnemi.getLenPersonnage()
             while rep != "0xd": #différent de entrée
-                print(tEnn.getPersonnage(i).getNom())
+                print(teamEnnemi.getPersonnage(i).getNom())
                 rep = hex(ord(self.getch()))    #on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
                 if(rep == "0x7a"):    #z
                     if(i<maxRange-1):
@@ -32,8 +30,8 @@ class CompetenceAttaque(Competence):
             if rand > self.getTauxReussite():
                 print("le sort echoue...")
             else: 
-                tEnn.getPersonnage(i).setPV(tEnn.getPersonnage(i).getPV()-self.__degat)
-                print(tEnn.getPersonnage(i).getNom()+" perd "+str(self.__degat)+"PV!")
+                teamEnnemi.getPersonnage(i).setPV(teamEnnemi.getPersonnage(i).getPV()-self.__degat)
+                print(teamEnnemi.getPersonnage(i).getNom()+" perd "+str(self.__degat)+"PV!")
         else:   #attaque de groupe
             rand = random.randint(0, 100) #le sort echoue?
             if rand > self.getTauxReussite():

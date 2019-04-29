@@ -1,5 +1,7 @@
 import sys, termios, tty, os, time
-
+import random
+from Combattant import *
+from Team import *
 
 class Competence:
     def __init__(self, nom, cout, description, groupe, tauxReussite):
