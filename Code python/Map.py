@@ -1,6 +1,6 @@
 from random import choice, randrange as rand
 from Salle import *
-import sys
+import sys, termios, tty, os, time	#for getch()
 
 class Map:
     def __init__(self):
