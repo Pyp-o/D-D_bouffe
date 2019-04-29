@@ -1,4 +1,5 @@
 from Equipement import *
+from Item import *
 
 class Arme(Equipement):
     def __init__(self, nom, description, degat):
@@ -7,3 +8,8 @@ class Arme(Equipement):
 
     def getDegat(self):
         return self.__degat
+
+    def affichageEquipement(self):
+        print('*Nom:', self.getNom(), '  *Description:', self.getDescription(), '  *Degats:', self.getDegat())
+
+

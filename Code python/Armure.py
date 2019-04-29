@@ -7,3 +7,6 @@ class Armure(Equipement):
 
     def getBloquage(self):
         return self.__bloquage
+
+    def affichageEquipement(self):
+        print('*Nom:', self.getNom(), '  *Description:', self.getDescription(), '  *Protection:', self.getBloquage())

@@ -1,4 +1,6 @@
-
+from Arme import *
+from Armure import *
+from Equipement import *
 
 class Inventaire():
     def __init__(self):
@@ -13,7 +15,17 @@ class Inventaire():
     def getitems(self):
         return self.__items
 
-    def gestionInventaire(self):
+    def afficherEquipement(self):
+        for i in range(0, len(self.__items)):
+            if (isinstance(self.__items[i], Arme) or isinstance(self.__items[i], Armure)):
+                self.__items[i].affichageEquipement()
+
+    def afficherEquipementEquipe(self):
+        for i in range(0, len(self.__items)):
+            if ((isinstance(self.__items[i], Arme) or isinstance(self.__items[i], Armure)) and self.__items[i].getPorteur()!=None):
+                self.__items[i].affichageEquipement()
+
+    def choixAction(self):
         choix=-1
         while(choix!=0):
             print("Que faire ?\n1-Gestion de l'équipement\n2-Utilisation de consommables\n3-Création de potions\n4-Retour\n")
@@ -28,17 +40,17 @@ class Inventaire():
                 choix=input()
                 while (choix != '1' and choix != '2' and choix != '3'):
                     print("\nChoix erroné\n\nQue faire ?\n1-Equiper\n2-Désequiper\n3-Retour\n")
-                    choix=input()
+                    choix2=input()
                 #equiper
                 if(choix=='1'):
-                    print("equipement actuel + stat")
-                    print("Equipement non equipe + stat\n")
+                    self.afficherEquipementEquipe()
+                    self.afficherEquipement()
                 #desequiper
                 if(choix=='2'):
                     print("equipement actuel + stat\n")
 
             #utilisation consommables
-            if(choix=='2'):
+            elif(choix=='2'):
                 print("Que faire ?\n1-Manger\n2-Retour\n")
                 choix=input()
                 while (choix != '1' and choix != '2'):
@@ -49,10 +61,9 @@ class Inventaire():
                     print('liste consommables')
 
             #creation de potions
-            if(choix=='3'):
+            elif(choix=='3'):
                 print('liste potions possible\n')
                 print("\nQuelle potion faire ?")
-                choix=input()
 
 
             #retour
@@ -63,7 +74,11 @@ class Inventaire():
 
 
 inv = Inventaire()
-inv.gestionInventaire()
+arm = Arme('bite', 'nul à chier', 16)
+armu = Armure('casserole', 'protege pas', 2)
+inv.ajouterItem(arm)
+inv.ajouterItem(armu)
+inv.choixAction()
 
 
 

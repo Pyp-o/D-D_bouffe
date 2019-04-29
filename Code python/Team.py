@@ -1,4 +1,4 @@
-from Personnage import *
+from Hero import *
 from Inventaire import *
 
 class Team:
@@ -17,7 +17,7 @@ class Team:
 
 
 ###########test#################
-a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
+a = Hero('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
 t = Team()
 t.ajouterPersonnage(a)
 t.enelverPersonnage(a)
