@@ -84,8 +84,7 @@ class Map:
 
 
     def add_frontier(self, x, y):
-        if (x >= 0 and y >= 0 and y < len(self.__grid)
-                and x < len(self.__grid[y]) and self.__grid[y][x] == 0):
+        if (x >= 0 and y >= 0 and y < len(self.__grid) and x < len(self.__grid[y]) and self.__grid[y][x] == 0):
             self.__grid[y][x] |= self.FRONTIER
             self.frontier.add((x, y))
 
@@ -211,13 +210,13 @@ class Map:
                 print("Impossible d'aller par là...")
         print("Vous vous déplacer")
 
-	def getch():
-		fd = sys.stdin.fileno()
-		old_settings = termios.tcgetattr(fd)
-		try:
-			tty.setraw(sys.stdin.fileno())
-			ch = sys.stdin.read(1)
+    def getch():
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
 	 
-		finally:
-			termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-		return ch
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
