@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from Arme import *
 from Armure import *
 from Equipement import *
@@ -73,12 +76,6 @@ class Inventaire():
 
 
 
-inv = Inventaire()
-arm = Arme('bite', 'nul à chier', 16)
-armu = Armure('casserole', 'protege pas', 2)
-inv.ajouterItem(arm)
-inv.ajouterItem(armu)
-inv.choixAction()
 
 
 

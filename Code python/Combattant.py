@@ -20,7 +20,7 @@ class Combattant(Personnage):
         print("j'attaque "+combattant.getNom()+"!!!")
 
     def seDefendre(self):
-        print("je me défend")
+        print("je me defend")
 
     def isTeamHero(self):
         return self.__teamHero
@@ -28,9 +28,7 @@ class Combattant(Personnage):
     def ajouterStatut(self, statut):
 		self.__statuts += statut
 	
-	def retirerStatut(self, statut):
+    def retirerStatut(self, statut):
 		self.__statut.remove(statut)
 
-a = Personnage('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
-b = Combattant(a)
-b.attaquer(a) #!!! a n'est pas un combattant, c'est juste pour les test!!!!
+

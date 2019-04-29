@@ -14,15 +14,12 @@ class Team:
 
     def getPersonnages(self):
         return self.__personnages
+    
+    def getPersonnage(self, i):
+		return self.__personnages[i]
+        
+    def getLenPersonnage(self):
+		return len(self.__personnages)
 
 
 ###########test#################
-a = Hero('crotte',0,0,0,0,0,0,0,0,0,0,0,0)
-t = Team()
-t.ajouterPersonnage(a)
-t.enelverPersonnage(a)
-for p in t.getPersonnages():
-    print(":"+p.getNom())
-t.ajouterPersonnage(a)
-for p in t.getPersonnages():
-    print(":"+p.getNom())
