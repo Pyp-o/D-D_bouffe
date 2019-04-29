@@ -75,8 +75,27 @@ class Inventaire():
 
 
 
+    def getch(self):
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
 
-
-
-
+    def select(self):
+        while rep != "0xd":  # différent de entrée
+            rep = hex(ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+            if (rep == "0x7a"):  # z
+                if (i!=4):
+                    i = i + 1
+                else:
+                    i = 0
+            if (rep == "0x73"):  # s
+                if (i > 0):
+                    i = i - 1
+                else:
+                    i = 1
 #TODO : gerer fleches directionnelles pour choisir équipement, modifier diagramme inventaire
