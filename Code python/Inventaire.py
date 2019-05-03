@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+import sys, termios, tty, os, time
 from Arme import *
 from Armure import *
 from Equipement import *
@@ -19,8 +19,8 @@ class Inventaire():
         return self.__items
 
     def afficherEquipement(self):
-        for i in range(0, len(self.__items)):
-            if (isinstance(self.__items[i], Arme) or isinstance(self.__items[i], Armure)):
+        for i in range(0, len(self.__items)):   #utiliser plutot : for item in self.__items :
+            if (isinstance(self.__items[i], Arme) or isinstance(self.__items[i], Armure)):  #utiliser plutot : if (isinstance(item, Arme) or isinstance(item, Armure)):
                 self.__items[i].affichageEquipement()
 
     def afficherEquipementEquipe(self):
@@ -99,3 +99,4 @@ class Inventaire():
                 else:
                     i = 1
 #TODO : gerer fleches directionnelles pour choisir équipement, modifier diagramme inventaire
+#NE PAS UTILISER LES FLECHES DIRECTIONNELLES AVEC getch() -> BUG!!!!
