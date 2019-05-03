@@ -1,5 +1,7 @@
 class Statut:
-    def __init__(self,tourRestant, personnage):
+    def __init__(self, nom, combattant, tourRestant):
+        self.__combattant = combattant
+        self.__nom = nom
         self.__tourRestant=tourRestant
 
 
@@ -14,3 +16,6 @@ class Statut:
 
     def retirerStatut(self, combattant):
         combattant.retirerStatut(self)
+
+    def getNom(self):
+        return self.__nom
