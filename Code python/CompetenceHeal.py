@@ -59,4 +59,4 @@ tEnn.ajouterPersonnage(i)
 
 c1 = CompetenceHeal("boule de soin", 3, "lance une boule de feu", 0, 75,5)
 c2 = CompetenceHeal("deluge de soin", 2, "embraise les ennemies", 1, 75,5)
-c2.activerCompetence(b, tAlli, tEnn)
+c1.activerCompetence(b, tAlli, tEnn)
