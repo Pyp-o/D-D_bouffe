@@ -7,8 +7,15 @@ class Combattant(Personnage):
                             personnage.getArmure(), personnage.getCompetence())
         self.__perso = personnage
         self.__tourFini = False
-        self.__teamHero = teamHero
+        self.__teamHero = teamHero	#est-ce un hero?
         self.__statuts = []
+        self.__ordre = -1 #ordre de passage
+
+    def setOrdre(self, ordre):
+        self.__ordre = ordre
+	
+    def getOrdre(self):
+        return self.__ordre
 
     def setTourFini(self, isTourFini):
         self.__tourFini = isTourFini
