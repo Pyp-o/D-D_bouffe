@@ -87,6 +87,26 @@ class Inventaire():
         else:
             print("\nAucun equipement equipe\n\n")
 
+    def Manger(self):
+        print("Que faire ?\n1-Manger\n2-Retour\n")
+        choix = self.select(2)
+        # manger
+        consom = self.getConsommables()
+        if (len(consom) > 0):  # si liste de consommables non vide
+            self.afficherConsommables()  # on affiche
+            print("\nChoisir l'item à utiliser:")
+            choix = self.select(len(consom))
+            a = consom[choix - 1]
+            print("\nChoisir le personnage qui va en beneficier:")
+            # recuperer le personnage qui va en beneficier
+            self.retirerItem(a)
+        else:
+            print("\nAucun consommable dans l'inventaire\n\n")
+
+    def CreerPotion(self):
+        print('\nliste potions possible\n')
+        print("\nQuelle potion faire ?\n\n")
+
     def choixAction(self):
         choix=1
         while(choix!=-1):
@@ -108,26 +128,12 @@ class Inventaire():
 
             #utilisation consommables
             elif(choix==2):
-                print("Que faire ?\n1-Manger\n2-Retour\n")
-                choix=self.select(2)
-                #manger
-                consom=self.getConsommables()
-                if(len(consom)>0):                      #si liste de consommables non vide
-                    self.afficherConsommables()         #on affiche
-                    print("\nChoisir l'item à utiliser:")
-                    choix=self.select(len(consom))
-                    a = consom[choix-1]
-                    print("\nChoisir le personnage qui va en beneficier:")
-                    #recuperer le personnage qui va en beneficier
-                    self.retirerItem(a)
-                else:
-                    print("\nAucun consommable dans l'inventaire\n\n")
+               self.Manger()
 
             #creation de potions
             elif(choix==3):
-                print('\nliste potions possible\n')
-                print("\nQuelle potion faire ?\n\n")
-
+                self.CreerPotion()
+            #sortie d'inventaire
             elif(choix==4):
                 choix=-1
 
@@ -162,16 +168,16 @@ class Inventaire():
         return i
 #TODO : modifier diagramme inventaire, creer methode pour equiper et desequiper ailleurs que dans choixAction, deplacer les actions faites dans choixAction dans des methodes
 
-inv = Inventaire()
-gourdin = Arme('gourdin', 'morceau de bois moisi', 2)
-tonneau = Armure('tonneau', "planches de bois vermoulues ayant contenu de l'alcool", 3)
-potion1 = Consommable("potion1", "rien", 0, 0, None, 0)
-potion2 = Consommable("potion2", "rien", 0, 0, None, 0)
-potion3 = Consommable("potion3", "rien", 0, 0, None, 0)
-inv.ajouterItem(gourdin)
-inv.ajouterItem(tonneau)
-inv.ajouterItem(potion1)
-inv.ajouterItem(potion2)
-inv.ajouterItem(potion3)
-Gourou = Personnage("Gourou", 5, 5, 5, 5, 0, 0, 0, 0, None, None, None, None)
-inv.choixAction()
+#inv = Inventaire()
+#gourdin = Arme('gourdin', 'morceau de bois moisi', 2)
+#tonneau = Armure('tonneau', "planches de bois vermoulues ayant contenu de l'alcool", 3)
+#potion1 = Consommable("potion1", "rien", 0, 0, None, 0)
+#potion2 = Consommable("potion2", "rien", 0, 0, None, 0)
+#potion3 = Consommable("potion3", "rien", 0, 0, None, 0)
+#inv.ajouterItem(gourdin)
+#inv.ajouterItem(tonneau)
+#inv.ajouterItem(potion1)
+#inv.ajouterItem(potion2)
+#inv.ajouterItem(potion3)
+#Gourou = Personnage("Gourou", 5, 5, 5, 5, 0, 0, 0, 0, None, None, None, None)
+#inv.choixAction()
