@@ -36,9 +36,19 @@ class Inventaire():
                 item.affichageEquipement()
 
     def afficherConsommables(self):
+        i=1
         for consommable in self.__items:
             if((isinstance(consommable, Consommable))):
+                print(i, "-")
                 consommable.affichageConsommable()
+                i+=1
+
+    def listConsommables(self):
+        listeConsommables = []
+        for item in self.__items:
+            if ((isinstance(item, Consommable))):
+                listeConsommables.append(item)
+        return listeConsommables
 
 
     def choixAction(self):
@@ -64,14 +74,16 @@ class Inventaire():
                 print("Que faire ?\n1-Manger\n2-Retour\n")
                 choix=self.select(2)
                 #manger
-                if(choix==1):
-                    nb = self.afficherConsommables()
-                    if(nb != 0):                                            #selection de l'item a utiliser s'il y en a un
-                        print("Sélection de l'item:")
-                        choix=self.select(nb)
-                        placeConso=self.placeConsommable()
-                        item[placeConso[nb]-1]
-
+                consom=self.listConsommables()
+                if(len(consom)>0):
+                    self.afficherConsommables()
+                    print("Choisir l'item à utiliser:")
+                    choix=self.select(len(consom))
+                    a = consom[choix-1]
+                    a.utiliser(Gourou)
+                    self.retirerItem(a)
+                else:
+                    print("Aucun consommable dans l'inventaire\n\n")
 
             #creation de potions
             elif(choix==3):
@@ -112,9 +124,16 @@ class Inventaire():
         return i
 #TODO : gerer fleches directionnelles pour choisir équipement, modifier diagramme inventaire
 
-#inv = Inventaire()
-#gourdin = Arme('gourdin', 'morceau de bois moisi', 2)
-#tonneau = Armure('tonneau', "planches de bois vermoulues ayant contenu de l'alcool", 3)
-#inv.ajouterItem(gourdin)
-#inv.ajouterItem(tonneau)
-#inv.choixAction()
+inv = Inventaire()
+gourdin = Arme('gourdin', 'morceau de bois moisi', 2)
+tonneau = Armure('tonneau', "planches de bois vermoulues ayant contenu de l'alcool", 3)
+potion1 = Consommable("potion1", "rien", 0, 0, None, 0)
+potion2 = Consommable("potion2", "rien", 0, 0, None, 0)
+potion3 = Consommable("potion3", "rien", 0, 0, None, 0)
+inv.ajouterItem(gourdin)
+inv.ajouterItem(tonneau)
+inv.ajouterItem(potion1)
+inv.ajouterItem(potion2)
+inv.ajouterItem(potion3)
+Gourou = Personnage("Gourou", 5, 5, 5, 5, 0, 0, 0, 0, None, None, None, None)
+inv.choixAction()
