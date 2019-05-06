@@ -52,9 +52,40 @@ class Inventaire():
     def getEquipementEquipe(self):
         listEquipement = []
         for item in self.__items:
+            if ((isinstance(item, Equipement)) and item.getPorteur()!=None):
+                listEquipement.append(item)
+        return listEquipement
+
+    def getEquipementDesequipe(self):
+        listEquipement = []
+        for item in self.__items:
             if ((isinstance(item, Equipement)) and item.getPorteur()==None):
                 listEquipement.append(item)
         return listEquipement
+
+
+    def Equiper(self):
+        self.afficherEquipementEquipe()
+        self.afficherEquipementDesequipe()
+        listEquipement = self.getEquipementDesequipe()
+        if (len(listEquipement) > 0):
+            print("\nChoisir l'équipement à équiper:")
+            choix = self.select(len(listEquipement))
+            print("\nChoisir le personnage qui va s'en equiper")
+            # recuperer le personnage qui va s'equiper
+        else:
+            print("\nAucun equipement dans l'inventaire\n\n")
+
+    def Desequiper(self):
+        self.afficherEquipementEquipe()
+        listEquipement = self.getEquipementEquipe()
+        if (len(listEquipement) > 0):
+            print("\nChoisir l'équipement à deséquiper:")
+            choix = self.select(len(listEquipement))
+            print("\nChoisir le personnage qui va s'en equiper")
+            # recuperer le personnage qui va s'equiper
+        else:
+            print("\nAucun equipement equipe\n\n")
 
     def choixAction(self):
         choix=1
@@ -67,21 +98,13 @@ class Inventaire():
                 print("Que faire ?\n1-Equiper\n2-Désequiper\n3-Retour\n")
                 choix=self.select(3)
                 #equiper
-                if(choix==1):
-                    self.afficherEquipementEquipe()
-                    self.afficherEquipementDesequipe()
-                    listEquipement=self.getEquipementEquipe()
-                    if(len(listEquipement)>0):
-                        print("\nChoisir l'équipement à équiper:")
-                        choix=self.select(len(listEquipement))
-                        print("\nChoisir le personnage qui va s'en equiper")
-                        #recuperer le personnage qui va s'equiper
-                    else:
-                        print("\nAucun equipement dans l'inventaire\n\n")
+                if(choix == 1):
+                    self.Equiper()
+
 
                 #desequiper
                 elif(choix==2):
-                    self.afficherEquipementEquipe()
+                    self.Desequiper()
 
             #utilisation consommables
             elif(choix==2):
