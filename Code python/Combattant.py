@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Personnage import *
 
 class Combattant(Personnage):
@@ -24,7 +26,16 @@ class Combattant(Personnage):
         return self.__tourFini
 
     def attaquer(self, combattant):
-        print("j'attaque "+combattant.getNom()+"!!!")
+        degat = self.getAttaque()-combattant.getDefense()
+        if degat<0:
+            degat = 0
+        print(combattant.getNom()+" reçoit "+str(degat)+" degat!")
+        if combattant.getPV() - degat < 0:
+            combattant.setPV(0)
+            print(combattant.getNom()+" a succombé à ses blessures...")
+        else:
+            combattant.setPV(combattant.getPV() - degat)
+        
 
     def seDefendre(self):
         print("je me defend")
