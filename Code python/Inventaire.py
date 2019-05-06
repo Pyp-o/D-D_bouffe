@@ -19,12 +19,6 @@ class Inventaire():
     def getitems(self):
         return self.__items
 
-    def nbItem(self):
-        i=0
-        for item in self.__items:
-            i+=1
-        return i
-
     def afficherEquipement(self):
         for item in self.__items:
             if (isinstance(item, Arme) or isinstance(item, Armure)):
@@ -35,6 +29,11 @@ class Inventaire():
             if ((isinstance(item,Arme) or isinstance(item, Armure)) and item.getPorteur()!=None):
                 item.affichageEquipement()
 
+    def afficherEquipementDesequipe(self):
+        for item in self.__items:
+            if ((isinstance(item,Arme) or isinstance(item, Armure)) and item.getPorteur()==None):
+                item.affichageEquipement()
+
     def afficherConsommables(self):
         i=1
         for consommable in self.__items:
@@ -43,13 +42,19 @@ class Inventaire():
                 consommable.affichageConsommable()
                 i+=1
 
-    def listConsommables(self):
+    def getConsommables(self):
         listeConsommables = []
         for item in self.__items:
             if ((isinstance(item, Consommable))):
                 listeConsommables.append(item)
         return listeConsommables
 
+    def getEquipementEquipe(self):
+        listEquipement = []
+        for item in self.__items:
+            if ((isinstance(item, Equipement)) and item.getPorteur()==None):
+                listEquipement.append(item)
+        return listEquipement
 
     def choixAction(self):
         choix=1
@@ -64,7 +69,16 @@ class Inventaire():
                 #equiper
                 if(choix==1):
                     self.afficherEquipementEquipe()
-                    self.afficherEquipement()
+                    self.afficherEquipementDesequipe()
+                    listEquipement=self.getEquipementEquipe()
+                    if(len(listEquipement)>0):
+                        print("\nChoisir l'équipement à équiper:")
+                        choix=self.select(len(listEquipement))
+                        print("\nChoisir le personnage qui va s'en equiper")
+                        #recuperer le personnage qui va s'equiper
+                    else:
+                        print("\nAucun equipement dans l'inventaire\n\n")
+
                 #desequiper
                 elif(choix==2):
                     self.afficherEquipementEquipe()
@@ -74,20 +88,21 @@ class Inventaire():
                 print("Que faire ?\n1-Manger\n2-Retour\n")
                 choix=self.select(2)
                 #manger
-                consom=self.listConsommables()
-                if(len(consom)>0):
-                    self.afficherConsommables()
-                    print("Choisir l'item à utiliser:")
+                consom=self.getConsommables()
+                if(len(consom)>0):                      #si liste de consommables non vide
+                    self.afficherConsommables()         #on affiche
+                    print("\nChoisir l'item à utiliser:")
                     choix=self.select(len(consom))
                     a = consom[choix-1]
-                    a.utiliser(Gourou)
+                    print("\nChoisir le personnage qui va en beneficier:")
+                    #recuperer le personnage qui va en beneficier
                     self.retirerItem(a)
                 else:
-                    print("Aucun consommable dans l'inventaire\n\n")
+                    print("\nAucun consommable dans l'inventaire\n\n")
 
             #creation de potions
             elif(choix==3):
-                print('liste potions possible\n')
+                print('\nliste potions possible\n')
                 print("\nQuelle potion faire ?\n\n")
 
             elif(choix==4):
@@ -122,7 +137,7 @@ class Inventaire():
                     i = nbChoix
             print(i)
         return i
-#TODO : gerer fleches directionnelles pour choisir équipement, modifier diagramme inventaire
+#TODO : modifier diagramme inventaire, creer methode pour equiper et desequiper ailleurs que dans choixAction, deplacer les actions faites dans choixAction dans des methodes
 
 inv = Inventaire()
 gourdin = Arme('gourdin', 'morceau de bois moisi', 2)

@@ -190,6 +190,14 @@ class Inventaire{
 +ajouterItem(Item item)
 +retirerItem(Item item)
 +getItems() : Items[]
++afficherEquipement()
++afficherEquipementEquipe()
++afficherConsommables()
++getConsommables()
++choixAction()
++select()
+getch()
++
 }
 
 class Map{
