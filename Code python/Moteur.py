@@ -13,6 +13,9 @@ class Moteur :
         while(self.end != 1):
             end = self.tour()
 
+    def getTeamHero(self):
+        return self.__teamHero
+
     def initTeam(self):
         print("---- HEROS ----\n")
         print("1- Charcutier :\t")
