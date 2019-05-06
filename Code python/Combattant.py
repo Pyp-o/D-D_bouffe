@@ -6,7 +6,7 @@ class Combattant(Personnage):
     def __init__(self, personnage, teamHero):
         Personnage.__init__(self, personnage.getNom(), personnage.getPVmax(), personnage.getPV(), personnage.getPCmax(), personnage.getPC(), personnage.getAgilite(),
                             personnage.getInitiative(), personnage.getAttaque(), personnage.getDefense(), personnage.getStatut(), personnage.getArme(),
-                            personnage.getArmure(), personnage.getCompetence())
+                            personnage.getArmure(), personnage.getCompetences())
         self.__perso = personnage
         self.__tourFini = False
         self.__teamHero = teamHero	#est-t-il dans la team des heros?

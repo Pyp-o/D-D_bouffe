@@ -1,5 +1,5 @@
 class Personnage :
-    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence):
+    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competences):
         self.__nom = nom
         self.__PVmax = PVmax
         self.__PV = PV
@@ -12,7 +12,7 @@ class Personnage :
         self.__statut = statut
         self.__arme = arme
         self.__armure = armure
-        self.__competence = competence
+        self.__competences = competences
 
     def getNom(self):
         return self.__nom
@@ -74,8 +74,10 @@ class Personnage :
     def setArmure(self, armure):
         self.__armure = armure
 
-    def getCompetence(self):
-        return self.__competence
+    def getCompetences(self):
+        return self.__competences
+    def addCompetence(self, competence):
+        self.__competences.append(competence)
 
 
     def prendreDecision(self):

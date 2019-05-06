@@ -15,23 +15,25 @@ class Combat():
         self.__teamCombattantsHero = [] #list de Combattants
         self.__creationCombattant()
         self.__definitionOrdrePassage()
-        self.__teamAllieMorte = False
+        self.__teamHeroMorte = False
         self.__teamEnnemieMorte = False
+        self.__fuiteReussi = False
 
     def lancerCombat(self): #la methode principale qui gere le combat
-        while (self.__teamAllieMorte == False) and (self.__teamEnnemieMorte == False): #tant que l'une des 2 team n'est pas entierement morte
+        while (self.__teamHeroMorte == False) and (self.__teamEnnemieMorte == False) and (self.__fuiteReussi == False): #tant que l'une des 2 team n'est pas entierement morte
             if self.__isFinDeTour() == True:
                 self.__resetTour()  #Application des statuts
             nextCombattant = self.__getProchainCombattant()
             self.__tourCombattant(nextCombattant)
             self.__testTeamMorte()
             print("")
-        if self.__teamEnnemieMorte == True:
-            print("Les ennemies ont été vaincu!!!")
-        else:
-            print("Les heros ont été vaincu...")
-            print("Game Over")
-            exit(0)
+        if self.__fuiteReussi == False:
+            if self.__teamEnnemieMorte == True:
+                print("Les ennemies ont été vaincu!!!")
+            else:
+                print("Les heros ont été vaincu...")
+                print("Game Over")
+                exit(0)
     
     def __tourCombattant(self, combattant): #le tour d'un des combattants
         if combattant.isTeamHero():
@@ -63,8 +65,48 @@ class Combat():
                     i = maxRange - 1
         if (i==0):  #le hero attaque
             self.__heroAttaque(combattant)
-        
-            
+        if(i==1):    #le hero se defend
+            print(combattant.getNom()+" se defend")     #TODO faire le defense
+        if(i==2):
+            self.__heroUtiliserCompetence(combattant)
+        if(i==3):
+            self.__fuir(combattant)
+
+    def __fuir(self, combattant):
+        r = randint(1,10)
+        if(r<=4):
+            print("Fuite réussi!")
+            self.__fuiteReussi = True
+        else:
+            print("Les héros essaient de fuir mais les ennemies les rattrapent...")
+
+    def __heroUtiliserCompetence(self, combattant):
+        if (combattant.getCompetences() == 0):
+            print("Mais le héro n'a pas de competence...")
+        else:
+            print("Quelle competence?")
+            i = 0
+
+            maxRange = len(combattant.getCompetences())
+            rep = ""
+
+
+            while rep != "0xd": #différent de entrée
+                print(combattant.getCompetences()[i])
+                rep = hex(ord(self.getch()))    #on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+                if(rep == "0x7a"):    #z
+                    if(i<maxRange-1):
+                        i = i+1
+                    else :
+                        i=0
+                if(rep == "0x73"):    #s
+                    if(i>0):
+                        i = i-1
+                    else:
+                        i = maxRange - 1
+            combattant.getCompetences()[i].activerCompetence(combattant, self.__teamCombattantsHero, self.__teamCombattantsEnnemi)
+
+
     def __heroAttaque(self, combattant):
         print("Qui attaquer?")
         i=0
@@ -148,7 +190,7 @@ class Combat():
         nextCombattant = self.__teamCombattantsEnnemi[0]
         ordrePrio = 999
         for combattant in self.__teamCombattantsHero:
-                if ((combattant.getOrdre() < ordrePrio) and (combattant.getTourfini() == False)):
+                if ((combattant.getOrdre() < ordrePrio) and (combattant.getTourfini() == False) and (combattant.getPV()!=0)):
                     nextCombattant = combattant
                     ordrePrio = combattant.getOrdre()
         for combattant in self.__teamCombattantsEnnemi:
