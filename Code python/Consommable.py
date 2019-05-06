@@ -23,3 +23,10 @@ class Consommable(Item):
 
     def utiliser(self, personnage):
         print(personnage.getNom() + " : une bonne potion!")
+
+    def affichageConsommable(self):
+        if(self.getFaitRevivre()!=0):
+            revive="Oui"
+        else:
+            revive="Non"
+        print("*Nom:", self.getNom(), "  *Description:", self.getDescription(), "  *Soin:", self.getSoin(), "  *Energie:", self.getEnergie(), "  *Guerison de statut:", self.getStatutretire(), "  *Peut réscussiter:", revive)
