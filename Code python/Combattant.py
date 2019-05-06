@@ -9,7 +9,7 @@ class Combattant(Personnage):
                             personnage.getArmure(), personnage.getCompetence())
         self.__perso = personnage
         self.__tourFini = False
-        self.__teamHero = teamHero	#est-ce un hero?
+        self.__teamHero = teamHero	#est-t-il dans la team des heros?
         self.__statuts = []
         self.__ordre = -1 #ordre de passage
 

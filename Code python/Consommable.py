@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from Item import *
 from Personnage import *
 

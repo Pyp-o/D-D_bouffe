@@ -5,8 +5,7 @@ from Team import *
 from Combattant import *
 from Ennemi import *
 from Hero import *
-
-#CLASSE A FINIR
+from random import *
 
 class Combat():
     def __init__(self, teamHero, teamEnnemi):
@@ -20,13 +19,14 @@ class Combat():
         self.__teamEnnemieMorte = False
 
     def lancerCombat(self): #la methode principale qui gere le combat
-        while self.__teamAllieMorte == False and self.__teamAllieMorte == False: #tant que l'une des 2 team n'est pas entierement morte
+        while (self.__teamAllieMorte == False) and (self.__teamEnnemieMorte == False): #tant que l'une des 2 team n'est pas entierement morte
             if self.__isFinDeTour() == True:
                 self.__resetTour()  #Application des statuts
             nextCombattant = self.__getProchainCombattant()
             self.__tourCombattant(nextCombattant)
             self.__testTeamMorte()
-        if self.__teamAllieMorte == True:
+            print("")
+        if self.__teamEnnemieMorte == True:
             print("Les ennemies ont été vaincu!!!")
         else:
             print("Les heros ont été vaincu...")
@@ -89,7 +89,16 @@ class Combat():
 
             
     def __choixDeLIA(self, combattant):
-        combattant.attaquer(self.__teamCombattantsHero[0])
+        if combattant.isTeamHero():
+            teamACombattre = self.__teamCombattantsEnnemi
+        else:
+            teamACombattre = self.__teamCombattantsHero
+
+        for ennemi in teamACombattre:
+            if ennemi.getPV()==0:
+                teamACombattre.remove(ennemi)
+        i = randint(0,len(teamACombattre)-1)
+        combattant.attaquer(self.__teamCombattantsHero[i])
     
     def __resetTour(self):
         for combattant in self.__teamCombattantsHero:
@@ -151,15 +160,15 @@ class Combat():
     def __testTeamMorte(self):
         test = True
         for combattant in self.__teamCombattantsHero:
-            if combattant.getPV()==0:
+            if combattant.getPV() != 0:
                 test = False
-        if test == True:
+        if test:
             self.__teamHeroMorte = True
         test = True
         for combattant in self.__teamCombattantsEnnemi:
-            if combattant.getPV()==0:
+            if combattant.getPV() != 0:
                 test = False
-        if test == True:
+        if test:
             self.__teamEnnemieMorte = True
             
     
@@ -173,13 +182,13 @@ class Combat():
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
         
-hero1 = Hero('hero1',50,30,0,0,0,12,10,0,0,0,0,0)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
-hero2 = Hero('hero2',50,30,0,0,0,15,7,0,0,0,0,0)
-hero3 = Hero('hero3',40,20,0,0,0,5,8,5,0,0,0,0)
+hero1 = Hero('hero1',50,30,0,0,0,12,1,0,0,0,0,0)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
+hero2 = Hero('hero2',50,30,0,0,0,15,1,0,0,0,0,0)
+hero3 = Hero('hero3',40,20,0,0,0,5,1,0,0,0,0,0)
 
-enne1 = Ennemi('enne1',50,30,0,0,0,3,8,0,0,0,0,0,10)
-enne2 = Ennemi('enne2',50,30,0,0,0,11,4,0,0,0,0,0,10)
-enne3 = Ennemi('enne3',40,0,0,0,0,13,3,0,0,0,0,0,10)
+enne1 = Ennemi('ennemie1',50,30,0,0,0,3,8,0,0,0,0,0,10)
+enne2 = Ennemi('ennemie2',50,30,0,0,0,11,4,0,0,0,0,0,10)
+enne3 = Ennemi('ennemie3',40,10,0,0,0,13,3,0,0,0,0,0,10)
 
 
 tAlli = Team()
