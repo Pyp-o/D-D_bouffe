@@ -8,11 +8,11 @@ class Moteur :
     def __init__(self):
         self.__teamHero=Team()
         self.initTeam()
-        #self.__map = Map()
-        #self.__map.genererMap(5,5)
-        #self.end = 0
-        #while(self.end != 1):
-        #    end = self.tour()
+        self.__map = Map()
+        self.__map.genererMap(5,5)
+        self.end = 0
+        while(self.end != 1):
+            end = self.tour()
 
     def getTeamHero(self):
         return self.__teamHero
