@@ -2,6 +2,7 @@ from Team import *
 from Hero import *
 from Arme import *
 from Map import *
+from Personnage import *
 
 class Moteur :
     def __init__(self):
@@ -50,19 +51,19 @@ class Moteur :
                 Charcutier = Hero("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                         None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
-            elif (a == '3' and choixPrecedent):
+            elif (a == '2' and a!=choixPrecedent):
                 Pilier = Hero("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                     None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
-            elif (a == '3' and choixPrecedent):
+            elif (a == '3' and a!=choixPrecedent):
                 Creve = Hero("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                    None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
-            elif (a == '4' and choixPrecedent):
+            elif (a == '4' and a!=choixPrecedent):
                 Cuistot = Hero("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                      None)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
-            elif (a == '5' and choixPrecedent):
+            elif (a == '5' and a!=choixPrecedent):
                 Poivrot = Hero("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                      None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
@@ -77,17 +78,56 @@ class Moteur :
         self.__map.seDeplacer()
         return 0
 
+    def choixPerso(self):
+        teamHero = self.getTeamHero()
+        self.select(len(teamHero)-1)
 
+        def getch(self):
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(sys.stdin.fileno())
+                ch = sys.stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            return ch
 
+    def selectPersonnage(self, nbChoix):
+        rep = "0xa"
+        i = 1
+        team = self.getTeamHero()
+        team = team.getPersonnages()
+        print(i)
+        while rep != "0xd":  # différent de entrée
+            rep = hex(
+                ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+            if (rep == "0x7a"):  # z
+                if (i != nbChoix):
+                    i = i + 1
+                else:
+                    i = 1
+                team[i-1].AfficherPersonnage()
+            if (rep == "0x73"):  # s
+                if (i > 1):
+                    i = i - 1
+                else:
+                    i = nbChoix
+                team[i-1].AfficherPersonnage()
+            print(i)
+        return team[i-1]
 
+    def getch(self):
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
 
 
 ############# TEST #############
-
-
-
-
-
 
 
 

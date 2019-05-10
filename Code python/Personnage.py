@@ -80,5 +80,9 @@ class Personnage :
         self.__competences.append(competence)
 
 
+    def AfficherPersonnage(self):
+        print("\nLe personnage s'appelle :", self.getNom())
+
+
     def prendreDecision(self):
         raise NotImplementedError("abstract method")
