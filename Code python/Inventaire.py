@@ -64,15 +64,15 @@ class Inventaire():
         return listEquipement
 
 
-    def Equiper(self):
+    def Equiper(self, personnage):
         self.afficherEquipementEquipe()
         self.afficherEquipementDesequipe()
         listEquipement = self.getEquipementDesequipe()
         if (len(listEquipement) > 0):
             print("\nChoisir l'équipement à équiper:")
             choix = self.select(len(listEquipement))
-            print("\nChoisir le personnage qui va s'en equiper")
-            # recuperer le personnage qui va s'equiper
+            a = listEquipement[choix-1]
+            a.setPorteur(personnage)
         else:
             print("\nAucun equipement dans l'inventaire\n\n")
 
@@ -82,12 +82,12 @@ class Inventaire():
         if (len(listEquipement) > 0):
             print("\nChoisir l'équipement à deséquiper:")
             choix = self.select(len(listEquipement))
-            print("\nChoisir le personnage qui va s'en equiper")
-            # recuperer le personnage qui va s'equiper
+            a = listEquipement[choix-1]
+            a.retirerPorteur()
         else:
             print("\nAucun equipement equipe\n\n")
 
-    def Manger(self):
+    def Manger(self, personnage):
         print("Que faire ?\n1-Manger\n2-Retour\n")
         choix = self.select(2)
         # manger
@@ -97,8 +97,7 @@ class Inventaire():
             print("\nChoisir l'item à utiliser:")
             choix = self.select(len(consom))
             a = consom[choix - 1]
-            print("\nChoisir le personnage qui va en beneficier:")
-            # recuperer le personnage qui va en beneficier
+            a.utiliser(personnage)
             self.retirerItem(a)
         else:
             print("\nAucun consommable dans l'inventaire\n\n")
@@ -107,7 +106,7 @@ class Inventaire():
         print('\nliste potions possible\n')
         print("\nQuelle potion faire ?\n\n")
 
-    def choixAction(self):
+    def choixAction(self, personnage):
         choix=1
         while(choix!=-1):
             print("Que faire ?\n1-Gestion de l'équipement\n2-Utilisation de consommables\n3-Création de potions\n4-Retour\n")
@@ -119,7 +118,7 @@ class Inventaire():
                 choix=self.select(3)
                 #equiper
                 if(choix == 1):
-                    self.Equiper()
+                    self.Equiper(personnage)
 
 
                 #desequiper
@@ -128,7 +127,7 @@ class Inventaire():
 
             #utilisation consommables
             elif(choix==2):
-               self.Manger()
+               self.Manger(personnage)
 
             #creation de potions
             elif(choix==3):
