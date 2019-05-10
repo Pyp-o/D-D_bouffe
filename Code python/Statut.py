@@ -1,6 +1,5 @@
 class Statut:
-    def __init__(self, nom, combattant, tourRestant):
-        self.__combattant = combattant
+    def __init__(self, nom, tourRestant):
         self.__nom = nom
         self.__tourRestant=tourRestant
 

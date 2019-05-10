@@ -8,12 +8,12 @@ class CompetenceStatut(Competence):
     def __init__(self, nom, cout, description, groupe, tauxReussite, statut, isEnnemi):
         Competence.__init__(self, nom, cout, description, groupe, tauxReussite)
         self.__statut = statut
-        self.__isEnnemi = isEnnemi      #Attribut qui sert à savoir si ce sont les ennemi ou ennemie
+        self.__isEnnemi = isEnnemi      #est ce une competence detenu par un ennemi
         self.__teamConcerned = 0
 
 
     def activerCompetence(self,combattant, teamAllie, teamEnnemi):
-        if self.__isEnnemi == 1:  # on buff ou debuff quelle team?
+        if self.__isEnnemi == 0:  # on buff ou debuff quelle team?
             self.__teamConcerned = teamEnnemi
         else:
             self.__teamConcerned = teamAllie
@@ -21,9 +21,9 @@ class CompetenceStatut(Competence):
             print("qui sera affecter? (utiliser les z et q pour choisir et entrée pour selectionner)")
             rep = "0x00"
             i = 0
-            maxRange = self.__teamConcerned.getLenPersonnage()
+            maxRange = len(self.__teamConcerned)
             while rep != "0xd":  # différent de entrée
-                print(self.__teamConcerned.getPersonnage(i).getNom())
+                print(self.__teamConcerned[i].getNom())
                 rep = hex(
                     ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
                 if (rep == "0x7a"):  # z
@@ -40,17 +40,17 @@ class CompetenceStatut(Competence):
             if rand > self.getTauxReussite():
                 print("le sort echoue...")
             else:
-                self.__teamConcerned.getPersonnage(i).ajouterStatut(self.__statut)
-                print(self.__teamConcerned.getPersonnage(i).getNom() + " est maintenant " + self.__statut.getNom() + "!")
+                self.__teamConcerned[i].ajouterStatut(self.__statut)
+                print(self.__teamConcerned[i].getNom() + " est maintenant " + self.__statut.getNom() + "!")
         else:  # attaque de groupe
             rand = random.randint(0, 100)  # le sort echoue?
             if rand > self.getTauxReussite():
                 print("le sort echoue...")
             else:
-                for c in self.__teamConcerned.getPersonnages():
+                for c in self.__teamConcerned:
                     c.ajouterStatut(self.__statut)
-                    print(c.getNom() + " est maintenant " + self.__statut.getNom() + "point d'attaque!")
-
+                    print(c.getNom() + " est maintenant " + self.__statut.getNom()+"!")
+"""
 a = Personnage('hero1',50,30,0,0,0,0,0,0,0,0,0,0)
 b = Personnage('hero2',50,30,0,0,0,0,0,0,0,0,0,0)
 c = Personnage('hero3',0,0,0,0,0,0,0,0,0,0,0,0)
@@ -68,7 +68,7 @@ tEnn.ajouterPersonnage(f)
 tEnn.ajouterPersonnage(h)
 tEnn.ajouterPersonnage(i)
 
-poison = Empoisonne("poison", h, 3)
+poison = Empoisonne("poison", h, 3)	
 c1 = CompetenceStatut("jet de poison", 3, "inflige poison", 0, 75, poison, 1)
 c2 = CompetenceStatut("deluge de poison", 3, "inflige poison", 1, 75,  poison, 1)
 c1.activerCompetence(h, tAlli, tEnn)
@@ -79,3 +79,4 @@ h.ajouterStatut(poison)
 h.activerStatut()
 h.activerStatut()
 print(str(h.getPV()))
+"""

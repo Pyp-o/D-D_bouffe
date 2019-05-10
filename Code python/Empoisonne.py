@@ -3,9 +3,9 @@
 from Statut import *
 
 class Empoisonne(Statut):
-    def __init__(self, nom, combattant, tourRestant):
-        Statut.__init__(self,nom,combattant, tourRestant)
-
+    def __init__(self, nom, tourRestant):
+        Statut.__init__(self,nom, tourRestant)
+    
     def activerStatut(self, combattant):
         self.setTourRestant(self.getTourRestant()-1)
         degat = int(combattant.getPVmax() * 0.1)
@@ -16,7 +16,7 @@ class Empoisonne(Statut):
             print("Le poison a finalement eu raison de lui...")
         if (self.getTourRestant()==0):
             self.retirerStatut(combattant)        
-
+        
     def retirerStatut(self, combattant):
+        print(combattant.getNom()+" n'est plus empoisonné")
         combattant.retirerStatut(self)
-

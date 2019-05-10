@@ -6,6 +6,10 @@ from Combattant import *
 from Ennemi import *
 from Hero import *
 from random import *
+from CompetenceAttaque import *
+from CompetenceHeal import *
+from CompetenceStatut import *
+from Empoisonne import *
 
 class Combat():
     def __init__(self, teamHero, teamEnnemi):
@@ -18,10 +22,14 @@ class Combat():
         self.__teamHeroMorte = False
         self.__teamEnnemieMorte = False
         self.__fuiteReussi = False
+        self.__tour = 1
 
     def lancerCombat(self): #la methode principale qui gere le combat
+        print("******* Tour 1 *******")
         while (self.__teamHeroMorte == False) and (self.__teamEnnemieMorte == False) and (self.__fuiteReussi == False): #tant que l'une des 2 team n'est pas entierement morte
             if self.__isFinDeTour() == True:
+                self.__tour = self.__tour+1
+                print("******* Tour "+str(self.__tour)+" *******")
                 self.__resetTour()  #Application des statuts
             nextCombattant = self.__getProchainCombattant()
             self.__tourCombattant(nextCombattant)
@@ -45,33 +53,55 @@ class Combat():
         combattant.setTourFini(True)
     
     def __choixJoueur(self, combattant):
-        print("Que faire? (utiliser z et s pour choisir et entrée pour selectionner)")
         i=0
-        choixPossible = ["attaquer", "defendre", "utiliser competence", "fuir"]
+        choixPossible = ["attaquer", "defendre", "utiliser competence", "fuir", "info"]
         maxRange = len(choixPossible)
-        rep = ""
-        while rep != "0xd": #différent de entrée
-            print(choixPossible[i])
-            rep = hex(ord(self.getch()))    #on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
-            if(rep == "0x7a"):    #z
-                if(i<maxRange-1):
-                    i = i+1
-                else :
-                    i=0
-            if(rep == "0x73"):    #s
-                if(i>0):
-                    i = i-1
-                else:
-                    i = maxRange - 1
-        if (i==0):  #le hero attaque
-            self.__heroAttaque(combattant)
-        if(i==1):    #le hero se defend
-            print(combattant.getNom()+" se defend")     #TODO faire le defense
-        if(i==2):
-            self.__heroUtiliserCompetence(combattant)
-        if(i==3):
-            self.__fuir(combattant)
 
+        ok = False #variable pour savoir si l'utilisateur a juste demandé les infos
+        while ok==False:
+            print("Que faire? (utiliser z et s pour choisir et entrée pour selectionner)")
+            ok = True
+            rep = ""
+            while rep != "0xd": #différent de entrée
+                print(choixPossible[i])
+                rep = hex(ord(self.getch()))    #on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+                if(rep == "0x7a"):    #z
+                    if(i<maxRange-1):
+                        i = i+1
+                    else :
+                        i=0
+                if(rep == "0x73"):    #s
+                    if(i>0):
+                        i = i-1
+                    else:
+                        i = maxRange - 1
+            if (i==0):  #le hero attaque
+                self.__heroAttaque(combattant)
+            if(i==1):    #le hero se defend
+                print(combattant.getNom()+" se defend")     #TODO faire le defense
+            if(i==2):
+                self.__heroUtiliserCompetence(combattant)
+            if(i==3):
+                self.__fuir(combattant)
+            if(i==4):
+                for hero in self.__teamCombattantsHero:
+                    if hero.getPV()==0:
+                        print(hero.getNom()+" est décédé...")
+                    else: 
+                        if hero.getTourfini():
+                            print(hero.getNom()+" a "+str(hero.getPV())+"/"+str(hero.getPVmax())+"PV, son tour est fini")
+                        else:
+                            print(hero.getNom()+" a "+str(hero.getPV())+"/"+str(hero.getPVmax())+"PV, il n'a pas encore fini son tour")
+                print()
+                for ennemi in self.__teamCombattantsEnnemi:
+                    if ennemi.getTourfini():
+                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(hero.getPVmax())+"PV, son tour est fini")
+                    else:
+                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(hero.getPVmax())+"PV, il n'a pas encore fini son tour")
+                ok = False
+                print()
+                
+            
     def __fuir(self, combattant):
         r = randint(1,10)
         if(r<=4):
@@ -92,7 +122,7 @@ class Combat():
 
 
             while rep != "0xd": #différent de entrée
-                print(combattant.getCompetences()[i])
+                print(combattant.getCompetences()[i].getNom())
                 rep = hex(ord(self.getch()))    #on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
                 if(rep == "0x7a"):    #z
                     if(i<maxRange-1):
@@ -144,11 +174,11 @@ class Combat():
     
     def __resetTour(self):
         for combattant in self.__teamCombattantsHero:
-            combattant.activerStatut()
             combattant.setTourFini(False)
+            combattant.activerStatut()
         for combattant in self.__teamCombattantsEnnemi:
+            
             combattant.activerStatut()
-            combattant.setTourFini(False)
     
     def __isFinDeTour(self):
         finDeTour = True    #on part du principe que c'est la fin du tour et on va essayer de prouver le contraire
@@ -162,9 +192,12 @@ class Combat():
                     
     def __creationCombattant(self):
         for personnage in self.__teamHero.getPersonnages():
-            self.__teamCombattantsHero.append(Combattant(personnage, True))
+            if (isinstance(personnage,Hero)):
+                self.__teamCombattantsHero.append(Combattant(personnage, True,True))
+            else:
+                self.__teamCombattantsHero.append(Combattant(personnage, True,False))                
         for personnage in self.__teamEnnemi.getPersonnages():
-            self.__teamCombattantsEnnemi.append(Combattant(personnage, False))
+            self.__teamCombattantsEnnemi.append(Combattant(personnage, False, False))
 
     def __definitionOrdrePassage(self):
         i = 1 #nb combattant avec un ordre assigné
@@ -204,12 +237,17 @@ class Combat():
         for combattant in self.__teamCombattantsHero:
             if combattant.getPV() != 0:
                 test = False
+            else:
+                if combattant.isHero()==False:
+                    self.__teamCombattantsHero.remove(combattant)
         if test:
             self.__teamHeroMorte = True
         test = True
         for combattant in self.__teamCombattantsEnnemi:
             if combattant.getPV() != 0:
                 test = False
+            else:
+                self.__teamCombattantsEnnemi.remove(combattant) #les ennemies mort ne restent pas dans les team
         if test:
             self.__teamEnnemieMorte = True
             
@@ -223,10 +261,25 @@ class Combat():
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
-        
-hero1 = Hero('hero1',50,30,0,0,0,12,1,0,0,0,0,0)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
-hero2 = Hero('hero2',50,30,0,0,0,15,1,0,0,0,0,0)
-hero3 = Hero('hero3',40,20,0,0,0,5,1,0,0,0,0,0)
+
+
+bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
+delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
+soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
+
+poison = Empoisonne("empoisonné",4)
+vomi = CompetenceStatut("vomir",5, "vomit sur un ennemi",0,70,poison, 0)
+
+
+competences = []
+competences.append(delugeFeu)
+competences.append(bouleFeu)
+competences.append(soinMineur)
+competences.append(vomi)
+
+hero1 = Hero('hero1',50,30,0,0,0,12,1,0,0,0,0,competences)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
+hero2 = Hero('hero2',50,30,0,0,0,15,1,0,0,0,0,competences)
+hero3 = Hero('hero3',40,20,0,0,0,5,1,0,0,0,0,competences)
 
 enne1 = Ennemi('ennemie1',50,30,0,0,0,3,8,0,0,0,0,0,10)
 enne2 = Ennemi('ennemie2',50,30,0,0,0,11,4,0,0,0,0,0,10)
