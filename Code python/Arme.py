@@ -11,5 +11,3 @@ class Arme(Equipement):
 
     def affichageEquipement(self):
         print('*Nom:', self.getNom(), '  *Description:', self.getDescription(), '  *Degats:', self.getDegat())
-
-
