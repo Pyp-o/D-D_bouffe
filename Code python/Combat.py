@@ -9,6 +9,7 @@ from random import *
 from CompetenceAttaque import *
 from CompetenceHeal import *
 from CompetenceStatut import *
+from CompetenceBuff import *
 from Empoisonne import *
 
 class Combat():
@@ -38,6 +39,7 @@ class Combat():
         if self.__fuiteReussi == False:
             if self.__teamEnnemieMorte == True:
                 print("Les ennemies ont été vaincu!!!")
+                self.__finCombat()
             else:
                 print("Les heros ont été vaincu...")
                 print("Game Over")
@@ -80,7 +82,7 @@ class Combat():
             if(i==1):    #le hero se defend
                 print(combattant.getNom()+" se defend")     #TODO faire le defense
             if(i==2):
-                self.__heroUtiliserCompetence(combattant)
+                ok = self.__heroUtiliserCompetence(combattant)
             if(i==3):
                 self.__fuir(combattant)
             if(i==4):
@@ -88,10 +90,11 @@ class Combat():
                     if hero.getPV()==0:
                         print(hero.getNom()+" est décédé...")
                     else: 
+                        print(hero.getNom()+" a "+str(hero.getPV())+"/"+str(hero.getPVmax())+"PV, "+str(hero.getPC())+"/"+str(hero.getPCmax())+"PC, "+str(hero.getAttaque())+" attaque, "+str(hero.getDefense())+" defense, "+str(hero.getAgilite())+" agilité, ",end='')
                         if hero.getTourfini():
-                            print(hero.getNom()+" a "+str(hero.getPV())+"/"+str(hero.getPVmax())+"PV, son tour est fini")
+                            print("son tour est fini")
                         else:
-                            print(hero.getNom()+" a "+str(hero.getPV())+"/"+str(hero.getPVmax())+"PV, il n'a pas encore fini son tour")
+                            print("il n'a pas encore fini son tour")
                 print()
                 for ennemi in self.__teamCombattantsEnnemi:
                     if ennemi.getTourfini():
@@ -134,7 +137,12 @@ class Combat():
                         i = i-1
                     else:
                         i = maxRange - 1
+            if combattant.getPC()<combattant.getCompetences()[i].getCout():
+                print("Pas assez de PC disponible...")
+                return False
             combattant.getCompetences()[i].activerCompetence(combattant, self.__teamCombattantsHero, self.__teamCombattantsEnnemi)
+            combattant.setPC(combattant.getPC() - combattant.getCompetences()[i].getCout())
+            return True
 
 
     def __heroAttaque(self, combattant):
@@ -177,7 +185,7 @@ class Combat():
             combattant.setTourFini(False)
             combattant.activerStatut()
         for combattant in self.__teamCombattantsEnnemi:
-            
+            combattant.setTourFini(False)
             combattant.activerStatut()
     
     def __isFinDeTour(self):
@@ -250,7 +258,28 @@ class Combat():
                 self.__teamCombattantsEnnemi.remove(combattant) #les ennemies mort ne restent pas dans les team
         if test:
             self.__teamEnnemieMorte = True
-            
+    
+    def __finCombat(self):
+        for combattant in self.__teamCombattantsHero:
+            combattant.getPersonnage().setPV(combattant.getPV())
+            combattant.getPersonnage().setPC(combattant.getPC())
+        for persoEnnemie in self.__teamEnnemi.getPersonnages():
+            i = randint(0,100)
+            if(i<persoEnnemie.getChanceRejoindre()):
+                print(persoEnnemie.getNom()+" a décidé de rejoindre votre équipe!")
+                if(self.__teamHero.getLenPersonnage()<=8):
+                    print("Accepter "+persoEnnemie.getNom()+"? (o : oui, n : non)")
+                    rep = ""
+                    while rep not in ["o", "n"]:  #o,n
+                        rep = self.getch()
+                    if rep == "o":
+                        self.__teamHero.ajouterPersonnage(persoEnnemie)
+                        print(persoEnnemie.getNom()+" a rejoint votre équipe!")
+                    else:
+                        print(persoEnnemie.getNom()+" s'en va tristement...")
+                else:
+                    print("Mais l'équipe est déjà au complet...")
+        
     
     def getch(self):
         fd = sys.stdin.fileno()
@@ -266,6 +295,7 @@ class Combat():
 bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
 delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
 soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
+buffAttaque = CompetenceBuff("Encouragement!", 2, "Gueule sur un allié", 0, 85, 4, 0, 0, 0)
 
 poison = Empoisonne("empoisonné",4)
 vomi = CompetenceStatut("vomir",5, "vomit sur un ennemi",0,70,poison, 0)
@@ -276,10 +306,11 @@ competences.append(delugeFeu)
 competences.append(bouleFeu)
 competences.append(soinMineur)
 competences.append(vomi)
+competences.append(buffAttaque)
 
-hero1 = Hero('hero1',50,30,0,0,0,12,1,0,0,0,0,competences)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
-hero2 = Hero('hero2',50,30,0,0,0,15,1,0,0,0,0,competences)
-hero3 = Hero('hero3',40,20,0,0,0,5,1,0,0,0,0,competences)
+hero1 = Hero('hero1',50,30,30,20,0,12,5,0,0,0,0,competences)   #nom,  PVmax, PV, PCmax, PC, Agi, Init, Attaque, Def, Statut, Arme, Armure, Competence
+hero2 = Hero('hero2',50,30,30,20,0,15,4,0,0,0,0,competences)
+hero3 = Hero('hero3',40,20,40,3,0,5,8,0,0,0,0,competences)
 
 enne1 = Ennemi('ennemie1',50,30,0,0,0,3,8,0,0,0,0,0,10)
 enne2 = Ennemi('ennemie2',50,30,0,0,0,11,4,0,0,0,0,0,10)

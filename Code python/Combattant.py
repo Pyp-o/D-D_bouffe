@@ -36,6 +36,9 @@ class Combattant(Personnage):
         else:
             combattant.setPV(combattant.getPV() - degat)
 
+    def getPersonnage(self):
+        return self.__perso
+
     def seDefendre(self):
         print("je me defend")
 
