@@ -3,6 +3,7 @@ from Hero import *
 from Arme import *
 from Map import *
 from Personnage import *
+from Competence import *
 
 class Moteur :
     def __init__(self):
@@ -12,7 +13,7 @@ class Moteur :
         self.__map.genererMap(5,5)
         self.end = 0
         while(self.end != 1):
-            end = self.tour()
+            self.end = self.tour()
 
     def getTeamHero(self):
         return self.__teamHero
@@ -76,7 +77,7 @@ class Moteur :
     def tour(self):
         ok = False
         while(ok != True):
-            print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)\n\n")
+            print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)\n-quitter (t)\n\n")
             self.__map.display_maze()
             rep=self.getch()
             if(rep in ['z', 'q', 's', 'd']):
@@ -89,6 +90,9 @@ class Moteur :
             elif (rep=='e'):
                 for personnage in self.__teamHero.getPersonnages():
                     personnage.AfficherStat()
+            elif(rep=='t'):
+                ok=True
+                return True
         return 0
 
     def choixPerso(self):
