@@ -74,6 +74,13 @@ class Moteur :
 
 
     def tour(self):
+        print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)")
+        ok = False
+        while(ok != True):
+            rep=self.getch()
+            self.__map.display_maze()
+            ok = self.__map.seDeplacer(rep)
+
         self.__map.display_maze()
         self.__map.seDeplacer()
         return 0

@@ -166,49 +166,38 @@ class Map:
     def recupererSalleActuelle(self):
         return self.__salles[self.getPositionX()][self.getPositionY()]
 
-    def seDeplacer(self):
+    def seDeplacer(self, saisie):
         print("Vous etes en "+str(self.__positionX)+":"+str(self.__positionY))
-        print("Vous pouvez vous déplacer vers :")
         haut = 0
         bas =0
         droite = 0
         gauche = 0
         if (self.__salles[self.__positionX][self.__positionY].getSalleHaut()!= None):
             haut=1
-            print("le haut (h)")
         if (self.__salles[self.__positionX][self.__positionY].getSalleDroite()!= None):
             droite=1
-            print("la droite (d)")
         if (self.__salles[self.__positionX][self.__positionY].getSalleGauche()!= None):
             gauche=1
-            print("la gauche (g)")
         if (self.__salles[self.__positionX][self.__positionY].getSalleBas()!= None):
             bas=1
-            print("le bas (b)")
-        ok = False
 
-        while(ok == False):
-            print("Ou voulez-vous aller?")
-            saisie = input()
-            while(saisie not in ('b','h','g','d')):
-                print("Mauvaise saisie")
-                print("Ou voulez-vous aller?")
-                saisie = input()
-            if((saisie == 'h') and haut):
-                ok = True
-                self.__positionY-=1
-            elif ((saisie == 'b') and bas):
-                ok = True
-                self.__positionY += 1
-            elif ((saisie == 'g') and gauche):
-                ok = True
-                self.__positionX -= 1
-            elif ((saisie == 'd') and droite):
-                ok = True
-                self.__positionX += 1
-            else :
-                print("Impossible d'aller par là...")
-        print("Vous vous déplacer")
+        if(saisie not in ('0x7a','0x71','0x73','0x64')): #z,q,s,d
+            return False
+        if((saisie == '0x7a') and haut):
+            self.__positionY-=1
+            return True
+        elif ((saisie == '0x73') and bas):
+            self.__positionY += 1
+            return True
+        elif ((saisie == '0x71') and gauche):
+            self.__positionX -= 1
+            return True
+        elif ((saisie == '0x64') and droite):
+            self.__positionX += 1
+            return True
+        else :
+            print("Impossible d'aller par là...")
+            return False
 
     def getch(self):
         fd = sys.stdin.fileno()
