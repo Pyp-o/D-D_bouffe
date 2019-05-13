@@ -1,6 +1,10 @@
 from random import choice, randrange as rand
 from Salle import *
 import sys, termios, tty, os, time	#for getch()
+from random import *
+from SalleEntree import *
+from SalleSortie import *
+
 
 class Map:
     def __init__(self):
@@ -8,6 +12,7 @@ class Map:
         self.__tailleY = 0
         self.__positionX = 0
         self.__positionY = 0
+        self.__salleEntree = 0
 
     def getPositionX(self):
         return self.__positionX
@@ -72,8 +77,8 @@ class Map:
 
             #self.display_maze()
         #print("générer map")
+        self.createSalleEvent()
         self.creationFrontiereSalle()
-
         ##
         # Méthodes utilitaires
 
@@ -159,8 +164,25 @@ class Map:
                     line += '|'
             print(line)
 
+    def createSalleEvent(self):
+        x = randint(0, self.__tailleX-1)
+        y = randint(0, self.__tailleY-1)
+        self.__salles[x][y] = SalleEntree(0,x,y)    #et bim une salle entrée
+        self.__positionX = x
+        self.__positionY = y
+        self.__salleEntree = self.__salles[x][y]
+        ok = False
+        while ok == False:  #on va essayer de mettre la sortie à plus d'une case d'écart de l'entrée
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(abs(self.__salleEntree.getX()-x)>1 and abs(self.__salleEntree.getY()-y)>1):
+                self.__salles[x][y] = SalleSortie(0,x,y, self)
+                ok = True
+        
 
-
+        
+        
+    
     def recupererSalle(self, x, y):
         return self.__salles[x][y]
 
@@ -169,7 +191,7 @@ class Map:
 
     def seDeplacer(self, saisie):
         haut = 0
-        bas =0
+        bas = 0
         droite = 0
         gauche = 0
         if (self.__salles[self.__positionX][self.__positionY].getSalleHaut()!= None):

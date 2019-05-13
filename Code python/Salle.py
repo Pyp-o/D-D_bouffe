@@ -43,3 +43,5 @@ class Salle:
 
     def getSalleHaut(self):
         return self.__salleHaut
+    
+    
