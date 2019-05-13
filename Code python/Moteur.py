@@ -45,29 +45,26 @@ class Moteur :
                     print("Le personnage choisi n'existe pas\n")
                 print("Choisir un autre personnage : \n")
                 a=input()
-
+            Jambon = Arme("Jambon", "nul", 1)
+            Tonneau = Armure("Tonneau", "nul", 1)
             if (a == '1' and a != choixPrecedent):
-                Jambon = Arme("Jambon", "nul", 1)
-                Tonneau = Armure("Tonneau", "nul", 1)
                 Charcutier = Hero("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                         None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
             elif (a == '2' and a!=choixPrecedent):
-                Jambon = Arme("Jambon", "nul", 1)
-                Tonneau = Armure("Tonneau", "nul", 1)
-                Pilier = Hero("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                Pilier = Hero("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                     None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
             elif (a == '3' and a!=choixPrecedent):
-                Creve = Hero("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                Creve = Hero("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                    None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
             elif (a == '4' and a!=choixPrecedent):
-                Cuistot = Hero("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                Cuistot = Hero("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                      None)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
             elif (a == '5' and a!=choixPrecedent):
-                Poivrot = Hero("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                Poivrot = Hero("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                      None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
             elif (a == choixPrecedent):
