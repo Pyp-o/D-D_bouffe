@@ -1,3 +1,6 @@
+from random import *
+
+
 class Salle:
     def __init__(self, isExplore, x, y):
         self.__isExplore = isExplore
@@ -44,4 +47,7 @@ class Salle:
     def getSalleHaut(self):
         return self.__salleHaut
     
-    
+    def declancherEvenement(self):
+        i = randint(0,5)
+        if i<=1:
+            return "bagarre"

@@ -6,5 +6,6 @@ class SalleSortie(SalleEvenement):
         self.__map = gameMap
 
     def declancherEvenement(self):
-        print("la sortie!!!")
+        print("Vous venez de trouvez la sortie!!!")
+        return "sortie"
     

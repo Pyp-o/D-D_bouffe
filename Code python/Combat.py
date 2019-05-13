@@ -291,7 +291,7 @@ class Combat():
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
 
-
+"""
 bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
 delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
 soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
@@ -328,3 +328,4 @@ tEnn.ajouterPersonnage(enne3)
 
 c = Combat(tAlli, tEnn)
 c.lancerCombat()
+"""

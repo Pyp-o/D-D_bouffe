@@ -220,7 +220,11 @@ class Map:
         else :
             print("Impossible d'aller par là...")
             return False
-
+            
+    def declancherEvent(self):
+        return self.__salles[self.__positionX][self.__positionY].declancherEvenement()
+    
+    
     def getch(self):
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)

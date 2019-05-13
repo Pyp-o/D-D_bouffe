@@ -1,7 +1,7 @@
 from Arme import *
 from Armure import *
 class Personnage :
-    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, statut, attaque, defense, arme, armure, competences):
+    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense,statut, arme, armure, competences):
         self.__nom = nom
         self.__PVmax = PVmax
         self.__PV = PV
@@ -76,6 +76,8 @@ class Personnage :
     def addCompetence(self, competence):
         self.__competences.append(competence)
 
+    def getStatut(self):
+        return self.__statut
 
     def AfficherPersonnage(self):
         print("\nLe personnage s'appelle :", self.getNom())
