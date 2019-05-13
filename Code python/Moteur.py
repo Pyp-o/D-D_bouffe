@@ -74,20 +74,26 @@ class Moteur :
 
 
     def tour(self):
-        print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)")
+        print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)\n\n")
         ok = False
         while(ok != True):
-            rep=self.getch()
             self.__map.display_maze()
-            ok = self.__map.seDeplacer(rep)
-
-        self.__map.display_maze()
-        self.__map.seDeplacer()
+            rep=self.getch()
+            if(rep in ['z', 'q', 's', 'd']):
+                ok = self.__map.seDeplacer(rep)
+            elif (rep=='i'):
+                print("choisir un perso à gérer\n")
+                perso=self.choixPerso()
+                self.__teamHero.getInventaire().choixAction(perso)
+                self.__map.display_maze()
+            elif (rep=='e'):
+                for personnage in self.__teamHero.getPersonnages():
+                    personnage.AfficherStat()
         return 0
 
     def choixPerso(self):
         teamHero = self.getTeamHero()
-        self.select(len(teamHero)-1)
+        self.selectPersonnage(len(self.__teamHero.getPersonnages()))
 
         def getch(self):
             fd = sys.stdin.fileno()

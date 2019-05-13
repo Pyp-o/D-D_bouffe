@@ -6,6 +6,10 @@ class Team:
         self.__personnages = []
         self.__inventaire = Inventaire()
 
+    def getInventaire(self):
+        return self.__inventaire
+
+
     def ajouterPersonnage(self, personnage):
         self.__personnages.append(personnage)
 

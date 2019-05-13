@@ -83,6 +83,7 @@ class Personnage :
     def AfficherPersonnage(self):
         print("\nLe personnage s'appelle :", self.getNom())
 
-
-    def prendreDecision(self):
-        raise NotImplementedError("abstract method")
+    def AfficherStat(self):
+        print("Le personnage ", self.getNom(), " a : ", self.getPV(),"/", self.getPVmax(),"PV", end=" ")
+        print(self.getPC(),"/", self.getPCmax(),"PC ", "Attaque :", self.getAttaque(), "Defense :", self.getDefense(), end=" ")
+        print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative())

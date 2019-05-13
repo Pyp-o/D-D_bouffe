@@ -131,6 +131,7 @@ class Map:
                     #print("on peut aller a gauche de : " + str(x) + " " + str(y))
 
     def display_maze(self):
+        print("Vous etes en "+str(self.__positionX)+":"+str(self.__positionY))
         sys.stdout.write("  ")
         for i in range(self.__tailleX):
             sys.stdout.write(" "+str(i))
@@ -167,7 +168,6 @@ class Map:
         return self.__salles[self.getPositionX()][self.getPositionY()]
 
     def seDeplacer(self, saisie):
-        print("Vous etes en "+str(self.__positionX)+":"+str(self.__positionY))
         haut = 0
         bas =0
         droite = 0
@@ -181,18 +181,18 @@ class Map:
         if (self.__salles[self.__positionX][self.__positionY].getSalleBas()!= None):
             bas=1
 
-        if(saisie not in ('0x7a','0x71','0x73','0x64')): #z,q,s,d
+        if(saisie not in ('z','q','s','d')): #z,q,s,d
             return False
-        if((saisie == '0x7a') and haut):
+        if((saisie == 'z') and haut):
             self.__positionY-=1
             return True
-        elif ((saisie == '0x73') and bas):
+        elif ((saisie == 's') and bas):
             self.__positionY += 1
             return True
-        elif ((saisie == '0x71') and gauche):
+        elif ((saisie == 'q') and gauche):
             self.__positionX -= 1
             return True
-        elif ((saisie == '0x64') and droite):
+        elif ((saisie == 'd') and droite):
             self.__positionX += 1
             return True
         else :
