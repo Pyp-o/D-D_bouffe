@@ -29,6 +29,9 @@ class Competence:
     def getCout(self):
         return self.__cout
 
+    def AfficherCompetence(self):
+        print("*Nom :", self.getNom(),"  *Description :", self.getCout(), "  *Cout :", self.getCout(), "  *Groupe :", self.getGroupe(), "  *Taux de réussite :", self.getTauxReussite())
+
     def activerCompetence(self, combattant, teamAllie, teamEnnemi):
         raise NotImplementedError
 
@@ -41,4 +44,3 @@ class Competence:
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
-

@@ -3,6 +3,7 @@ from Hero import *
 from Arme import *
 from Map import *
 from Personnage import *
+from Competence immport *
 
 class Moteur :
     def __init__(self):

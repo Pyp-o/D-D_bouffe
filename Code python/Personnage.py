@@ -1,6 +1,5 @@
 from Arme import *
 from Armure import *
-from Hero import *
 class Personnage :
     def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, statut, attaque, defense, arme, armure, competences):
         self.__nom = nom
@@ -89,10 +88,5 @@ class Personnage :
         print(self.getPC(),"/", self.getPCmax(),"PC ", "Attaque :", self.getAttaque(), "Defense :", self.getDefense(), end=" ")
         print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative(), "Arme :", arme.affichageEquipement(), end=" ")
         print("Armure :", armure.affichageEquipement())
-
-
-Jambon = Arme("Jambon", "nul", 1)
-Tonneau = Armure("Tonneau", "nul", 1)
-Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,None)
-
-Charcutier.AfficherStat()
+        for competence in self.getCompetences():
+            competence.AfficherCompetence()
