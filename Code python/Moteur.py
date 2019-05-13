@@ -47,11 +47,14 @@ class Moteur :
                 a=input()
 
             if (a == '1' and a != choixPrecedent):
-
-                Charcutier = Hero("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
+                Jambon = Arme("Jambon", "nul", 1)
+                Tonneau = Armure("Tonneau", "nul", 1)
+                Charcutier = Hero("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
                                         None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
             elif (a == '2' and a!=choixPrecedent):
+                Jambon = Arme("Jambon", "nul", 1)
+                Tonneau = Armure("Tonneau", "nul", 1)
                 Pilier = Hero("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, "Jambon", "Tonneau",
                                     None)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
@@ -74,9 +77,9 @@ class Moteur :
 
 
     def tour(self):
-        print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)\n\n")
         ok = False
         while(ok != True):
+            print("Que voulez-vous faire ? \n-se déplacer (z,q,s,d) \t-gestion d'inventaire (i) \t-statistiques (e)\n\n")
             self.__map.display_maze()
             rep=self.getch()
             if(rep in ['z', 'q', 's', 'd']):

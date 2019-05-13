@@ -1,5 +1,8 @@
+from Arme import *
+from Armure import *
+from Hero import *
 class Personnage :
-    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competences):
+    def __init__(self, nom, PVmax, PV, PCmax, PC, agilite, initiative, statut, attaque, defense, arme, armure, competences):
         self.__nom = nom
         self.__PVmax = PVmax
         self.__PV = PV
@@ -9,10 +12,10 @@ class Personnage :
         self.__initiative = initiative
         self.__attaque = attaque
         self.__defense = defense
-        self.__statut = statut
         self.__arme = arme
         self.__armure = armure
         self.__competences = competences
+        self.__statut = statut
 
     def getNom(self):
         return self.__nom
@@ -59,11 +62,6 @@ class Personnage :
     def setDefense(self, defense):
         self.__defense = defense
 
-    def getStatut(self):
-        return self.__statut
-    def setStatut(self, statut):
-        self.__statut = statut
-
     def getArme(self):
         return self.__arme
     def setArme(self, arme):
@@ -84,6 +82,17 @@ class Personnage :
         print("\nLe personnage s'appelle :", self.getNom())
 
     def AfficherStat(self):
+        arme=self.getArme()
+        arme.affichageEquipement()
+        armure=self.getArmure()
         print("Le personnage ", self.getNom(), " a : ", self.getPV(),"/", self.getPVmax(),"PV", end=" ")
         print(self.getPC(),"/", self.getPCmax(),"PC ", "Attaque :", self.getAttaque(), "Defense :", self.getDefense(), end=" ")
-        print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative())
+        print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative(), "Arme :", arme.affichageEquipement(), end=" ")
+        print("Armure :", armure.affichageEquipement())
+
+
+Jambon = Arme("Jambon", "nul", 1)
+Tonneau = Armure("Tonneau", "nul", 1)
+Charcutier = Personnage("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,None)
+
+Charcutier.AfficherStat()
