@@ -46,7 +46,7 @@ class Moteur :
         for i in range(1, 3):
             print("Choisir le personnage ", i)
             a = input()
-            while(a==choixPrecedent or a<'1' or a>'5'):
+            while(a not in ['1','2','3','4','5'] or a == choixPrecedent):
                 if(a==choixPrecedent) :
                     print("Ce personnage a déjà rejoint votre équipe\n")
                 else :
@@ -71,23 +71,23 @@ class Moteur :
             competences.append(vomi)
             competences.append(buffAttaque)
             if (a == '1' and a != choixPrecedent):
-                Charcutier = Hero("Charcutier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
+                Charcutier = Hero("Charcutier", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
                                         competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
             elif (a == '2' and a!=choixPrecedent):
-                Pilier = Hero("Pilier", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
+                Pilier = Hero("Pilier", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
             elif (a == '3' and a!=choixPrecedent):
-                Creve = Hero("Creve-dalle", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
+                Creve = Hero("Creve-dalle", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
             elif (a == '4' and a!=choixPrecedent):
-                Cuistot = Hero("Cuistot", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
+                Cuistot = Hero("Cuistot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
             elif (a == '5' and a!=choixPrecedent):
-                Poivrot = Hero("Poivrot", 10, 10, 5, 5, 3, 2, 15, 10, None, Jambon, Tonneau,
+                Poivrot = Hero("Poivrot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
             elif (a == choixPrecedent):
@@ -190,7 +190,7 @@ class Moteur :
 ############# TEST #############
 Jambon = Arme("Jambon", "nul", 1)
 Tonneau = Armure("Tonneau", "nul", 1)
-grosTas = ("Gros tas", 25, 25, 10, 10, 3, 3, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+grosTas = Ennemi("Gros tas", 10, 10, 10, 10, 3, 3, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
 
 
 
