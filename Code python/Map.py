@@ -4,7 +4,12 @@ import sys, termios, tty, os, time	#for getch()
 from random import *
 from SalleEntree import *
 from SalleSortie import *
-
+from SallePiege import *
+from SalleBuffet import *
+from SalleCuisine import *
+from SalleGardeManger import *
+from SalleLevier import *
+from SalleCachee import *
 
 class Map:
     def __init__(self):
@@ -13,6 +18,7 @@ class Map:
         self.__positionX = 0
         self.__positionY = 0
         self.__salleEntree = 0
+        self.__levierActive = False
 
     def getPositionX(self):
         return self.__positionX
@@ -55,7 +61,7 @@ class Map:
 
         self.mark(rand(self.width), rand(self.height))
         while self.frontier:
-            ##
+            ##SalleCachee
             # Choix d'un voisin à la frontière
             x, y = choice(list(self.frontier))
             self.frontier.remove((x, y))
@@ -165,23 +171,74 @@ class Map:
             print(line)
 
     def createSalleEvent(self):
+        fichier_debug = open("debug.txt", "w")
         x = randint(0, self.__tailleX-1)
         y = randint(0, self.__tailleY-1)
-        self.__salles[x][y] = SalleEntree(0,x,y)    #et bim une salle entrée
+        self.__salles[x][y] = SalleEntree(0,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())    #et bim une salle entrée
         self.__positionX = x
         self.__positionY = y
         self.__salleEntree = self.__salles[x][y]
+        fichier_debug.write("entrée : "+str(self.__salleEntree.getX())+" "+str(self.__salleEntree.getY())+"\n")
         ok = False
         while ok == False:  #on va essayer de mettre la sortie à plus d'une case d'écart de l'entrée
             x = randint(0, self.__tailleX-1)
             y = randint(0, self.__tailleY-1)
             if(abs(self.__salleEntree.getX()-x)>1 and abs(self.__salleEntree.getY()-y)>1):
-                self.__salles[x][y] = SalleSortie(0,x,y, self)
+                self.__salles[x][y] = SalleSortie(0,x,y,self, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
                 ok = True
-        
+                fichier_debug.write("sortie : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer la salle piege, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SallePiege(0,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("salle piege : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer la salle buffet, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SalleBuffet(0,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("salle buffet : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer la salle cuisine, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SalleCuisine(0,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("salle cuisine : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer le garde à manger, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SalleGardeManger(0,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("garde manger : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer la salle levier, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SalleLevier(0,self, x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("salle levier : "+str(x)+" "+str(y)+"\n")
+        ok = False
+        while ok == False:  #on va placer la salle cachée, de preference sur une salle vide
+            x = randint(0, self.__tailleX-1)
+            y = randint(0, self.__tailleY-1)
+            if(self.recupererSalle(x,y).getSalleVide()):
+                self.__salles[x][y] = SalleCache(0,self,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
+                ok = True
+                fichier_debug.write("salle cachée : "+str(x)+" "+str(y)+"\n")
 
-        
-        
+
+
+        fichier_debug.close()
     
     def recupererSalle(self, x, y):
         return self.__salles[x][y]
@@ -224,6 +281,11 @@ class Map:
     def declancherEvent(self):
         return self.__salles[self.__positionX][self.__positionY].declancherEvenement()
     
+    def setLevierActive(self, levierActiver):
+        self.__levierActive = levierActiver
+
+    def getLevierActive(self):
+        return self.__levierActive 
     
     def getch(self):
         fd = sys.stdin.fileno()
