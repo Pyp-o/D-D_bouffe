@@ -83,12 +83,17 @@ class Personnage :
         print("\nLe personnage s'appelle :", self.getNom())
 
     def AfficherStat(self):
-        arme=self.getArme()
-        arme.affichageEquipement()
-        armure=self.getArmure()
+        print("-", self.getNom())
+        print('\n**************** Caractéristiques ****************')
         print("Le personnage ", self.getNom(), " a : ", self.getPV(),"/", self.getPVmax(),"PV", end=" ")
         print(self.getPC(),"/", self.getPCmax(),"PC ", "Attaque :", self.getAttaque(), "Defense :", self.getDefense(), end=" ")
-        print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative(), "Arme :", arme.affichageEquipement(), end=" ")
-        print("Armure :", armure.affichageEquipement())
+        print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative())
+        print("\n**************** Compétences ****************")
         for competence in self.getCompetences():
             competence.AfficherCompetence()
+        print("\n**************** Arme ****************")
+        arme=self.getArme()
+        arme.affichageEquipement()
+        print("\n**************** Armure ****************\n")
+        armure=self.getArmure()
+        armure.affichageEquipement()

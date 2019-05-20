@@ -10,7 +10,7 @@ from CompetenceStatut import *
 from CompetenceBuff import *
 from Ennemi import *
 from Combat import *
-
+import copy
 
 class Moteur :
     def __init__(self):
@@ -53,8 +53,8 @@ class Moteur :
                     print("Le personnage choisi n'existe pas\n")
                 print("Choisir un autre personnage : \n")
                 a=input()
-            Jambon = Arme("Jambon", "nul", 1)
-            Tonneau = Armure("Tonneau", "nul", 1)
+            Jambon = Arme("Jambon1", "nul", 1)
+            Tonneau = Armure("Tonneau1", "nul", 1)
             bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
             delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
             soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
@@ -70,26 +70,41 @@ class Moteur :
             competences.append(soinMineur)
             competences.append(vomi)
             competences.append(buffAttaque)
+            t = self.getTeamHero().getInventaire()
             if (a == '1' and a != choixPrecedent):
-                Charcutier = Hero("Charcutier", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+                Charcutier = Hero("Charcutier", 50, 50, 5, 5, 3, 2, 15, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
                                         competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
+                Jambon = copy.deepcopy(Jambon)
+                Tonneau = copy.deepcopy(Tonneau)
+                t.ajouterItem(Jambon)
+                t.ajouterItem(Tonneau)
             elif (a == '2' and a!=choixPrecedent):
-                Pilier = Hero("Pilier", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
+                Pilier = Hero("Pilier", 50, 50, 5, 5, 3, 2, 15, 2, None, None, None,
                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
+                Jambon = copy.deepcopy(Jambon)
+                Tonneau = copy.deepcopy(Tonneau)
+                t.ajouterItem(Jambon)
+                t.ajouterItem(Tonneau)
             elif (a == '3' and a!=choixPrecedent):
                 Creve = Hero("Creve-dalle", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
+                t.ajouterItem(Jambon)
+                t.ajouterItem(Tonneau)
             elif (a == '4' and a!=choixPrecedent):
                 Cuistot = Hero("Cuistot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
+                t.ajouterItem(Jambon)
+                t.ajouterItem(Tonneau)
             elif (a == '5' and a!=choixPrecedent):
                 Poivrot = Hero("Poivrot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
+                t.ajouterItem(Jambon)
+                t.ajouterItem(Tonneau)
             elif (a == choixPrecedent):
                 print("Ce personnage a déjà rejoins votre équipe\n")
 
@@ -140,17 +155,17 @@ class Moteur :
 
     def choixPerso(self):
         teamHero = self.getTeamHero()
-        self.selectPersonnage(len(self.__teamHero.getPersonnages()))
+        return self.selectPersonnage(len(self.__teamHero.getPersonnages()))
 
-        def getch(self):
-            fd = sys.stdin.fileno()
-            old_settings = termios.tcgetattr(fd)
-            try:
-                tty.setraw(sys.stdin.fileno())
-                ch = sys.stdin.read(1)
-            finally:
-                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-            return ch
+    def getch(self):
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
 
     def selectPersonnage(self, nbChoix):
         rep = "0xa"
