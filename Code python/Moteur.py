@@ -17,13 +17,22 @@ class Moteur :
         self.__teamHero=Team()
         self.initTeam()
         self.__map = Map()
-        self.__map.genererMap(5,5)
+        self.__etage = 1
+        self.__tailleMapX = 5
+        self.__tailleMapY = 5
+        self.__map.genererMap(self.__tailleMapX, self.__tailleMapY)
         self.end = 0
         while(self.end != 1):
             self.end = self.tour()
 
     def getTeamHero(self):
         return self.__teamHero
+
+    def nouvelleEtage(self):
+        self.__tailleMapX = self.__tailleMapX + 2
+        self.__tailleMapY = self.__tailleMapY + 2
+        self.__map.genererMap(self.__tailleMapX, self.__tailleMapY)
+
 
     def initTeam(self):
         print("---- HEROS ----\n")
@@ -142,8 +151,7 @@ class Moteur :
             while rep not in ["o", "n"]:  #o,n
                 rep = self.getch()
             if rep == "o":
-                print("La suite bientot!!! Game over")
-                exit(0)
+                self.nouvelleEtage()
         if event == "bagarre":
             teamEnnemi = Team()
             teamEnnemi.ajouterPersonnage(grosTas)

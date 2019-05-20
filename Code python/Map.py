@@ -19,7 +19,7 @@ class Map:
         self.__positionY = 0
         self.__salleEntree = 0
         self.__levierActive = False
-
+        
     def getPositionX(self):
         return self.__positionX
 
