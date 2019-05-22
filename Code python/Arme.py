@@ -1,5 +1,6 @@
 from Equipement import *
 from Item import *
+from Personnage import *
 
 class Arme(Equipement):
     def __init__(self, nom, description, degat):

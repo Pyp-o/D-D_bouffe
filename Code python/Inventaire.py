@@ -5,6 +5,7 @@ from Arme import *
 from Armure import *
 from Equipement import *
 from Consommable import *
+from ArmeConsommable import *
 
 class Inventaire():
     def __init__(self):
@@ -24,20 +25,28 @@ class Inventaire():
             if (isinstance(item, Arme) or isinstance(item, Armure)):
                 item.affichageEquipement()
 
-    def afficherEquipementEquipe(self):
-        for item in self.__items:
-            if ((isinstance(item,Arme) or isinstance(item, Armure)) and item.getPorteur()!=None):
-                item.affichageEquipement()
+    def afficherEquipementEquipe(self, personnage):
+        print("\n***** Equipement Equpé *****")
+        a = self.getEquipementEquipe(personnage)
+        i=1
+        for item in a:
+            print(i, "-")
+            item.affichageEquipement()
+            i+=1
 
     def afficherEquipementDesequipe(self):
-        for item in self.__items:
-            if ((isinstance(item,Arme) or isinstance(item, Armure)) and item.getPorteur()==None):
-                item.affichageEquipement()
+        print("\n***** Equipement Desequpé *****")
+        a = self.getEquipementDesequipe()
+        i=1
+        for item in a:
+            print(i, "-")
+            item.affichageEquipement()
+            i+=1
 
     def afficherConsommables(self):
+        a=self.getConsommables()
         i=1
-        for consommable in self.__items:
-            if((isinstance(consommable, Consommable))):
+        for consommable in a:
                 print(i, "-")
                 consommable.affichageConsommable()
                 i+=1
@@ -49,10 +58,10 @@ class Inventaire():
                 listeConsommables.append(item)
         return listeConsommables
 
-    def getEquipementEquipe(self):
+    def getEquipementEquipe(self, personnage):
         listEquipement = []
         for item in self.__items:
-            if ((isinstance(item, Equipement)) and item.getPorteur()!=None):
+            if ((isinstance(item, Equipement)) and item.getPorteur()==personnage):
                 listEquipement.append(item)
         return listEquipement
 
@@ -65,25 +74,39 @@ class Inventaire():
 
 
     def Equiper(self, personnage):
-        self.afficherEquipementEquipe()
+        self.afficherEquipementEquipe(personnage)
         self.afficherEquipementDesequipe()
         listEquipement = self.getEquipementDesequipe()
         if (len(listEquipement) > 0):
             print("\nChoisir l'équipement à équiper:")
             choix = self.select(len(listEquipement))
-            a = listEquipement[choix-1]
-            a.setPorteur(personnage)
+            equipement = listEquipement[choix-1]
+            equipement.setPorteur(personnage)
+            if(isinstance(equipement, Arme) or isinstance(equipement, ArmeConsommable)):
+                if(personnage.getArme()!=None):
+                    arme=personnage.getArme()
+                    arme.setPorteur(None)
+                personnage.setArme(equipement)
+                equipement.setPorteur(personnage)
+            else:
+                if (personnage.getArmure() != None):
+                    armure = personnage.getArmure()
+                    armure.setPorteur(None)
+                personnage.setArmure(equipement)
+                equipement.setPorteur(personnage)
         else:
             print("\nAucun equipement dans l'inventaire\n\n")
 
-    def Desequiper(self):
-        self.afficherEquipementEquipe()
-        listEquipement = self.getEquipementEquipe()
+    def Desequiper(self, personnage):
+        self.afficherEquipementEquipe(personnage)
+        listEquipement = self.getEquipementEquipe(personnage)
         if (len(listEquipement) > 0):
             print("\nChoisir l'équipement à deséquiper:")
             choix = self.select(len(listEquipement))
             a = listEquipement[choix-1]
             a.retirerPorteur()
+            personnage.setArme(None)
+
         else:
             print("\nAucun equipement equipe\n\n")
 
@@ -123,7 +146,7 @@ class Inventaire():
 
                 #desequiper
                 elif(choix==2):
-                    self.Desequiper()
+                    self.Desequiper(personnage)
 
             #utilisation consommables
             elif(choix==2):

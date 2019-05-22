@@ -10,6 +10,7 @@ class Salle:
         self.__salleGauche = None
         self.__salleHaut = None
         self.__salleBas = None
+        self.__salleVide = True
 
     def getX(self):
         return self.__x
@@ -46,6 +47,12 @@ class Salle:
 
     def getSalleHaut(self):
         return self.__salleHaut
+    
+    def getSalleVide(self):
+        return self.__salleVide
+	
+    def setSalleVide(self, salleVide):
+        self.__salleVide = salleVide
     
     def declancherEvenement(self):
         i = randint(0,5)
