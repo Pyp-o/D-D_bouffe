@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Team import *
 from Hero import *
 from Arme import *
