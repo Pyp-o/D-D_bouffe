@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Team import *
 from Hero import *
 from Arme import *
@@ -81,7 +83,7 @@ class Moteur :
             competences.append(buffAttaque)
             t = self.getTeamHero().getInventaire()
             if (a == '1' and a != choixPrecedent):
-                Charcutier = Hero("Charcutier", 50, 50, 5, 5, 3, 2, 15, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+                Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
                                         competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
                 Jambon = copy.deepcopy(Jambon)
@@ -89,7 +91,7 @@ class Moteur :
                 t.ajouterItem(Jambon)
                 t.ajouterItem(Tonneau)
             elif (a == '2' and a!=choixPrecedent):
-                Pilier = Hero("Pilier", 50, 50, 5, 5, 3, 2, 15, 2, None, None, None,
+                Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
                 Jambon = copy.deepcopy(Jambon)
@@ -97,19 +99,19 @@ class Moteur :
                 t.ajouterItem(Jambon)
                 t.ajouterItem(Tonneau)
             elif (a == '3' and a!=choixPrecedent):
-                Creve = Hero("Creve-dalle", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
+                Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, Jambon, Tonneau,
                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
                 t.ajouterItem(Jambon)
                 t.ajouterItem(Tonneau)
             elif (a == '4' and a!=choixPrecedent):
-                Cuistot = Hero("Cuistot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
+                Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
                 t.ajouterItem(Jambon)
                 t.ajouterItem(Tonneau)
             elif (a == '5' and a!=choixPrecedent):
-                Poivrot = Hero("Poivrot", 50, 50, 5, 5, 3, 2, 15, 2, None, Jambon, Tonneau,
+                Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, Jambon, Tonneau,
                                      competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
                 t.ajouterItem(Jambon)
@@ -210,13 +212,33 @@ class Moteur :
         return ch
 
 
-############# TEST #############
+############# LORE #############
 Jambon = Arme("Jambon", "nul", 1)
 Tonneau = Armure("Tonneau", "nul", 1)
-grosTas = Ennemi("Gros tas", 10, 10, 10, 10, 3, 3, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+#etage 1
+grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10)
+golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None, None, 10)
 
+#etage 2
+simpletVillage = Ennemi("Simplet du village", 13, 13, 5, 5, 20, 10, 6,1,None,None,None, None, 10)
+cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10)
+golemDeJambon = Ennemi("Golem de jambon", 20, 20, 10, 10, 5, 8, 7, 3, None,None,None, None, 10)
 
+#etage 3
+pouilleux = Ennemi("Pouilleux", 18, 18, 25, 25, 10, 10, 5, 2, None,None,None, None, 10)
+croqueMort = Ennemi("Croque-mort", 18, 18, 20, 20, 6, 9, 1, 2, None,None,None, None, 10)
+golemDAndouillette = Ennemi("Golemn d'andouillette", 23, 23, 15, 15, 5, 8, 8, 3, None,None,None, None, 10)
 
+#etage 4
+boomer = Ennemi("Boomer", 8, 8, 5, 5, 5, 5, 1, 2, None,None,None, None, 10)
+chevalierCasseCroute = Ennemi("Chevalier Casse-croute", 25, 25, 0, 0, 6, 8, 7, 4, None,None,None, None, 10)
+golemNafnaf = Ennemi("Golem Nafnaf", 30, 30, 15, 15, 5, 8, 8, 4, None,None,None, None, 10)
+
+#etage 5
+ombreRampante = Ennemi("Ombre rampante", 10,10,10,10, 66, 13, 5, 1, None,None,None, None, 10)
+psychopate = Ennemi("Psychopathe", 20, 20, 0, 0, 10, 10, 9, 2, None,None,None, None, 10)
+geant = Ennemi("Geant", 35,35,20,20, 5,9,10,5,None,None,None, None, 10)
 
 
 
