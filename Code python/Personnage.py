@@ -85,7 +85,7 @@ class Personnage :
     def AfficherStat(self):
         print("-", self.getNom())
         print('\n**************** Caractéristiques ****************')
-        print("Le personnage ", self.getNom(), " a : ", self.getPV(),"/", self.getPVmax(),"PV", end=" ")
+        print("Le personnage ", self.getNom(), " a : ", self.getPV(),"/", self.getPVmax(),"PV", end="")
         print(self.getPC(),"/", self.getPCmax(),"PC ", "Attaque :", self.getAttaque(), "Defense :", self.getDefense(), end=" ")
         print("Agilité :", self.getAgilite(), "Initiative :", self.getInitiative())
         if (self.getCompetences() != None):
