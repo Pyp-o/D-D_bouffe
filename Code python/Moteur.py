@@ -125,7 +125,7 @@ class Moteur :
     def tour(self):
         ok = False
         while(ok != True):
-            print("Que voulez-vous faire ? \nse déplacer (z,q,s,d), gestion d'inventaire (i), statistiques (e), quitter (t)\n\n")
+            print("Que voulez-vous faire ? \nse déplacer (z,q,s,d), gestion d'inventaire (i), statistiques (e), quitter (t)\n")
             self.__map.display_maze()
             rep=self.getch()
             if(rep in ['z', 'q', 's', 'd']):

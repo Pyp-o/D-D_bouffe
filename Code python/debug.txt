@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-entrée : 4 3
-sortie : 2 1
-salle piege : 3 2
-salle buffet : 3 1
-salle cuisine : 0 4
-garde manger : 0 3
-salle levier : 1 1
-salle cachée : 1 0
-=======
-entrée : 0 3
-sortie : 3 1
-salle piege : 4 1
-salle buffet : 4 0
-salle cuisine : 3 3
-garde manger : 2 4
-salle levier : 1 1
-salle cachée : 3 0
->>>>>>> 1b512912a5045f76a17af371b06f45adc40618ed
+entrée : 1 4
+sortie : 4 1
+salle piege : 4 0
+salle buffet : 4 3
+salle cuisine : 2 0
+garde manger : 2 1
+salle levier : 4 4
+salle cachée : 1 2
