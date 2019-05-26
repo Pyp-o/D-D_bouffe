@@ -15,9 +15,9 @@ class Ralenti(Statut):
         if (self.getTourRestant()==0):
             self.retirerStatut(combattant)        
         else:
-			print("Les gestes de "+combattant.getNom()+" sont au ralentit...")
+            print("Les gestes de "+combattant.getNom()+" sont au ralentit...")
 
     def retirerStatut(self, combattant):
-		print(combattant.getNom() + "n'est plus ralentit dans ses mouvements")
+        print(combattant.getNom() + "n'est plus ralentit dans ses mouvements")
         combattant.setAgilite(combattant.getAgilite() + 3)
         combattant.retirerStatut(self)
