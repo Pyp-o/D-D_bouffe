@@ -5,18 +5,18 @@ from Statut import *
 from Empoisonne import *    #TODO a delete, seulement pour les test
 
 class CompetenceStatut(Competence):
-    def __init__(self, nom, cout, description, groupe, tauxReussite, statut, isEnnemi):
+    def __init__(self, nom, cout, description, groupe, tauxReussite, statut, forEnnemi):
         Competence.__init__(self, nom, cout, description, groupe, tauxReussite)
         self.__statut = statut
-        self.__isEnnemi = isEnnemi      #est ce une competence detenu par un ennemi
+        self.__forEnnemi = forEnnemi      #est ce une competence à destination des ennemies
         self.__teamConcerned = 0
 
 
     def activerCompetence(self,combattant, teamAllie, teamEnnemi):
-        if self.__isEnnemi == 0:  # on buff ou debuff quelle team?
-            self.__teamConcerned = teamEnnemi
-        else:
+        if self.__forEnnemi == False:  # on buff ou debuff quelle team?
             self.__teamConcerned = teamAllie
+        else:
+            self.__teamConcerned = teamEnnemi
         if (self.getGroupe() == 0):
             print("qui sera affecter? (utiliser les z et q pour choisir et entrée pour selectionner)")
             rep = "0x00"

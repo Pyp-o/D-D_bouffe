@@ -3,9 +3,10 @@ from Competence import *
 
 
 class CompetenceAttaque(Competence):
-    def __init__(self, nom, cout, description, groupe, tauxReussite, degat):
+    def __init__(self, nom, cout, description, groupe, tauxReussite, degat, degatFixe):
         Competence.__init__(self,nom, cout, description, groupe, tauxReussite)
         self.__degat = degat
+        self.__degatFixe = degatFixe #Faut-il prendre en compte l'attaque du perso?
 
     def activerCompetence(self, combattant, teamAllie, teamEnnemi):
         if (self.getGroupe() == 0):
@@ -30,17 +31,25 @@ class CompetenceAttaque(Competence):
             if rand > self.getTauxReussite():
                 print("le sort echoue...")
             else: 
-                teamEnnemi[i].setPV(teamEnnemi[i].getPV()-self.__degat)
-                print(teamEnnemi[i].getNom()+" perd "+str(self.__degat)+"PV!")
+                if (self.__degatFixe == True):
+                    degat = self.__degat
+                else:
+                    degat = self.__degat+combattant.getAttaque()
+                teamEnnemi[i].setPV(teamEnnemi[i].getPV()-degat)
+                print(teamEnnemi[i].getNom()+" perd "+str(degat)+"PV!")
         else:   #attaque de groupe
             rand = random.randint(0, 100) #le sort echoue?
             if rand > self.getTauxReussite():
                 print("le sort echoue...")
             else:
                 for c in teamEnnemi:
-                    c.setPV(c.getPV()-self.__degat)
-                    print(c.getNom()+" perd "+str(self.__degat)+"PV!")
-            			            
+                    if (self.__degatFixe == True):
+                        degat = self.__degat
+                    else:
+                        degat = self.__degat+combattant.getAttaque()
+                    c.setPV(c.getPV()-degat)
+                    print(c.getNom()+" perd "+str(degat)+"PV!")
+                                    
                     
                     
 

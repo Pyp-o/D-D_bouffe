@@ -17,5 +17,5 @@ class Paralyse(Statut):
         
        
     def retirerStatut(self, combattant):
-		print(combattant.getNom() + " n'est plus paralysé")
+        print(combattant.getNom() + " n'est plus paralysé")
         combattant.retirerStatut(self)

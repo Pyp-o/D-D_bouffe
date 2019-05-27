@@ -3,16 +3,16 @@
 from Competence import *
 
 class CompetenceBuff(Competence):
-    def __init__(self, nom, cout, description, groupe, tauxReussite, degatBuff, defenseBuff, agiliteBuff, isEnnemi):
+    def __init__(self, nom, cout, description, groupe, tauxReussite, degatBuff, defenseBuff, agiliteBuff, forEnnemi):
         Competence.__init__(self, nom, cout, description, groupe, tauxReussite)
         self.__degatBuff = degatBuff
         self.__defenseBuff = defenseBuff
         self.__agiliteBuff = agiliteBuff
-        self.__isEnnemi = isEnnemi      #Est-ce un sort lancé par la team ennemie?
+        self.__forEnnemi = forEnnemi      #est ce une competence à destination des ennemies
         self.__teamConcerned = 0
 
     def activerCompetence(self, combattant, teamAllie, teamEnnemi):
-        if self.__isEnnemi == 1:    #on buff ou debuff quelle team?
+        if self.__forEnnemi == True:    #on buff ou debuff quelle team?
             self.__teamConcerned = teamEnnemi
         else:
             self.__teamConcerned = teamAllie
