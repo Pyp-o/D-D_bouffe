@@ -13,3 +13,6 @@ class Equipement(Item):
 
     def setPorteur(self, porteur):
         self.__porteur = porteur
+
+    def affichageEquipement(self):
+        print("error")

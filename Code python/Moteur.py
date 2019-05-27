@@ -116,7 +116,7 @@ class Moteur :
                     self.gererEvent(event)
             elif (rep=='i'):
                 print("choisir un perso à gérer\n")
-                perso=self.choixPerso()
+                perso=self.getTeamHero().getPersonnages()
                 self.__teamHero.getInventaire().choixAction(perso)
                 self.__map.display_maze()
             elif (rep=='e'):

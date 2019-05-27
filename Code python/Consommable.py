@@ -23,8 +23,23 @@ class Consommable(Item):
     def getEnergie(self):
         return self.__energie
 
-    def getStatutretire(self):
-        return self.__statutRetire
+    def getPVmax(self):
+        return self.__PVmax
+
+    def getPCmax(self):
+        return self.__PCmax
+
+    def getAttaque(self):
+        return self.__attaque
+
+    def getDefense(self):
+        return self.__defense
+
+    def getAgilite(self):
+        return self.__agilité
+
+    def getInitiative(self):
+        return self.__initiative
 
     def getFaitRevivre(self):
         return self.__faitRevivre
@@ -37,4 +52,4 @@ class Consommable(Item):
             revive="Oui"
         else:
             revive="Non"
-        print("*Nom:", self.getNom(), "  *Description:", self.getDescription(), "  *Soin:", self.getSoin(), "  *Energie:", self.getEnergie(), "  *Guerison de statut:", self.getStatutretire(), "  *Peut réscussiter:", revive)
+        print("*Nom:", self.getNom(), "  *Description:", self.getDescription(), "  *Soin:", self.getSoin(), "  *Energie:", self.getEnergie(), "*Pvmax :",self.getPVmax(), "*PCmax :", self.getPCmax(), "*Attaque :", self.getAttaque(),"*Defense :", self.getDefense(),"*Agilite :", self.getAgilite(),"*Initiative :", self.getInitiative(), "  *Peut réscussiter:", revive)
