@@ -137,9 +137,12 @@ class Inventaire():
 
             #gestion equipement
             if(choix==1):
-                print("Que faire ?\n1-Equiper\n2-Désequiper\n3-Retour\n")
+                self.afficherEquipementEquipe(personnage)
+                self.afficherEquipementDesequipe()
+                print("\nQue faire ?\n1-Equiper\n2-Désequiper\n3-Retour\n")
                 choix=self.select(3)
                 #equiper
+                print("")
                 if(choix == 1):
                     self.Equiper(personnage)
 
