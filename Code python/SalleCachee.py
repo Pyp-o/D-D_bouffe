@@ -12,7 +12,7 @@ class SalleCache(SalleEvenement):
     def declancherEvenement(self):
         if (self.__gameMap.getLevierActive()):
             print("une salle caché!!!")
-            sleep(1.5)
+            time.sleep(1.5)
         else:
             i = randint(0,5)
             if i<=1:
