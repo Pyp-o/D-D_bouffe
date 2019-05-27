@@ -1,3 +1,5 @@
+import time
+
 from SalleEvenement import *
 
 class SalleBuffet(SalleEvenement):
@@ -6,3 +8,4 @@ class SalleBuffet(SalleEvenement):
 
     def declancherEvenement(self):
         print("un buffer :p")
+        time.sleep(1.5)

@@ -1,3 +1,5 @@
+import time
+
 from SalleEvenement import *
 
 class SalleLevier(SalleEvenement):
@@ -10,6 +12,7 @@ class SalleLevier(SalleEvenement):
             print("Vous trouvez et activez un levier.")
             print("Vous entendez un bruit sourd au loin...")
             self.__gameMap.setLevierActive(True)
+            time.sleep(1.5)
         else:
             i = randint(0,5)
             if i<=1:

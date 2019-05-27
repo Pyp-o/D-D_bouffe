@@ -1,3 +1,5 @@
+import time
+
 from SalleEvenement import *
 
 class SallePiege(SalleEvenement):
@@ -6,3 +8,4 @@ class SallePiege(SalleEvenement):
 
     def declancherEvenement(self):
         print("un piege!!!")
+        time.sleep(1.5)

@@ -11,6 +11,7 @@ from CompetenceHeal import *
 from CompetenceStatut import *
 from CompetenceBuff import *
 from Empoisonne import *
+import time
 
 class Combat():
     def __init__(self, teamHero, teamEnnemi):
@@ -26,6 +27,10 @@ class Combat():
         self.__tour = 1
 
     def lancerCombat(self): #la methode principale qui gere le combat
+        print("Vous venez de vous faire agresser par : ")
+        for ennemi in self.__teamCombattantsEnnemi:
+            print(ennemi.getNom() + " a " + str(ennemi.getPV()) + "/" + str(ennemi.getPVmax()) + "PV")
+        time.sleep(1.5)
         print("******* Tour 1 *******")
         while (self.__teamHeroMorte == False) and (self.__teamEnnemieMorte == False) and (self.__fuiteReussi == False): #tant que l'une des 2 team n'est pas entierement morte
             if self.__isFinDeTour() == True:
@@ -40,6 +45,7 @@ class Combat():
             if self.__teamEnnemieMorte == True:
                 print("Les ennemies ont été vaincu!!!")
                 self.__finCombat()
+                time.sleep(1)
             else:
                 print("Les heros ont été vaincu...")
                 print("Game Over")
@@ -49,9 +55,11 @@ class Combat():
         if combattant.isTeamHero():
             print("C'est à "+combattant.getNom()+" d'agir!")
             self.__choixJoueur(combattant)
+            time.sleep(1.5)
         else:
             print("L'ennemie "+combattant.getNom()+ " attaque!")
             self.__choixDeLIA(combattant)
+            time.sleep(1.5)
         combattant.setTourFini(True)
     
     def __choixJoueur(self, combattant):
@@ -98,9 +106,9 @@ class Combat():
                 print()
                 for ennemi in self.__teamCombattantsEnnemi:
                     if ennemi.getTourfini():
-                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(hero.getPVmax())+"PV, son tour est fini")
+                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(ennemi.getPVmax())+"PV, son tour est fini")
                     else:
-                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(hero.getPVmax())+"PV, il n'a pas encore fini son tour")
+                        print(ennemi.getNom()+" a "+str(ennemi.getPV())+"/"+str(ennemi.getPVmax())+"PV, il n'a pas encore fini son tour")
                 ok = False
                 print()
                 
@@ -279,6 +287,7 @@ class Combat():
                         print(persoEnnemie.getNom()+" s'en va tristement...")
                 else:
                     print("Mais l'équipe est déjà au complet...")
+                time.sleep(1)
         
     
     def getch(self):

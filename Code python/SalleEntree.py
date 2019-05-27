@@ -1,3 +1,5 @@
+import time
+
 from SalleEvenement import *
 
 class SalleEntree(SalleEvenement):
@@ -6,3 +8,5 @@ class SalleEntree(SalleEvenement):
 
     def declancherEvenement(self):
         print("c'est de là que l'on est venu...")
+        time.sleep(1.5)
+

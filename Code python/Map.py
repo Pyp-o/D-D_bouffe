@@ -235,9 +235,6 @@ class Map:
                 self.__salles[x][y] = SalleCache(0,self,x,y, self.__salles[x][y].getSalleDroite(), self.__salles[x][y].getSalleGauche(), self.__salles[x][y].getSalleHaut(), self.__salles[x][y].getSalleBas())
                 ok = True
                 fichier_debug.write("salle cachée : "+str(x)+" "+str(y)+"\n")
-
-
-
         fichier_debug.close()
     
     def recupererSalle(self, x, y):
