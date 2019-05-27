@@ -44,64 +44,70 @@ class Moteur :
         print("---- HEROS ----\n")
         print("1- Charcutier :\t")
         print("Question barbaque il s'y connait, et son embon point montre qu'il teste ses produits. \n\tIl manie avec aisance les armes assez lourdes comme les hachoirs ou les jambons secs entiers\n\n")
+        time.sleep(2)
 
         print("2- Pillier de Bar :\t")
         print("C'est le bon copain du village. Il a une résistance à l'alcool impressionnante !! \n\tEt puis, à force de faire la baguarre dans le bar, il résiste plutôt bien aux coups\n\n")
+        time.sleep(2)
 
         print("3- Crève-dalle :\t")
         print("Maigre comme un clou, il n'a jamais pu manger à sa faim. Il a donc développé des techniques imparables pour pouvoir manger. \n\tHabitué à voler, il utilise des dagues et se débrouille très bien pour repérer les dangers et les trésors.\n")
+        time.sleep(2)
 
         print("4- Cuistot :\t")
         print("Gros comme un cochon, il transforme n'importe quel ingrédient en plat digne d'un roi. \n\tIl parait même que ses plats apportent des pouvoirsmagiques à ceux qui les consomment.\n\n")
+        time.sleep(2)
 
         print("5- Poivrot :\t")
         print("Toujours aussi saoul que le pillier de bar, il est pas vraiment copain avec tout le monde... \n\tMais il lance des trucs avec assez de précision pour blesser des gens à chaque coup, ça pourrait être utilse.\n\n")
+        time.sleep(2)
 
         choixPrecedent='12'
         for i in range(1, 3):
             print("Choisir le personnage ", i)
-            a = input()
-            while(a not in ['1','2','3','4','5'] or a == choixPrecedent):
+            a = self.selectPerso()
+            while(a not in [1,2,3,4,5] or a == choixPrecedent):
                 if(a==choixPrecedent) :
                     print("Ce personnage a déjà rejoint votre équipe\n")
                 else :
                     print("Le personnage choisi n'existe pas\n")
                 print("Choisir un autre personnage : \n")
-                a=input()
+                a = self.selectPerso()
 
             t = self.getTeamHero().getInventaire()
-            if (a == '1' and a != choixPrecedent):
+            if (a == 1 and a != choixPrecedent):
                 Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
-                                        competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                                        competences)
                 self.__teamHero.ajouterPersonnage(Charcutier)
                 jambon = copy.deepcopy(Jambon)
                 tonneau = copy.deepcopy(Tonneau)
                 t.ajouterItem(jambon)
                 t.ajouterItem(tonneau)
-            elif (a == '2' and a!=choixPrecedent):
+            elif (a == 2 and a!=choixPrecedent):
                 Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
-                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                                    competences)
                 self.__teamHero.ajouterPersonnage(Pilier)
                 jam = copy.deepcopy(Jambon)
                 ton = copy.deepcopy(Tonneau)
                 t.ajouterItem(jam)
                 t.ajouterItem(ton)
-            elif (a == '3' and a!=choixPrecedent):
+            elif (a == 3 and a!=choixPrecedent):
                 Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None,
-                                   competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                                   competences)
                 self.__teamHero.ajouterPersonnage(Creve)
-            elif (a == '4' and a!=choixPrecedent):
+            elif (a == 4 and a!=choixPrecedent):
                 Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None,
-                                     competences)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
+                                     competences)
                 self.__teamHero.ajouterPersonnage(Cuistot)
-            elif (a == '5' and a!=choixPrecedent):
+            elif (a == 5 and a!=choixPrecedent):
                 Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None,
-                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
+                                     competences)
                 self.__teamHero.ajouterPersonnage(Poivrot)
             elif (a == choixPrecedent):
                 print("Ce personnage a déjà rejoins votre équipe\n")
 
             choixPrecedent = a
+        print("\n\n\n")
 
     def tour(self):
         ok = False
@@ -239,9 +245,34 @@ class Moteur :
                 return copy.deepcopy(geant)
 
 
-    def choixPerso(self):
-        teamHero = self.getTeamHero()
-        return self.selectPersonnage(len(self.__teamHero.getPersonnages()))
+    def selectPerso(self):
+        rep = "0xa"
+        i = 1
+        print("1- Charcutier")
+        while rep != "0xd":  # différent de entrée
+            rep = hex(
+                ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+            if (rep == "0x7a"):  # z
+                if (i != 5):
+                    i = i + 1
+                else:
+                    i = 1
+            if (rep == "0x73"):  # s
+                if (i > 1):
+                    i = i - 1
+                else:
+                    i = 5
+            if(i==1):
+                print("1- Charcutier")
+            elif(i==2):
+                print("2- Pilier de bar")
+            elif(i==3):
+                print("3- Crève-dalle")
+            elif(i==4):
+                print("4- Cuistot")
+            elif(i==5):
+                print("5- Poivrot")
+        return i
 
     def selectPersonnage(self, nbChoix):
         rep = "0xa"
