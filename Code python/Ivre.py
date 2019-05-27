@@ -16,10 +16,10 @@ class Ivre(Statut):
         if (self.getTourRestant()==0):
             self.retirerStatut(combattant)
         else:
-			print(combattant.getNom() + " a envie d'en découdre mais n'a pas l'air de marché très droit...")
+            print(combattant.getNom() + " a envie d'en découdre mais n'a pas l'air de marché très droit...")
 
     def retirerStatut(self, combattant):
-		print(combattant.getNom() + " a retrouvé ses esprits et n'est plus ivre")
+        print(combattant.getNom() + " a retrouvé ses esprits et n'est plus ivre")
         combattant.setAgilite(combattant.getAgilite() + 2)
         combattant.setAttaque(combattant.getAttaque() - 2)
         combattant.retirerStatut(self)
