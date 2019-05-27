@@ -63,3 +63,24 @@ jerryLePestifere = Ennemi("Jerry le Pestiféré", 55, 55, 20, 20, 10, 20, 6, 3, 
 ramsayLHysterique = Ennemi("Ramsay l'hystérique", 75, 75, 15, 15, 10, 20, 9, 4, None,None,None, None, 10)
 #boss etage 5
 merlinPanzer4 = Ennemi("Merlin et son Panzerkampfwagen IV", 150, 150, 50, 50, 1, 20, 12, 5, None,None,None, None, 10)
+
+
+
+#viens de moteur
+Jambon = Arme("Jambon1", "nul", 1)
+Tonneau = Armure("Tonneau1", "nul", 1)
+bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
+delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
+soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
+buffAttaque = CompetenceBuff("Encouragement!", 2, "Gueule sur un allié", 0, 85, 4, 0, 0, 0)
+
+poison = Empoisonne("empoisonné",4)
+vomi = CompetenceStatut("vomir",5, "vomit sur un ennemi",0,70,poison, 0)
+
+
+competences = []
+competences.append(delugeFeu)
+competences.append(bouleFeu)
+competences.append(soinMineur)
+competences.append(vomi)
+competences.append(buffAttaque)

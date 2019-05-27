@@ -67,23 +67,7 @@ class Moteur :
                     print("Le personnage choisi n'existe pas\n")
                 print("Choisir un autre personnage : \n")
                 a=input()
-            Jambon = Arme("Jambon1", "nul", 1)
-            Tonneau = Armure("Tonneau1", "nul", 1)
-            bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
-            delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
-            soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
-            buffAttaque = CompetenceBuff("Encouragement!", 2, "Gueule sur un allié", 0, 85, 4, 0, 0, 0)
 
-            poison = Empoisonne("empoisonné",4)
-            vomi = CompetenceStatut("vomir",5, "vomit sur un ennemi",0,70,poison, 0)
-
-
-            competences = []
-            competences.append(delugeFeu)
-            competences.append(bouleFeu)
-            competences.append(soinMineur)
-            competences.append(vomi)
-            competences.append(buffAttaque)
             t = self.getTeamHero().getInventaire()
             if (a == '1' and a != choixPrecedent):
                 Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
