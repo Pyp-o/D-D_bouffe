@@ -1,13 +1,25 @@
-Jambon = Arme("Jambon", "nul", 1)
-Tonneau = Armure("Tonneau", "nul", 1)
+from Ressource import *
+from Consommable import *
+
+##### RESSOURCES
+PommesDeTerre = Ressource('Pommes de terre crues', 'Des pommes de terres banales')  #nom, description
+Oignons = Ressource('Oignons crus', "Des oignons frais")
+Carottes = Ressource("Carottes crues", "Des carottes des sables")
+Paleron = Ressource("Paleron de boeuf", "Une belle piece de boucher")
+Magret = Ressource("Magret de canard", "Une des plus belles piece de boucher")
+Andouillettes = Ressource("Andouillettes crues", "Une odeur forte s'en dégage")
+
+##### POTIONS
+
+            #nom, description, PV, PC, PVmax, PCmax, attaque, defense, agilite, initiative, statutRetire, faitRevivre):
+PotionPomme = Consommable("Pommes de terre sautées", "Rend 15PV", 15, 0, 0, 0, 0, 0, 0, 0, False, False)
+PotionEstouffade = Consommable("Estouffade de pommes de terre et carottes", "Rend 10PC", 0, 10, 0, 0, 0, 0, 0, 0, False, False)
+PotionDaubeOignon = Consommable("Daube à l'oignon", "Augmente de 5 les Pvmax", 0, 0, 5, 0, 0, 0, 0, 0, False, False)
+PotionDaubeCarottes = Consommable("Daube aux carottes", "Augmente de 5 les PCmax", 0, 0, 0, 5, 0, 0, 0, 0, False, False)
+PotionPlat = Consommable("Plat du terroir", "Augmente de 1 l'attaque", 0, 0, 0, 0, 1, 0, 0, 0, False, False)
 
 
-##### ENNEMI
-#etage 1
-
-
-
-##### BOSS
+##### ENNEMIS
 #etage 1
 grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
 vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10)
