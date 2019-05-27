@@ -161,7 +161,7 @@ class Moteur :
         if event == "bagarre":
             teamEnnemi = Team()
             i = randint(1,3)
-            for x in range(1,i):
+            for x in range(0,i):
                 teamEnnemi.ajouterPersonnage(self.getEnnemi())
             combat = Combat(self.__teamHero, teamEnnemi)
             combat.lancerCombat()
@@ -170,50 +170,50 @@ class Moteur :
         teamEnnemi = Team()
         if(self.__etage == 1):
             print("Maïté vous bloque l'accès à la sortie!")
-            sleep(1.5)
+            time.sleep(1.5)
             print("Maïté : c'est leur de passer à table!!!")
-            sleep(1.5)
+            time.sleep(1.5)
             teamEnnemi.ajouterPersonnage(copy.deepcopy(grosTas))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(maite))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(grosTas))
         if(self.__etage == 2):
             print("Deux odieux personnages vous bloquent l'accès à la sortie!")
-            sleep(1.5)
+            time.sleep(1.5)
             print("Un par Dieux : Ya encrore un truc qui pu par ici... Et vous là!!!")
             sleep(1.5)
-            print("Deux par Dieux : Désolé frérot, je pète de plus en plus souvent ces derniers temps...")
-            sleep(1.5)
+            time.sleep("Deux par Dieux : Désolé frérot, je pète de plus en plus souvent ces derniers temps...")
+            time.sleep(1.5)
             teamEnnemi.ajouterPersonnage(copy.deepcopy(unParDieux))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(deuxParDieux))
         if(self.__etage == 3):
             print("Un cadavre ambulant vous bloquent l'accès à la sortie!")
-            sleep(1.5)
+            time.sleep(1.5)
             print("Il vient de vous remarquez et se jette sur vous!!!")
-            sleep(1.5)
+            time.sleep(1.5)
             teamEnnemi.ajouterPersonnage(copy.deepcopy(pouilleux))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(jerryLePestifere))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(pouilleux))
         if(self.__etage == 4):
             print("Vous entendez quelqu'un gueuler au loin ")
-            sleep(1.5)
+            time.sleep(1.5)
             print("Ramsey : Vous êtes tous des bons à rien qui ne savez rien faire!!!")
-            sleep(1.5)           
+            time.sleep(1.5)           
             print("Ramsey : Vous êtes encore un de ces commis qui ne savent rien faire? Je vais vous apprendre!!!")
-            sleep(1.5)     
+            time.sleep(1.5)     
             teamEnnemi.ajouterPersonnage(copy.deepcopy(chevalierCasseCroute))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(ramsayLHysterique))
             teamEnnemi.ajouterPersonnage(copy.deepcopy(chevalierCasseCroute))
         if(self.__etage == 5):
             print("Vous arrivez dans la salle où est prisonnier le chef du village...")
-            sleep(1.5)
+            time.sleep(1.5)
             print("Vous ne savez pas trop comment pourquoi, mais un Panzerkampfwagen IV vous barre la route!!!")
-            sleep(1.5)           
+            time.sleep(1.5)           
             print("*Merlin sort de son tank*")
-            sleep(1.5)     
+            time.sleep(1.5)     
             print("Merlin : Vous pensiez pouvoir ma battre en tuant tous mes subbordonnées?")
-            sleep(1.5)  
+            time.sleep(1.5)  
             print("Merlin : Détrompez-vous!!! Maintenant il est l'heure de mourir!!!")
-            sleep(1.5) 
+            time.sleep(1.5) 
             teamEnnemi.ajouterPersonnage(copy.deepcopy(merlinPanzer4))
         combat = Combat(self.__teamHero, teamEnnemi)
         combat.lancerCombat()
@@ -300,7 +300,44 @@ class Moteur :
 
 
 ############# LORE #############
+Jambon = Arme("Jambon", "nul", 1)
+Tonneau = Armure("Tonneau", "nul", 1)
+#etage 1
+grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, Jambon, Tonneau, None, 100)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10)
+golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None, None, 10)
 
+#etage 2
+simpletVillage = Ennemi("Simplet du village", 13, 13, 5, 5, 20, 10, 6,1,None,None,None, None, 10)
+cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10)
+golemDeJambon = Ennemi("Golem de jambon", 20, 20, 10, 10, 5, 8, 7, 3, None,None,None, None, 10)
+
+#etage 3
+pouilleux = Ennemi("Pouilleux", 18, 18, 25, 25, 10, 10, 5, 2, None,None,None, None, 10)
+croqueMort = Ennemi("Croque-mort", 18, 18, 20, 20, 6, 9, 1, 2, None,None,None, None, 10)
+golemDAndouillette = Ennemi("Golemn d'andouillette", 23, 23, 15, 15, 5, 8, 8, 3, None,None,None, None, 10)
+
+#etage 4
+boomer = Ennemi("Boomer", 8, 8, 5, 5, 5, 5, 1, 2, None,None,None, None, 10)
+chevalierCasseCroute = Ennemi("Chevalier Casse-croute", 25, 25, 0, 0, 6, 8, 7, 4, None,None,None, None, 10)
+golemNafnaf = Ennemi("Golem Nafnaf", 30, 30, 15, 15, 5, 8, 8, 4, None,None,None, None, 10)
+
+#etage 5
+ombreRampante = Ennemi("Ombre rampante", 10,10,10,10, 66, 13, 5, 1, None,None,None, None, 10)
+psychopate = Ennemi("Psychopathe", 20, 20, 0, 0, 10, 10, 9, 2, None,None,None, None, 10)
+geant = Ennemi("Geant", 35,35,20,20, 5,9,10,5, None,None,None, None, 10)
+
+#boss etage1
+maite = Ennemi("Maïte", 20, 20, 20, 20, 7, 20, 6, 3, None,None,None, None, 10)
+#boss etage2
+unParDieux = Ennemi("Un par Dieux", 30,30,5,5, 5, 20, 6, 3, None,None,None, None, 10)
+deuxParDieux = Ennemi("Deux par Dieux", 15, 15, 10, 10, 6, 20, 8, 3, None,None,None, None, 10)
+#boss etage 3
+jerryLePestifere = Ennemi("Jerry le Pestiféré", 55, 55, 20, 20, 10, 20, 6, 3, None,None,None, None, 10)
+#boss etage 4
+ramsayLHysterique = Ennemi("Ramsay l'hystérique", 75, 75, 15, 15, 10, 20, 9, 4, None,None,None, None, 10)
+#boss etage 5
+merlinPanzer4 = Ennemi("Merlin et son Panzerkampfwagen IV", 150, 150, 50, 50, 1, 20, 12, 5, None,None,None, None, 10)
 
 
 

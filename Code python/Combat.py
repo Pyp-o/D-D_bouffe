@@ -52,12 +52,15 @@ class Combat():
                 exit(0)
     
     def __tourCombattant(self, combattant): #le tour d'un des combattants
-        if combattant.isTeamHero():
+        if combattant.isHero():
             print("C'est à "+combattant.getNom()+" d'agir!")
             self.__choixJoueur(combattant)
             time.sleep(1.5)
         else:
-            print("L'ennemie "+combattant.getNom()+ " attaque!")
+            if combattant.isTeamHero():
+                print("L'allié "+combattant.getNom()+ " attaque l'ennemie!")
+            else:
+                print("L'ennemie "+combattant.getNom()+ " attaque!")
             self.__choixDeLIA(combattant)
             time.sleep(1.5)
         combattant.setTourFini(True)
@@ -189,7 +192,7 @@ class Combat():
             if ennemi.getPV()==0:
                 teamACombattre.remove(ennemi)
         i = randint(0,len(teamACombattre)-1)
-        combattant.attaquer(self.__teamCombattantsHero[i])
+        combattant.attaquer(teamACombattre[i])
     
     def __resetTour(self):
         for combattant in self.__teamCombattantsHero:
@@ -285,6 +288,7 @@ class Combat():
                         rep = self.getch()
                     if rep == "o":
                         self.__teamHero.ajouterPersonnage(persoEnnemie)
+                        persoEnnemie
                         print(persoEnnemie.getNom()+" a rejoint votre équipe!")
                     else:
                         print(persoEnnemie.getNom()+" s'en va tristement...")
