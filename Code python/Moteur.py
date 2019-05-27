@@ -76,12 +76,16 @@ class Moteur :
                 self.__teamHero.ajouterPersonnage(Charcutier)
                 jambon = copy.deepcopy(Jambon)
                 tonneau = copy.deepcopy(Tonneau)
-                t.ajouterItem(Jambon)
-                t.ajouterItem(Tonneau)
+                t.ajouterItem(jambon)
+                t.ajouterItem(tonneau)
             elif (a == '2' and a!=choixPrecedent):
                 Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
+                jam = copy.deepcopy(Jambon)
+                ton = copy.deepcopy(Tonneau)
+                t.ajouterItem(jam)
+                t.ajouterItem(ton)
             elif (a == '3' and a!=choixPrecedent):
                 Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None,
                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
@@ -244,7 +248,7 @@ class Moteur :
         i = 1
         team = self.getTeamHero()
         team = team.getPersonnages()
-        print(i)
+        team[i-1].AfficherPersonnage()
         while rep != "0xd":  # différent de entrée
             rep = hex(
                 ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
@@ -260,7 +264,6 @@ class Moteur :
                 else:
                     i = nbChoix
                 team[i-1].AfficherPersonnage()
-            print(i)
         return team[i-1]
 
     def getch(self):
