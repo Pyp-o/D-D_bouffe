@@ -3,6 +3,7 @@
 from Team import *
 from Hero import *
 from Arme import *
+import random
 from Map import *
 from Personnage import *
 from Competence import *
@@ -13,7 +14,7 @@ from CompetenceBuff import *
 from Ennemi import *
 from Combat import *
 import copy
-import random
+
 from Lore import *
 
 class Moteur :
@@ -61,7 +62,7 @@ class Moteur :
         print("5- Poivrot :\t")
         print("Toujours aussi saoul que le pillier de bar, il est pas vraiment copain avec tout le monde... \n\tMais il lance des trucs avec assez de précision pour blesser des gens à chaque coup, ça pourrait être utilse.\n\n")
         time.sleep(2)
-
+        a = randint(0,2)
         choixPrecedent='12'
         for i in range(1, 3):
             print("Choisir le personnage ", i)
@@ -165,7 +166,7 @@ class Moteur :
             print("Deux odieux personnages vous bloquent l'accès à la sortie!")
             time.sleep(1.5)
             print("Un par Dieux : Ya encrore un truc qui pu par ici... Et vous là!!!")
-            sleep(1.5)
+            time.sleep(1.5)
             time.sleep("Deux par Dieux : Désolé frérot, je pète de plus en plus souvent ces derniers temps...")
             time.sleep(1.5)
             teamEnnemi.ajouterPersonnage(copy.deepcopy(unParDieux))
@@ -205,9 +206,8 @@ class Moteur :
         if(combat.getFuiteReussi() == False):
             self.bossTue = True
 
-
     def getEnnemi(self):
-        i = random.randint(1,10)
+        i = random.randint(1, 10)
         if(self.__etage == 1):
             if(i<=4):
                 return copy.deepcopy(grosTas)
