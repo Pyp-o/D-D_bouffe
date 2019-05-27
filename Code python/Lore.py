@@ -10,14 +10,21 @@ Magret = Ressource("Magret de canard", "Une des plus belles piece de boucher")
 Andouillettes = Ressource("Andouillettes crues", "Une odeur forte s'en dégage")
 
 ##### POTIONS
-
-            #nom, description, PV, PC, PVmax, PCmax, attaque, defense, agilite, initiative, statutRetire, faitRevivre):
-PotionPomme = Consommable("Pommes de terre sautées", "Rend 15PV", 15, 0, 0, 0, 0, 0, 0, 0, False, False)
-PotionEstouffade = Consommable("Estouffade de pommes de terre et carottes", "Rend 10PC", 0, 10, 0, 0, 0, 0, 0, 0, False, False)
-PotionDaubeOignon = Consommable("Daube à l'oignon", "Augmente de 5 les Pvmax", 0, 0, 5, 0, 0, 0, 0, 0, False, False)
-PotionDaubeCarottes = Consommable("Daube aux carottes", "Augmente de 5 les PCmax", 0, 0, 0, 5, 0, 0, 0, 0, False, False)
-PotionPlat = Consommable("Plat du terroir", "Augmente de 1 l'attaque", 0, 0, 0, 0, 1, 0, 0, 0, False, False)
-
+PotionPomme = Consommable("Pommes de terre sautées", "Rend 15PV", 15, 0, 0, 0, 0, 0, 0, 0, False)
+PotionEstouffade = Consommable("Estouffade de pommes de terre et carottes", "Rend 10PC", 0, 10, 0, 0, 0, 0, 0, 0, False)
+PotionDaubeOignon = Consommable("Daube à l'oignon", "Augmente de 5 les Pvmax", 0, 0, 5, 0, 0, 0, 0, 0, False)
+PotionDaubeCarottes = Consommable("Daube aux carottes", "Augmente de 5 les PCmax", 0, 0, 0, 5, 0, 0, 0, 0, False)
+PotionPlat = Consommable("Plat du terroir", "Augmente de 1 l'attaque", 0, 0, 0, 0, 1, 0, 0, 0, False)
+PotionCanard = Consommable("Canard et compotée d'oignons", "Augmente de 1 la défense", 0, 0, 0, 0, 0, 1, 0, 0, False)
+PotionCanardCarottes = Consommable("Canard aux carottes", "Augmente de 1 l'agilité", 0, 0, 0, 0, 0, 0, 1, 0, False)
+PotionDaubeGraisse = Consommable("Daube à la graisse de canard", "Augmente de 1 l'initiative", 0, 0, 0, 0, 0, 0, 0, 1, False)
+AndouillettesCanard = Consommable("Andouillettes de canard", "Permet de ressusciter un personnage", 0, 0, 0, 0, 0, 0, 0, 0, True)
+Villageoise = Consommable("Villageoise", "Rend 30PV", 30, 0, 0, 0, 0, 0, 0, 0, False)
+Kronenbourg = Consommable("Kronenbourg", "Rend 20PC", 0, 30, 0, 0, 0, 0, 0, 0, False)
+Gin = Consommable("Gin", "Rend 15PV et 15PC", 15, 15, 0, 0, 0, 0, 0, 0, False)
+Jack = Consommable("Jack Daniels", "Augmente de 3 l'attaque", 0, 0, 0, 0, 3, 0, 0, 0, False)
+Captain = Consommable("Captain Morgan", "Augmente de 3 la défense", 0, 0, 0, 0, 0, 3, 0, 0, False)
+Hic = Consommable("Hic", "Ressuscite et rend tous les PV et PC",999, 999, 0, 0, 0, 0, 0, 0, True)
 
 ##### ENNEMIS
 #etage 1

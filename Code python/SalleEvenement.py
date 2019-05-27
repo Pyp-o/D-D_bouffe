@@ -1,4 +1,5 @@
 from Salle import *
+from Lore import *
 
 class SalleEvenement(Salle):
     def __init__(self, isExplore, x, y, salleDroite, salleGauche, salleHaut, salleBas):

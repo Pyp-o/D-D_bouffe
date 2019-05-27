@@ -5,7 +5,7 @@ from Item import *
 from Personnage import *
 
 class Consommable(Item):
-    def __init__(self, nom, description, PV, PC,PVmax, PCmax, attaque, defense, agilite, initiative, statutRetire, faitRevivre):
+    def __init__(self, nom, description, PV, PC,PVmax, PCmax, attaque, defense, agilite, initiative, faitRevivre):
         Item.__init__(self, nom, description)
         self.__soin = PV
         self.__energie = PC
@@ -15,7 +15,6 @@ class Consommable(Item):
         self.__defense = defense
         self.__agilité = agilite
         self.__initiative = initiative
-        self.__statutRetire = statutRetire
         self.__faitRevivre = faitRevivre
 
     def getSoin(self):
