@@ -121,6 +121,9 @@ class Combat():
         else:
             print("Les héros essaient de fuir mais les ennemies les rattrapent...")
 
+    def getFuiteReussi(self):
+        return self.__fuiteReussi
+
     def __heroUtiliserCompetence(self, combattant):
         if (combattant.getCompetences() == 0):
             print("Mais le héro n'a pas de competence...")
