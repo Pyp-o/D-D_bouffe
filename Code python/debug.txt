@@ -1,8 +1,8 @@
-entrée : 0 0
-sortie : 3 2
-salle piege : 2 0
-salle buffet : 1 3
-salle cuisine : 2 4
-garde manger : 1 2
-salle levier : 2 2
+entrée : 0 3
+sortie : 4 0
+salle piege : 1 1
+salle buffet : 2 3
+salle cuisine : 0 4
+garde manger : 4 3
+salle levier : 3 0
 salle cachée : 4 2

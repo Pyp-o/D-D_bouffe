@@ -1,5 +1,13 @@
 from Ressource import *
 from Consommable import *
+from Ennemi import *
+from Arme import *
+from Armure import *
+from ArmeConsommable import *
+from CompetenceAttaque import *
+from CompetenceHeal import *
+from CompetenceBuff import *
+from CompetenceStatut import *
 
 ##### RESSOURCES
 PommesDeTerre = Ressource('Pommes de terre crues', 'Des pommes de terres banales')  #nom, description
@@ -28,7 +36,7 @@ Hic = Consommable("Hic", "Ressuscite et rend tous les PV et PC",999, 999, 0, 0, 
 
 ##### ENNEMIS
 #etage 1
-grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, Jambon, Tonneau, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
+grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, None, None, None, 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
 vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10)
 golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None, None, 10)
 
@@ -67,8 +75,8 @@ merlinPanzer4 = Ennemi("Merlin et son Panzerkampfwagen IV", 150, 150, 50, 50, 1,
 
 
 #viens de moteur
-Jambon = Arme("Jambon1", "nul", 1)
-Tonneau = Armure("Tonneau1", "nul", 1)
+Jambon = Arme("Jambon", "nul", 1)
+Tonneau = Armure("Tonneau", "nul", 1)
 bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5)
 delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5)
 soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)

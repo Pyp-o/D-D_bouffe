@@ -13,7 +13,8 @@ from CompetenceBuff import *
 from Ennemi import *
 from Combat import *
 import copy
-import random 
+import random
+from Lore import *
 
 class Moteur :
     def __init__(self):
@@ -73,36 +74,26 @@ class Moteur :
                 Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
                                         competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Charcutier)
-                Jambon = copy.deepcopy(Jambon)
-                Tonneau = copy.deepcopy(Tonneau)
+                jambon = copy.deepcopy(Jambon)
+                tonneau = copy.deepcopy(Tonneau)
                 t.ajouterItem(Jambon)
                 t.ajouterItem(Tonneau)
             elif (a == '2' and a!=choixPrecedent):
                 Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
                                     competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Pilier)
-                Jambon = copy.deepcopy(Jambon)
-                Tonneau = copy.deepcopy(Tonneau)
-                t.ajouterItem(Jambon)
-                t.ajouterItem(Tonneau)
             elif (a == '3' and a!=choixPrecedent):
-                Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, Jambon, Tonneau,
+                Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None,
                                    competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Creve)
-                t.ajouterItem(Jambon)
-                t.ajouterItem(Tonneau)
             elif (a == '4' and a!=choixPrecedent):
-                Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, Jambon, Tonneau,
+                Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None,
                                      competences)  # TODO : Arme, Armure, Compétences,Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Cuistot)
-                t.ajouterItem(Jambon)
-                t.ajouterItem(Tonneau)
             elif (a == '5' and a!=choixPrecedent):
-                Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, Jambon, Tonneau,
+                Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None,
                                      competences)  # TODO : Arme, Armure, Compétences, Equilibrage caracteristiques
                 self.__teamHero.ajouterPersonnage(Poivrot)
-                t.ajouterItem(Jambon)
-                t.ajouterItem(Tonneau)
             elif (a == choixPrecedent):
                 print("Ce personnage a déjà rejoins votre équipe\n")
 
