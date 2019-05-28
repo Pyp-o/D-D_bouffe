@@ -42,8 +42,30 @@ Captain = Consommable("Captain Morgan", "Augmente de 3 la défense", 0, 0, 0, 0,
 Hic = Consommable("Hic", "Ressuscite et rend tous les PV et PC",999, 999, 0, 0, 0, 0, 0, 0, True)
 
 ####ARME
-Jambon = Arme("Jambon", "nul", 1)
-Tonneau = Armure("Tonneau", "nul", 1)
+#etage 1
+couteauBeurre = Arme("Couteau à beurre", "Pour beurrer à mort ses ennemis", 3)#nom, description, degat
+pelleTarte = Arme("Pelle à tarte", "Utile une fois que vos ennemis sont découpés en tranche", 3)
+grilleMarrons = Arme("Grille marrons", "C'est comme une poêle, mais avec des trous dedans", 4)
+pressePuree = Arme("Presse-purée", "On a rarement vu moins efficace... A part le couteau a beurre", 4)
+ciseauxBoucher = Arme("Ciseaux de boucher", "Pointu et tranchant, juste pas adapaté au combat...", 5)
+broche = Arme("Broche", "Enfin une arme digne de ce nom, enfin si on peut appeler ça une arme", 5)
+attendrisseur = Arme("Attendrisseur", "C'est fait pour broyer la viande, mais ça peut marcher avec des os", 6)
+hachoir = Arme("Hachoir", "Tranche si bien les os et les doigts...", 6)
+sabreChamp = Arme("Sabre à champagne", "Normalement, c'est pas prévu pour découper les gens, mais vous trouverez rien d'aussi efficace", 7)
+
+
+#####ARME CONSOMMABLE
+#nom, description, soin, energie, statutRetire, faitRevivre, degat)
+pasteque = ArmeConsommable("Pastèque", "Bah c'est un peu lourd. C'est tout", 3,  1)
+chaine = ArmeConsommable("Chaine de saucisse", "Au moins vous pourrez manger...", 6, 1)
+os = ArmeConsommable("Os à moelle", "Ca a l'avantage d'etre rigide, peut etre meme un peu dur...", 7, 2)
+pain = ArmeConsommable("Pain de campagne rassi", "C'est dur, mais pas encore assez...", 4, 2)
+meule = ArmeConsommable("Meule de parmesan", "Ca a trop vieilli, impossible à manger, mais on peut frapper avec", 5, 3)
+gigot = ArmeConsommable("Gigot d'agneau", "Une belle piece, on peut assomer quelqu'un avec", 8, 3)
+jambon = ArmeConsommable("Jambon affiné", "Ca a durci pendant de longs mois, j'espere que ca le sera assez", 9, 4)
+tete = ArmeConsommable("Tete de cheval", "Une tete de cheval... Oui c'est glauque!", 6, 4)
+mechoui = ArmeConsommable("Méchoui d'agneau", "Parce que se battre avec une patte c'est bien, mais avec l'agneau entier, c'est mieux !!", 10, 5)
+espadon = ArmeConsommable("Espadon", "Magnifique poisson !! Son nez éfilé sera redoutable", 7, 5)
 
 ####COMPETENCE
 #competences test

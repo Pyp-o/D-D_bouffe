@@ -80,18 +80,10 @@ class Moteur :
                 Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
                                         competences)
                 self.__teamHero.ajouterPersonnage(Charcutier)
-                jambon = copy.deepcopy(Jambon)
-                tonneau = copy.deepcopy(Tonneau)
-                t.ajouterItem(jambon)
-                t.ajouterItem(tonneau)
             elif (a == 2 and a!=choixPrecedent):
                 Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
                                     competences)
                 self.__teamHero.ajouterPersonnage(Pilier)
-                jam = copy.deepcopy(Jambon)
-                ton = copy.deepcopy(Tonneau)
-                t.ajouterItem(jam)
-                t.ajouterItem(ton)
             elif (a == 3 and a!=choixPrecedent):
                 Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None,
                                    competences)
