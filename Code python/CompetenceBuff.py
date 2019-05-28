@@ -1,6 +1,7 @@
 # coding: utf8
 
 from Competence import *
+from random import randint
 
 class CompetenceBuff(Competence):
     def __init__(self, nom, cout, description, groupe, tauxReussite, degatBuff, defenseBuff, agiliteBuff, forEnnemi):
@@ -11,30 +12,34 @@ class CompetenceBuff(Competence):
         self.__forEnnemi = forEnnemi      #est ce une competence à destination des ennemies
         self.__teamConcerned = 0
 
-    def activerCompetence(self, combattant, teamAllie, teamEnnemi):
+    def activerCompetence(self, combattant, teamAllie, teamEnnemi,isIA):
         if self.__forEnnemi == True:    #on buff ou debuff quelle team?
             self.__teamConcerned = teamEnnemi
         else:
             self.__teamConcerned = teamAllie
         if (self.getGroupe() == 0):
-            print("qui sera affecter? (utiliser les z et q pour choisir et entrée pour selectionner)")
+            if(isIA == False):
+                print("qui sera affecter? (utiliser les z et q pour choisir et entrée pour selectionner)")
             rep = "0x00"
             i = 0
             maxRange = len(self.__teamConcerned)
-            while rep != "0xd":  # différent de entrée
-                print(self.__teamConcerned[i].getNom())
-                rep = hex(
-                    ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
-                if (rep == "0x7a"):  # z
-                    if (i < maxRange - 1):
-                        i = i + 1
-                    else:
-                        i = 0
-                if (rep == "0x73"):  # s
-                    if (i > 0):
-                        i = i - 1
-                    else:
-                        i = maxRange - 1
+            if(isIA):
+                i = randint(0,maxRange-1)
+            else:
+                while rep != "0xd":  # différent de entrée
+                    print(self.__teamConcerned[i].getNom())
+                    rep = hex(
+                        ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
+                    if (rep == "0x7a"):  # z
+                        if (i < maxRange - 1):
+                            i = i + 1
+                        else:
+                            i = 0
+                    if (rep == "0x73"):  # s
+                        if (i > 0):
+                            i = i - 1
+                        else:
+                            i = maxRange - 1
             rand = random.randint(0, 100)  # le sort echoue?
             if rand > self.getTauxReussite():
                 print("le sort echoue...")

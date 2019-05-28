@@ -154,7 +154,7 @@ class Combat():
             if combattant.getPC()<combattant.getCompetences()[i].getCout():
                 print("Pas assez de PC disponible...")
                 return False
-            combattant.getCompetences()[i].activerCompetence(combattant, self.__teamCombattantsHero, self.__teamCombattantsEnnemi)
+            combattant.getCompetences()[i].activerCompetence(combattant, self.__teamCombattantsHero, self.__teamCombattantsEnnemi, False)
             combattant.setPC(combattant.getPC() - combattant.getCompetences()[i].getCout())
             return True
 
@@ -185,14 +185,24 @@ class Combat():
     def __choixDeLIA(self, combattant):
         if combattant.isTeamHero():
             teamACombattre = self.__teamCombattantsEnnemi
+            saTeam = self.__teamCombattantsHero
         else:
             teamACombattre = self.__teamCombattantsHero
-
+            saTeam = self.__teamCombattantsEnnemi
         for ennemi in teamACombattre:
             if ennemi.getPV()==0:
                 teamACombattre.remove(ennemi)
-        i = randint(0,len(teamACombattre)-1)
-        combattant.attaquer(teamACombattre[i])
+        isAttaque = True
+        if(combattant.getCompetences()!=None):
+            i = randint(0,1)    #si l'IA a une competence, elle a une chance sur deux de l'utiliser
+            if(i):
+                isAttaque = False
+        if(isAttaque):
+            i = randint(0,len(teamACombattre)-1)
+            combattant.attaquer(teamACombattre[i])
+        else:
+            print(combattant.getNom()+" : "+combattant.getCompetences()[0].getDescription())
+            combattant.getCompetences()[0].activerCompetence(combattant, saTeam, teamACombattre, True)
     
     def __resetTour(self):
         for combattant in self.__teamCombattantsHero:
