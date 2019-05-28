@@ -27,7 +27,15 @@ class Combattant(Personnage):
         return self.__tourFini
 
     def attaquer(self, combattant):
-        degat = self.getAttaque()-combattant.getDefense()
+        if (self.getArme()!=None):
+            degArme = self.getArme().getDegat()
+        else :
+            degArme=0
+        if (combattant.getArmure()!=None):
+            armure = combattant.getArmure().getBloquage()
+        else:
+            armure=0
+        degat = self.getAttaque()-combattant.getDefense()+degArme-armure
         if degat<0:
             degat = 0
         print(combattant.getNom()+" reçoit "+str(degat)+" degat!")

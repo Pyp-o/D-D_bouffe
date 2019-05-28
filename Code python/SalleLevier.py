@@ -14,6 +14,6 @@ class SalleLevier(SalleEvenement):
             self.__gameMap.setLevierActive(True)
             time.sleep(1.5)
         else:
-            i = randint(0,5)
+            i = randint(0,7)
             if i<=1:
                 return "bagarre"

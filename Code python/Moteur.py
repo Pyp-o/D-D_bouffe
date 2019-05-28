@@ -117,15 +117,17 @@ class Moteur :
         return 0
 
     def gererEvent(self, event):
+        teamEnnemi = Team()
         if event == "sortie":
             if (self.bossTue == False):
                 self.combatDeBoss()
-            print("Voulez-vous continuer? (o : oui, n : non)")
-            rep = ""
-            while rep not in ["o", "n"]:  #o,n
-                rep = self.getch()
-            if rep == "o":
-                self.nouvelleEtage()
+            if(self.bossTue==True):
+                print("Voulez-vous continuer? (o : oui, n : non)")
+                rep = ""
+                while rep not in ["o", "n"]:  #o,n
+                    rep = self.getch()
+                if rep == "o":
+                    self.nouvelleEtage()
         if event == "bagarre":
             teamEnnemi = Team()
             i = randint(1,3)
@@ -139,13 +141,13 @@ class Moteur :
             self.loot("ressource")
         if event == "garde manger":
             self.loot("normal")
-        if("piege"):
+        if(event=="piege"):
             i= randint(0,1)
             if(i):
                 print("Tous les heros perdent 5PV!!!")
                 for hero in self.__teamHero.getPersonnages():
                     hero.setPV(hero.getPV()-5)
-                    if(hero.getPV<=0):
+                    if(hero.getPV()<=0):
                         print(hero.getNom()+ " a succombé...")
             else:
                 print("Des ennemies vous tombent dessus!!!")
@@ -158,7 +160,7 @@ class Moteur :
     def loot(self, rarete): #TODO le loot
         print("du loot!!!!")
 
-    def combatDeBoss(self):
+    def combatDeBoss(self): #TODO bug fuite lors du combat de boss
         teamEnnemi = Team()
         if(self.__etage == 1):
             print("Maïté vous bloque l'accès à la sortie!")

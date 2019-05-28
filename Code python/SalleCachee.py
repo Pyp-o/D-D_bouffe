@@ -15,6 +15,6 @@ class SalleCache(SalleEvenement):
             time.sleep(1.5)
             return "salle cache"
         else:
-            i = randint(0,5)
+            i = randint(0,7)
             if i<=1:
                 return "bagarre"
