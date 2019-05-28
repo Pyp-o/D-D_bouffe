@@ -2,7 +2,7 @@
 
 from Competence import *
 
-class CompetenceInvocation(Competence):
+class CompetenceRecrutement(Competence):
     def __init__(self, nom, cout, description, groupe, tauxReussite, tauxSupp):
         Competence.__init__(self, nom, cout, description, groupe, tauxReussite)
         self.__tauxSupp = tauxSupp
@@ -12,7 +12,8 @@ class CompetenceInvocation(Competence):
         if rand > self.getTauxReussite():
             print("le sort echoue...")
         else:
-			for ennemi in teamEnnemi:
-				ennemi.getPersonnage().setChanceRejoindre(ennemi.chanceRejoindre()+self.__tauxSupp)
+            for ennemi in teamEnnemi:
+                ennemi.getPersonnage().setChanceRejoindre(ennemi.getPersonnage().getChanceRejoindre()+self.__tauxSupp)
+                print(ennemi.getNom()+" est séduit de cette générosité")
 
 
