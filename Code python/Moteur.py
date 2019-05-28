@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from Team import *
+from random import *
 from Hero import *
 from Arme import *
-import random
 from Map import *
 from Personnage import *
 from Competence import *
@@ -12,6 +11,7 @@ from CompetenceHeal import *
 from CompetenceStatut import *
 from CompetenceBuff import *
 from Ennemi import *
+from Team import *
 from Combat import *
 import copy
 
@@ -207,7 +207,7 @@ class Moteur :
             self.bossTue = True
 
     def getEnnemi(self):
-        i = random.randint(1, 10)
+        i = randint(1, 10)
         if(self.__etage == 1):
             if(i<=4):
                 return copy.deepcopy(grosTas)
