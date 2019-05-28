@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Competence import *
 from random import *
+import time
 
 class CompetenceAttaque(Competence):
     def __init__(self, nom, cout, description, groupe, tauxReussite, degat, degatFixe, statut):
@@ -60,7 +61,11 @@ class CompetenceAttaque(Competence):
                         if (i):
                             c.ajouterStatut(self.__statut)
                             print(c.getNom() + " est maintenant " + self.__statut.getNom() + "!")
-                                    
+            if(combattant.getNom()=="boomer"):
+                time.sleep(1.5)
+                print("Le boomer explose dans un bain de sang immonde...")     #cas si c'est le boomer qui se fait exploser
+                combattant.setPV(0)
+
                     
                     
 

@@ -8,7 +8,7 @@ from CompetenceAttaque import *
 from CompetenceHeal import *
 from CompetenceBuff import *
 from CompetenceStatut import *
-from CompetenceInvocation import *
+from CompetenceRecrutement import *
 from CompetenceInvocation import *
 from Paralyse import *
 from Endormi import *
@@ -55,8 +55,7 @@ buffAttaque = CompetenceBuff("Encouragement!", 2, "Gueule sur un allié", 0, 85,
 #competences hero
 coupDeBide = CompetenceAttaque("Coup de bide", 3, "S'élance pour donner un coup de bide à l'ennemie", False, 85, 8, True, None) #nom, cout, description, groupe, tauxReussite, degat, degatFixe
 grognement = CompetenceBuff("Grognement", 4, "Lance un énorme grognement qui baisse l'attaque des ennemies", True,75, -2, 0,0,True) # nom, cout, description, groupe, tauxReussite, degatBuff, defenseBuff, agiliteBuff, forEnnemi
-#TODO wtf?
-tourneeGeneral = CompetenceInvocation("Tournée général", 5, "Offre une tournée aux ennemies pour avoir une chance en plus de les recruter", True, 75, 10)	#nom, cout, description, groupe, tauxReussite, tauxSupp
+tourneeGeneral = CompetenceRecrutement("Tournée général", 5, "Offre une tournée aux ennemies pour avoir une chance en plus de les recruter", True, 75, 10)	#nom, cout, description, groupe, tauxReussite, tauxSupp
 tenezUnPeuDeHik = CompetenceBuff("Tenez un peu de hik!", 4, "Offre une tournée de hik aux alliés pour booster leurs attaque", True, 80, 2, 0, 0, False)
 
 coupDeSurin = CompetenceAttaque("Coup de surin", 5, "Surine l'ennemie dans le dos", False, 85, 4, False,None)
@@ -75,8 +74,8 @@ endormiSimplet = Endormi("Endormi", 2)	#nom, tourRestant
 tuVeuxUneHistoire = CompetenceStatut("Tu veux une histoire?", 2, "Raconte une histoire si ennuyante que tout le monde s'endort...", False, 70, endormiSimplet, True)
 zombie = Combattant(Ennemi("Zombie", 10,10,0,0, 3,5,6,2,None,None, None, None, 0), False, False) #Ennemi(nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre), teamHero, isHero
 
-venezAMoi = ("Venez à moi!", 7, "invoque deux ignobles zombies", False, 60, zombie)#nom, cout, description, groupe, tauxReussite, invoc
-boom = CompetenceAttaque("Boom", 5, "Explose en mille morceau!", True, 90, 15, True, None)	#TODO la lanceur meurt
+venezAMoi = CompetenceInvocation("Venez à moi!", 7, "invoque deux ignobles zombies", False, 60, zombie)#nom, cout, description, groupe, tauxReussite, invoc
+boom = CompetenceAttaque("Boom", 5, "Explose en mille morceau!", True, 90, 15, True, None)
 
 vagueDePeur = CompetenceAttaque("Vague de peur", 5, "Lance une grande vague de peur", True, 65, 5, True, paralysePoivrot)
 ralenti = Ralenti("Ralenti", 3)

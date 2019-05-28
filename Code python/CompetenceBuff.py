@@ -41,13 +41,22 @@ class CompetenceBuff(Competence):
             else:
                 if self.__degatBuff != 0: #est ce un buff de degat?
                     self.__teamConcerned[i].setAttaque(self.__teamConcerned[i].getAttaque() + self.__degatBuff)
-                    print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__degatBuff) + "point d'attaque!")
+                    if(self.__degatBuff>0):
+                        print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__degatBuff) + "point d'attaque!")
+                    else:
+                        print(self.__teamConcerned[i].getNom() + " perd " + str(abs(self.__degatBuff)) + "point d'attaque!")
                 if self.__defenseBuff != 0: #est ce un buff de defense?
                     self.__teamConcerned[i].setDefense(self.__teamConcerned[i].getDefense() + self.__defenseBuff)
-                    print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__defenseBuff) + "point de defense!")
+                    if(self.__defenseBuff>0):
+                        print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__defenseBuff) + "point de defense!")
+                    else:
+                        print(self.__teamConcerned[i].getNom() + " perd " + str(abs(self.__defenseBuff)) + "point de defense!")
                 if self.__agiliteBuff != 0: #est ce un buff d'agilite?
                     self.__teamConcerned[i].setAgilite(self.__teamConcerned[i].getAgilite() + self.__agiliteBuff)
-                    print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__agiliteBuff) + "point d'agilité!")
+                    if(self.__agiliteBuff>0):
+                        print(self.__teamConcerned[i].getNom() + " gagne " + str(self.__agiliteBuff) + "point d'agilité!")
+                    else:
+                        print(self.__teamConcerned[i].getNom() + " perd " + str(abs(self.__agiliteBuff)) + "point d'agilité!")
         else:  # attaque de groupe
             rand = random.randint(0, 100)  # le sort echoue?
             if rand > self.getTauxReussite():
@@ -56,15 +65,26 @@ class CompetenceBuff(Competence):
                 for c in self.__teamConcerned:
                     if self.__degatBuff != 0:  # est ce un buff de degat?
                         c.setAttaque(c.getAttaque() + self.__degatBuff)
-                        print(c.getNom() + " gagne " + str(self.__degatBuff) + "point d'attaque!")
+                        if (self.__degatBuff > 0):
+                            print(c.getNom() + " gagne " + str(self.__degatBuff) + "point d'attaque!")
+                        else:
+                            print(c.getNom() + " perd " + str(abs(self.__degatBuff)) + "point d'attaque!")
                     if self.__defenseBuff != 0:  # est ce un buff de defense?
                         c.setDefense(c.getDefense() + self.__defenseBuff)
-                        print(c.getNom() + " gagne " + str(
+                        if(self.__defenseBuff>0):
+                            print(c.getNom() + " gagne " + str(
                             self.__defenseBuff) + "point de defense!")
+                        else:
+                            print(c.getNom() + " perd " + str(
+                            abs(self.__defenseBuff)) + "point de defense!")
                     if self.__agiliteBuff != 0:  # est ce un buff d'agilite?
                         c.setAgilite(c.getAgilite() + self.__agiliteBuff)
-                        print(c.getNom() + " gagne " + str(
+                        if(self.__agiliteBuff>0):
+                            print(c.getNom() + " gagne " + str(
                             self.__agiliteBuff) + "point d'agilité!")
+                        else:
+                            print(c.getNom() + " perd " + str(
+                            abs(self.__agiliteBuff)) + "point d'agilité!")
 
 
 
