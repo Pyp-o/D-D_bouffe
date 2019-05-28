@@ -13,6 +13,7 @@ class SalleCache(SalleEvenement):
         if (self.__gameMap.getLevierActive()):
             print("une salle caché!!!")
             time.sleep(1.5)
+            return "salle cache"
         else:
             i = randint(0,5)
             if i<=1:

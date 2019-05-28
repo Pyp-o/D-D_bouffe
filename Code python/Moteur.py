@@ -143,6 +143,30 @@ class Moteur :
                 teamEnnemi.ajouterPersonnage(self.getEnnemi())
             combat = Combat(self.__teamHero, teamEnnemi)
             combat.lancerCombat()
+        if event == "salle cache":
+            self.loot("legendaire")
+        if event == "cache":
+            self.loot("ressource")
+        if event == "garde manger":
+            self.loot("normal")
+        if("piege"):
+            i= randint(0,1)
+            if(i):
+                print("Tous les heros perdent 5PV!!!")
+                for hero in self.__teamHero.getPersonnages():
+                    hero.setPV(hero.getPV()-5)
+                    if(hero.getPV<=0):
+                        print(hero.getNom()+ " a succombé...")
+            else:
+                print("Des ennemies vous tombent dessus!!!")
+                for x in range(0, 3):
+                    teamEnnemi.ajouterPersonnage(self.getEnnemi())
+                combat = Combat(self.__teamHero, teamEnnemi)
+                combat.lancerCombat()
+
+
+    def loot(self, rarete): #TODO le loot
+        print("du loot!!!!")
 
     def combatDeBoss(self):
         teamEnnemi = Team()
