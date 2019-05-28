@@ -139,7 +139,9 @@ class Moteur :
             self.loot("ressource")
         if event == "garde manger":
             self.loot("normal")
-        if("piege"):
+        if event == "buffet":
+            self.loot("ressource")
+        if(event == "piege"):
             i= randint(0,1)
             if(i):
                 print("Tous les heros perdent 5PV!!!")
