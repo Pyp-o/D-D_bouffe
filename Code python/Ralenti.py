@@ -1,8 +1,8 @@
 from Statut import *
 
 class Ralenti(Statut):
-    def __init__(self, nom, combattant, tourRestant):
-        Statut.__init__(self,nom,combattant, tourRestant)
+    def __init__(self, nom, tourRestant):
+        Statut.__init__(self,nom,tourRestant)
         self.__activer=0
 
     def activerStatut(self, combattant):

@@ -47,19 +47,19 @@ Tonneau = Armure("Tonneau", "nul", 1)
 
 ####COMPETENCE
 #competences test
-bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5,True)
-delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5,True)
+bouleFeu = CompetenceAttaque("boule de feu", 3, "lance une boule de feu", 0, 75,5,True, None)
+delugeFeu = CompetenceAttaque("deluge de feu", 2, "embraise les ennemies", 1, 75,5,True, None)
 soinMineur = CompetenceHeal("soin mineur", 3, "soigne de facon mineur", 0, 80, 7)
 buffAttaque = CompetenceBuff("Encouragement!", 2, "Gueule sur un allié", 0, 85, 4, 0, 0, 0)
 
 #competences hero
-coupDeBide = CompetenceAttaque("Coup de bide", 3, "S'élance pour donner un coup de bide à l'ennemie", False, 85, 8, True) #nom, cout, description, groupe, tauxReussite, degat, degatFixe
+coupDeBide = CompetenceAttaque("Coup de bide", 3, "S'élance pour donner un coup de bide à l'ennemie", False, 85, 8, True, None) #nom, cout, description, groupe, tauxReussite, degat, degatFixe
 grognement = CompetenceBuff("Grognement", 4, "Lance un énorme grognement qui baisse l'attaque des ennemies", True,75, -2, 0,0,True) # nom, cout, description, groupe, tauxReussite, degatBuff, defenseBuff, agiliteBuff, forEnnemi
-
+#TODO wtf?
 tourneeGeneral = CompetenceInvocation("Tournée général", 5, "Offre une tournée aux ennemies pour avoir une chance en plus de les recruter", True, 75, 10)	#nom, cout, description, groupe, tauxReussite, tauxSupp
 tenezUnPeuDeHik = CompetenceBuff("Tenez un peu de hik!", 4, "Offre une tournée de hik aux alliés pour booster leurs attaque", True, 80, 2, 0, 0, False)
 
-coupDeSurin = CompetenceAttaque("Coup de surin", 5, "Surine l'ennemie dans le dos", False, 85, 4, False)
+coupDeSurin = CompetenceAttaque("Coup de surin", 5, "Surine l'ennemie dans le dos", False, 85, 4, False,None)
 affutageDeLaLame = CompetenceBuff("Affutage de la lame", 3, "Le creve-dalle affute sa lame pour plus de degat", False, 85, 4, 0, 0, False)
 
 aTaaable = CompetenceHeal("A taaable!!!", 4, "Une bonne ration pour tout le monde pour regagner de la vie!", True, 85, 10) # nom, cout, description, groupe, tauxReussite, soin
@@ -67,7 +67,7 @@ engraissement = CompetenceBuff("Engraissement", 5, "Engraisse les alliés pour l
 
 paralysePoivrot = Paralyse("Terrifié", 2) #nom, tourRestant
 cEstMoiQueTuRegarde = CompetenceStatut("C'est moi que tu regarde?", 4, "Lance un regarde terrifiant qui paralyse les ennemies", True, 65, paralysePoivrot, True) #nom, cout, description, groupe, tauxReussite, statut, forEnnemi
-lanceBouteilleVide = CompetenceAttaque("Lancer une bouteille vide", 3, "Lance une bouteille vide sur un ennemie", False, 75, 3, False)
+lanceBouteilleVide = CompetenceAttaque("Lancer une bouteille vide", 3, "Lance une bouteille vide sur un ennemie", False, 75, 3, False, None)
 
 #competences ennemie
 aTaable = CompetenceHeal("A taaable!!!", 5, "Une bonne ration pour tout le monde pour regagner de la vie!", True, 75, 5) # nom, cout, description, groupe, tauxReussite, soin
@@ -76,21 +76,25 @@ tuVeuxUneHistoire = CompetenceStatut("Tu veux une histoire?", 2, "Raconte une hi
 zombie = Combattant(Ennemi("Zombie", 10,10,0,0, 3,5,6,2,None,None, None, None, 0), False, False) #Ennemi(nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre), teamHero, isHero
 
 venezAMoi = ("Venez à moi!", 7, "invoque deux ignobles zombies", False, 60, zombie)#nom, cout, description, groupe, tauxReussite, invoc
-boom = CompetenceAttaque("Boom", 5, "Explose en mille morceau!", True, 90, 15, True)	#TODO la lanceur meurt
-vagueDePeur = CompetenceAttaque("Vague de peur", 5, "Lance une grande vague de peur", True, 65, 5, True)	#TODO + paralyze
-coupDeGlaire = CompetenceAttaque("Coup de Glaire", 5, "Lance un lourd coup de glaire", False, 80, 6, True)	#TODO + ralenti
-tornadeDeGuerande = CompetenceAttaque("Torande de guérande", 5, "Une tornade de sel", True, 80, 5, True) #TODO + paralyze
-odeurInfecte = CompetenceAttaque("Odeur infecte", 5, "Une odeur nauséabonde qui nécrause tout ce qu'il y a autours", True, 80, 7, True) #TODO + empoisonne
-patePiege = CompetenceAttaque("Paté piégé", 5, "Il ne fallait pas se laisser uper par ce formidable paté...", True, 80, 10, True) #TODO + endormi
-coupDeMassue = CompetenceAttaque("Coup de massue", 6, "Un énorme coup de massue d'une puissance impressionnante", False, 80, 18, True)
+boom = CompetenceAttaque("Boom", 5, "Explose en mille morceau!", True, 90, 15, True, None)	#TODO la lanceur meurt
+
+vagueDePeur = CompetenceAttaque("Vague de peur", 5, "Lance une grande vague de peur", True, 65, 5, True, paralysePoivrot)
+ralenti = Ralenti("Ralenti", 3)
+coupDeGlaire = CompetenceAttaque("Coup de Glaire", 5, "Lance un lourd coup de glaire", False, 80, 6, True, ralenti)
+tornadeDeGuerande = CompetenceAttaque("Torande de guérande", 5, "Une tornade de sel", True, 80, 5, True, paralysePoivrot)
+empoisonne = Empoisonne("Poison", 3)
+odeurInfecte = CompetenceAttaque("Odeur infecte", 5, "Une odeur nauséabonde qui nécrause tout ce qu'il y a autours", True, 80, 7, True, empoisonne)
+dort = Endormi("Endormi", 2)
+patePiege = CompetenceAttaque("Paté piégé", 5, "Il ne fallait pas se laisser uper par ce formidable paté...", True, 80, 10, True, dort)
+coupDeMassue = CompetenceAttaque("Coup de massue", 6, "Un énorme coup de massue d'une puissance impressionnante", False, 80, 18, True, None)
 
 #competence boss
-grossePatate = CompetenceAttaque("Grosse patate", 5, "Une grosse patate à la Maïté", False, 80, 5, True)
-coupDeBouteille = CompetenceAttaque("Coup de bouteille", 5, "Un gros coup de sa précieuse bouteille du chateau de Mont-précieux", False, 85, 7, True)
+grossePatate = CompetenceAttaque("Grosse patate", 5, "Une grosse patate à la Maïté", False, 80, 5, True, None)
+coupDeBouteille = CompetenceAttaque("Coup de bouteille", 5, "Un gros coup de sa précieuse bouteille du chateau de Mont-précieux", False, 85, 7, True, None)
 rougeauPourLesCopains = CompetenceHeal("Rougeau pour les copains", 4, "Un petit coup pour les copains pour se revigorer", True, 80, 10)
-caaalin = CompetenceAttaque("Caaalin!", 4, "Un gros caaalin d'un cadavre en décomposition <3", False, 85, 10, True) #TODO + poison
-idiotSandwich = CompetenceAttaque("Idiot sandwich", 5, "Vous prend entre 4 yeux pour vous rappelez à quelle point vous etes nulle", False, 85, 14, True) #TODO + paralyse
-obusMagique = CompetenceAttaque("Obus magique", 5, "Tire une boule de feu magique grâce à son magnifique panzer 4!", True, 80, 22, True) #TODO + paralyse
+caaalin = CompetenceAttaque("Caaalin!", 4, "Un gros caaalin d'un cadavre en décomposition <3", False, 85, 10, True, empoisonne)
+idiotSandwich = CompetenceAttaque("Idiot sandwich", 5, "Vous prend entre 4 yeux pour vous rappelez à quelle point vous etes nulle", False, 85, 14, True, paralysePoivrot)
+obusMagique = CompetenceAttaque("Obus magique", 5, "Tire une boule de feu magique grâce à son magnifique panzer 4!", True, 80, 22, True, paralysePoivrot)
 
 #STATUT
 poison = Empoisonne("empoisonné",4)
