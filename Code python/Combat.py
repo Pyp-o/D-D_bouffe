@@ -12,7 +12,7 @@ from CompetenceStatut import *
 from CompetenceBuff import *
 from Empoisonne import *
 import time
-
+#TODO prendre en compte l'équipement lors du calcul de degat, faire le systeme de loot
 class Combat():
     def __init__(self, teamHero, teamEnnemi):
         self.__teamHero = teamHero  #objet Team
@@ -305,7 +305,7 @@ class Combat():
                 else:
                     print("Mais l'équipe est déjà au complet...")
                 time.sleep(1)
-        
+
     
     def getch(self):
         fd = sys.stdin.fileno()

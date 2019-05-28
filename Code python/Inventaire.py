@@ -6,7 +6,7 @@ from Armure import *
 from Equipement import *
 from Consommable import *
 from ArmeConsommable import *
-
+#TODO systeme de craft de potion
 class Inventaire():
     def __init__(self):
         self.__items = []

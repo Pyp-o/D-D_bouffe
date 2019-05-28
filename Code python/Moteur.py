@@ -77,24 +77,14 @@ class Moteur :
 
             t = self.getTeamHero().getInventaire()
             if (a == 1 and a != choixPrecedent):
-                Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None,  #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
-                                        competences)
                 self.__teamHero.ajouterPersonnage(Charcutier)
             elif (a == 2 and a!=choixPrecedent):
-                Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None,
-                                    competences)
                 self.__teamHero.ajouterPersonnage(Pilier)
             elif (a == 3 and a!=choixPrecedent):
-                Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None,
-                                   competences)
                 self.__teamHero.ajouterPersonnage(Creve)
             elif (a == 4 and a!=choixPrecedent):
-                Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None,
-                                     competences)
                 self.__teamHero.ajouterPersonnage(Cuistot)
             elif (a == 5 and a!=choixPrecedent):
-                Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None,
-                                     competences)
                 self.__teamHero.ajouterPersonnage(Poivrot)
             elif (a == choixPrecedent):
                 print("Ce personnage a déjà rejoins votre équipe\n")
