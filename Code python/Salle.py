@@ -55,6 +55,6 @@ class Salle:
         self.__salleVide = salleVide
     
     def declancherEvenement(self):
-        i = randint(0,5)
+        i = randint(0,7)
         if i<=1:
             return "bagarre"
