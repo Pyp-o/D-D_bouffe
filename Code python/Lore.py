@@ -154,7 +154,7 @@ golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None,
 
 #etage 2
 simpletVillage = Ennemi("Simplet du village", 13, 13, 5, 5, 20, 10, 6,1,None,None,None, [tuVeuxUneHistoire], 10, [os, pain, plastron, peau], [19, 14, 14, 14])
-cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10 [os, pain, plastron, peau], [19, 14, 14, 14])
+cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10, [os, pain, plastron, peau], [19, 14, 14, 14])
 golemDeJambon = Ennemi("Golem de jambon", 20, 20, 10, 10, 5, 8, 7, 3, None,None,None, [tornadeDeGuerande], 10, [grilleMarrons, pressePuree], [10, 10])
 
 #etage 3
@@ -189,12 +189,21 @@ merlinPanzer4 = Ennemi("Merlin et son Panzerkampfwagen IV", 150, 150, 50, 50, 1,
 
 
 
-
-
-
 competences = []
 competences.append(delugeFeu)
 competences.append(bouleFeu)
 competences.append(soinMineur)
 competences.append(vomi)
 competences.append(buffAttaque)
+
+
+#####HEROS
+Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None, competences)
+Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None, competences)
+Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None, competences)
+Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None, competences)
+Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None, competences)
+
+
+
+
