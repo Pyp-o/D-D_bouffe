@@ -45,12 +45,16 @@ Hic = Consommable("Hic", "Ressuscite et rend tous les PV et PC",999, 999, 0, 0, 
 #etage 1
 couteauBeurre = Arme("Couteau à beurre", "Pour beurrer à mort ses ennemis", 3)#nom, description, degat
 pelleTarte = Arme("Pelle à tarte", "Utile une fois que vos ennemis sont découpés en tranche", 3)
+#etage 2
 grilleMarrons = Arme("Grille marrons", "C'est comme une poêle, mais avec des trous dedans", 4)
 pressePuree = Arme("Presse-purée", "On a rarement vu moins efficace... A part le couteau a beurre", 4)
+#etage 3
 ciseauxBoucher = Arme("Ciseaux de boucher", "Pointu et tranchant, juste pas adapaté au combat...", 5)
 broche = Arme("Broche", "Enfin une arme digne de ce nom, enfin si on peut appeler ça une arme", 5)
+#etage 4
 attendrisseur = Arme("Attendrisseur", "C'est fait pour broyer la viande, mais ça peut marcher avec des os", 6)
 hachoir = Arme("Hachoir", "Tranche si bien les os et les doigts...", 6)
+#etage 5
 sabreChamp = Arme("Sabre à champagne", "Normalement, c'est pas prévu pour découper les gens, mais vous trouverez rien d'aussi efficace", 7)
 
 
@@ -66,6 +70,26 @@ jambon = ArmeConsommable("Jambon affiné", "Ca a durci pendant de longs mois, j'
 tete = ArmeConsommable("Tete de cheval", "Une tete de cheval... Oui c'est glauque!", 6, 4)
 mechoui = ArmeConsommable("Méchoui d'agneau", "Parce que se battre avec une patte c'est bien, mais avec l'agneau entier, c'est mieux !!", 10, 5)
 espadon = ArmeConsommable("Espadon", "Magnifique poisson !! Son nez éfilé sera redoutable", 7, 5)
+
+#####ARMURE
+#nom, description, bloquage
+#etage 1
+tablier = Armure("Tablier de tissu", "On dirait celui de ma mamie...", 1)
+calecon = Armure("Caleçon", "Heureusement, il n'a jamais été porté", 1)
+#etage 2
+plastron = Armure("Plastron de saucisse", "Je sais pas comment ca peut proteger", 2)
+peau = Armure("Peau de porc", "Au moins c'est du beau cuir...", 2)
+#etage 3
+commode = Armure("Armure", "On a percé des trous pour passer les bras, les jambes et la tete. Mais qui a eu cette idée !?",3)
+tonneau = Armure("Tonneau vermoulu", "Un tonneau qui a entierement moisi...", 3)
+#etage 4
+marmite = Armure("Marmite à bretelles", "Une marmite sans fond maintenues par deux bretelles", 4)
+cellophane = Armure("Cellophane", "On a fait pleins de tours, ca tiens chaud, ca pue, mais ca protege un peu", 4)
+#etage 5
+carcasse = Armure("Carcasse de boeuf", "Alors la, on s'enmbete meme plus a faire des efforts...", 5)
+plastronMaille = Armure("Plastron de maille", "La premiere veritable armure que vous voyez depuis le debut de votre aventure", 5)
+salopette = Armure("Salopette orange", "Une armure bénie dans la bière", 6)
+
 
 ####COMPETENCE
 #competences test
@@ -124,29 +148,29 @@ vomi = CompetenceStatut("vomir",5, "vomit sur un ennemi",0,70,poison, 0)
 
 ##### ENNEMIS
 #etage 1
-grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, None, None, [aTaable], 10)   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre
-vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10)
-golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None, [coupDeGlaire], 10)
+grosTas = Ennemi("Gros tas", 10, 10, 0, 0, 6, 8, 5, 2, None, None, None, [aTaable], 10, [pasteque, chaine, tablier, calecon], [20, 15, 15, 15])   #nom, PVmax, PV, PCmax, PC, agilite, initiative, attaque, defense, statut, arme, armure, competence, chanceRejoindre, loot, chancesLoot
+vieuxPoivrot = Ennemi("Vieux poivrot", 10, 10, 10,10,8,6,3,2,None, None, None, None, 10, [pasteque, chaine, tablier, calecon], [20, 15, 15, 15])
+golemDeGras = Ennemi("Golem de gras", 16, 16, 10, 10, 5, 7, 6, 2,None,None,None, [coupDeGlaire], 10, [couteauBeurre, pelleTarte], [10, 10])
 
 #etage 2
-simpletVillage = Ennemi("Simplet du village", 13, 13, 5, 5, 20, 10, 6,1,None,None,None, [tuVeuxUneHistoire], 10)
-cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10)
-golemDeJambon = Ennemi("Golem de jambon", 20, 20, 10, 10, 5, 8, 7, 3, None,None,None, [tornadeDeGuerande], 10)
+simpletVillage = Ennemi("Simplet du village", 13, 13, 5, 5, 20, 10, 6,1,None,None,None, [tuVeuxUneHistoire], 10, [os, pain, plastron, peau], [19, 14, 14, 14])
+cuisinierCannibal = Ennemi("Cuisinier cannibal", 18, 18, 10, 10, 7, 7, 3, 3, None,None,None, None, 10 [os, pain, plastron, peau], [19, 14, 14, 14])
+golemDeJambon = Ennemi("Golem de jambon", 20, 20, 10, 10, 5, 8, 7, 3, None,None,None, [tornadeDeGuerande], 10, [grilleMarrons, pressePuree], [10, 10])
 
 #etage 3
-pouilleux = Ennemi("Pouilleux", 18, 18, 25, 25, 10, 10, 5, 2, None,None,None, None, 10)
-croqueMort = Ennemi("Croque-mort", 18, 18, 20, 20, 6, 9, 1, 2, None,None,None, [venezAMoi], 10)
-golemDAndouillette = Ennemi("Golemn d'andouillette", 23, 23, 15, 15, 5, 8, 8, 3, None,None,None, [odeurInfecte], 10)
+pouilleux = Ennemi("Pouilleux", 18, 18, 25, 25, 10, 10, 5, 2, None,None,None, None, 10, [meule, gigot, commode, tonneau], [19, 14, 13, 13])
+croqueMort = Ennemi("Croque-mort", 18, 18, 20, 20, 6, 9, 1, 2, None,None,None, [venezAMoi], 10, [meule, gigot, commode, tonneau], [19, 14, 13, 13])
+golemDAndouillette = Ennemi("Golemn d'andouillette", 23, 23, 15, 15, 5, 8, 8, 3, None,None,None, [odeurInfecte], 10, [ciseauxBoucher, broche], [10, 10])
 
 #etage 4
-boomer = Ennemi("Boomer", 8, 8, 5, 5, 5, 5, 1, 2, None,None,None, [boom], 10)
-chevalierCasseCroute = Ennemi("Chevalier Casse-croute", 25, 25, 0, 0, 6, 8, 7, 4, None,None,None, None, 10)
-golemNafnaf = Ennemi("Golem Nafnaf", 30, 30, 15, 15, 5, 8, 8, 4, None,None,None, [patePiege], 10)
+boomer = Ennemi("Boomer", 8, 8, 5, 5, 5, 5, 1, 2, None,None,None, [boom], 10, [jambon, tete, marmite, cellophane], [13, 18, 12, 12])
+chevalierCasseCroute = Ennemi("Chevalier Casse-croute", 25, 25, 0, 0, 6, 8, 7, 4, None,None,None, None, 10, [jambon, tete, marmite, cellophane], [13, 18, 12, 12])
+golemNafnaf = Ennemi("Golem Nafnaf", 30, 30, 15, 15, 5, 8, 8, 4, None,None,None, [patePiege], 10, [attendrisseur, hachoir], [10, 10])
 
 #etage 5
-ombreRampante = Ennemi("Ombre rampante", 10,10,10,10, 66, 13, 5, 1, None,None,None, [vagueDePeur], 10)
-psychopate = Ennemi("Psychopathe", 20, 20, 0, 0, 10, 10, 9, 2, None,None,None, None, 10)
-geant = Ennemi("Geant", 35,35,20,20, 5,9,10,5, None,None,None, [coupDeMassue], 10)
+ombreRampante = Ennemi("Ombre rampante", 10,10,10,10, 66, 13, 5, 1, None,None,None, [vagueDePeur], 10, [mechoui, espadon, carcasse, plastronMaille, salopette], [12, 17, 11,11, 10])
+psychopate = Ennemi("Psychopathe", 20, 20, 0, 0, 10, 10, 9, 2, None,None,None, None, 10, [mechoui, espadon, carcasse, plastronMaille, salopette], [12, 17, 11, 11, 10])
+geant = Ennemi("Geant", 35,35,20,20, 5,9,10,5, None,None,None, [coupDeMassue], 10, sabreChamp, 10)
 
 #special
 
