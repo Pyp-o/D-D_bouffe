@@ -32,7 +32,7 @@ class Competence:
     def AfficherCompetence(self):
         print("*Nom :", self.getNom(),"  *Description :", self.getCout(), "  *Cout :", self.getCout(), "  *Groupe :", self.getGroupe(), "  *Taux de réussite :", self.getTauxReussite())
 
-    def activerCompetence(self, combattant, teamAllie, teamEnnemi):
+    def activerCompetence(self, combattant, teamAllie, teamEnnemi,isAI):    #est ce que une IA attaque?
         raise NotImplementedError
 
     def getch(self):

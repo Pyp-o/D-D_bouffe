@@ -7,7 +7,7 @@ class CompetenceInvocation(Competence):
         Competence.__init__(self, nom, cout, description, groupe, tauxReussite)
         self.__invoc = invoc
 
-    def activerCompetence(self, combattant, teamAllie, teamEnnemi):
+    def activerCompetence(self, combattant, teamAllie, teamEnnemi, isIA):
         rand = random.randint(0, 100)  # le sort echoue?
         if rand > self.getTauxReussite():
             print("le sort echoue...")
