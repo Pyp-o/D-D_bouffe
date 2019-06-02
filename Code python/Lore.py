@@ -198,11 +198,11 @@ competences.append(buffAttaque)
 
 
 #####HEROS
-Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None, competences)
-Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None, competences)
-Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None, competences)
-Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None, competences)
-Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None, competences)
+Charcutier = Hero("Charcutier", 35, 35, 20, 20, 8, 8, 8, 2, None, None, None, [coupDeBide,grognement])
+Pilier = Hero("Pilier", 35, 35, 30, 30, 6, 11, 5, 1, None, None, None, [tourneeGeneral, tenezUnPeuDeHik])
+Creve = Hero("Creve-dalle", 25, 25, 25, 25, 25, 12, 7, 1, None, None, None, [coupDeSurin, affutageDeLaLame])
+Cuistot = Hero("Cuistot", 35, 35, 30, 30, 6, 7, 4, 2, None, None, None, [aTaaable, engraissement])
+Poivrot = Hero("Poivrot", 40, 40, 20, 20, 4, 5, 5, 3, None, None, None, [cEstMoiQueTuRegarde, lanceBouteilleVide])
 
 
 

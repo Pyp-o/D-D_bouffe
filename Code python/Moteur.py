@@ -64,16 +64,17 @@ class Moteur :
         time.sleep(2)
         a = randint(0,2)
         choixPrecedent='12'
+        choix = [1,2,3,4,5]
         for i in range(1, 3):
             print("Choisir le personnage ", i)
-            a = self.selectPerso()
-            while(a not in [1,2,3,4,5] or a == choixPrecedent):
+            a = self.selectPerso(choix)
+            while(a not in choix or a == choixPrecedent):
                 if(a==choixPrecedent) :
                     print("Ce personnage a déjà rejoint votre équipe\n")
                 else :
                     print("Le personnage choisi n'existe pas\n")
                 print("Choisir un autre personnage : \n")
-                a = self.selectPerso()
+                a = self.selectPerso(choix)
 
             t = self.getTeamHero().getInventaire()
             if (a == 1 and a != choixPrecedent):
@@ -88,7 +89,7 @@ class Moteur :
                 self.__teamHero.ajouterPersonnage(Poivrot)
             elif (a == choixPrecedent):
                 print("Ce personnage a déjà rejoins votre équipe\n")
-
+            choix.remove(a)
             choixPrecedent = a
         print("\n\n\n")
 
@@ -255,34 +256,37 @@ class Moteur :
                 return copy.deepcopy(geant)
 
 
-    def selectPerso(self):
+    def selectPerso(self, choix):
         rep = "0xa"
-        i = 1
-        print("1- Charcutier")
+        i = 0
+        if (choix[i] == 1):
+            print("1- Charcutier")
+        elif (choix[i] == 2):
+            print("2- Pilier de bar")
         while rep != "0xd":  # différent de entrée
             rep = hex(
                 ord(self.getch()))  # on récupère la touche tapé par l'utilisateur (pas besoin de faire entrée)
             if (rep == "0x7a"):  # z
-                if (i != 5):
+                if (i != len(choix)-1):
                     i = i + 1
                 else:
-                    i = 1
+                    i = 0
             if (rep == "0x73"):  # s
-                if (i > 1):
-                    i = i - 1
+                if (i == 0):
+                    i = len(choix)-1
                 else:
-                    i = 5
-            if(i==1):
+                    i = i - 1
+            if(choix[i]==1):
                 print("1- Charcutier")
-            elif(i==2):
+            elif(choix[i]==2):
                 print("2- Pilier de bar")
-            elif(i==3):
+            elif(choix[i]==3):
                 print("3- Crève-dalle")
-            elif(i==4):
+            elif(choix[i]==4):
                 print("4- Cuistot")
-            elif(i==5):
+            elif(choix[i]==5):
                 print("5- Poivrot")
-        return i
+        return choix[i]
 
     def selectPersonnage(self, nbChoix):
         rep = "0xa"
