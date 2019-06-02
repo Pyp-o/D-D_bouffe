@@ -24,6 +24,8 @@ Paleron = Ressource("Paleron de boeuf", "Une belle piece de boucher")
 Magret = Ressource("Magret de canard", "Une des plus belles piece de boucher")
 Andouillettes = Ressource("Andouillettes crues", "Une odeur forte s'en dégage")
 
+ressources = [PommesDeTerre, Oignons, Carottes, Paleron, Magret, Andouillettes]
+
 ##### POTIONS
 PotionPomme = Consommable("Pommes de terre sautées", "Rend 15PV", 15, 0, 0, 0, 0, 0, 0, 0, False)
 PotionEstouffade = Consommable("Estouffade de pommes de terre et carottes", "Rend 10PC", 0, 10, 0, 0, 0, 0, 0, 0, False)
@@ -59,7 +61,7 @@ sabreChamp = Arme("Sabre à champagne", "Normalement, c'est pas prévu pour déc
 
 
 #####ARME CONSOMMABLE
-#nom, description, soin, energie, statutRetire, faitRevivre, degat)
+#nom, description, PV, degat
 pasteque = ArmeConsommable("Pastèque", "Bah c'est un peu lourd. C'est tout", 3,  1)
 chaine = ArmeConsommable("Chaine de saucisse", "Au moins vous pourrez manger...", 6, 1)
 os = ArmeConsommable("Os à moelle", "Ca a l'avantage d'etre rigide, peut etre meme un peu dur...", 7, 2)
@@ -90,6 +92,19 @@ carcasse = Armure("Carcasse de boeuf", "Alors la, on s'enmbete meme plus a faire
 plastronMaille = Armure("Plastron de maille", "La premiere veritable armure que vous voyez depuis le debut de votre aventure", 5)
 salopette = Armure("Salopette orange", "Une armure bénie dans la bière", 6)
 
+#LISTE ARMES RARES
+lootRareEtage1 = [couteauBeurre, pelleTarte, tablier, calecon]
+lootRareEtage2 = [plastron, peau, grilleMarrons, pressePuree]
+lootRareEtage3 = [ciseauxBoucher, broche, commode, tonneau]
+lootRareEtage4 = [attendrisseur,hachoir, marmite, cellophane]
+lootRareEtage5 = [sabreChamp, carcasse, plastronMaille, salopette]
+
+#LISTE ARME CONSOMMABLE
+lootConsommableEtage1 = [pasteque, chaine]
+lootConsommableEtage2 = [os, pain]
+lootConsommableEtage3 = [meule, gigot]
+lootConsommableEtage4 = [jambon, tete]
+lootConsommableEtage5 = [mechoui, espadon]
 
 ####COMPETENCE
 #competences test
@@ -188,7 +203,7 @@ ramsayLHysterique = Ennemi("Ramsay l'hystérique", 75, 75, 15, 15, 10, 20, 9, 4,
 merlinPanzer4 = Ennemi("Merlin et son Panzerkampfwagen IV", 150, 150, 50, 50, 1, 20, 12, 5, None,None,None, [obusMagique], 10)
 
 
-
+#test
 competences = []
 competences.append(delugeFeu)
 competences.append(bouleFeu)

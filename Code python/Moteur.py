@@ -139,11 +139,13 @@ class Moteur :
         if event == "salle cache":
             self.loot("legendaire")
         if event == "cache":
-            self.loot("ressource")
+            self.loot("legendaire")
         if event == "garde manger":
             self.loot("normal")
         if event == "buffet":
             self.loot("ressource")
+        if event == "cuisine":
+            self.loot("normal")
         if(event=="piege"):
             i= randint(0,1)
             if(i):
@@ -160,8 +162,51 @@ class Moteur :
                 combat.lancerCombat()
 
 
-    def loot(self, rarete): #TODO le loot
-        print("du loot!!!!")
+    def loot(self, rarete):
+        i = randint(1, 2)   #on gagne un ou deux items
+        for x in range(i):
+            if(rarete == "ressource"):
+                n = randint(0, len(ressources)-1)
+                item = ressources[i]
+            else:
+                if (self.__etage == 1):
+                    if(rarete == "legendaire"):
+                        n = randint(0, len(lootRareEtage1) - 1)
+                        item = lootRareEtage1[n]
+                    if(rarete == "normal"):
+                        n = randint(0, len(lootConsommableEtage1) - 1)
+                        item = lootConsommableEtage1[n]
+                if (self.__etage == 2):
+                    if(rarete == "legendaire"):
+                        n = randint(0, len(lootRareEtage2) - 1)
+                        item = lootRareEtage2[n]
+                    if(rarete == "normal"):
+                        n = randint(0, len(lootConsommableEtage2) - 1)
+                        item = lootConsommableEtage2[n]
+                if (self.__etage == 3):
+                    if(rarete == "legendaire"):
+                        n = randint(0, len(lootRareEtage3) - 1)
+                        item = lootRareEtage3[n]
+                    if(rarete == "normal"):
+                        n = randint(0, len(lootConsommableEtage3) - 1)
+                        item = lootConsommableEtage3[n]
+                if (self.__etage == 4):
+                    if(rarete == "legendaire"):
+                        n = randint(0, len(lootRareEtage4) - 1)
+                        item = lootRareEtage4[n]
+                    if(rarete == "normal"):
+                        n = randint(0, len(lootConsommableEtage4) - 1)
+                        item = lootConsommableEtage4[n]
+                if (self.__etage == 5):
+                    if(rarete == "legendaire"):
+                        n = randint(0, len(lootRareEtage5) - 1)
+                        item = lootRareEtage5[n]
+                    if(rarete == "normal"):
+                        n = randint(0, len(lootConsommableEtage5) - 1)
+                        item = lootConsommableEtage5[n]
+            print("Vous trouvez : " + item.getNom())
+            time.sleep(1)
+            self.__teamHero.getInventaire().ajouterItem(ressources[i])
 
     def combatDeBoss(self): #TODO bug fuite lors du combat de boss
         teamEnnemi = Team()
