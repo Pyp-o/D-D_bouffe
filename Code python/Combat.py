@@ -287,6 +287,16 @@ class Combat():
         for combattant in self.__teamCombattantsHero:
             combattant.getPersonnage().setPV(combattant.getPV())
             combattant.getPersonnage().setPC(combattant.getPC())
+
+        for ennemi in self.__teamEnnemi.getPersonnages(): #loot des ennemies
+            if (ennemi.getLoot() != None):
+                i=0
+                for item in ennemi.getLoot():
+                    k = randint(0,100)
+                    if(k<ennemi.getChancesLoot()[i]):
+                        print("Vous réussisez à récupérer "+item.getNom()+" sur "+ennemi.getNom())
+                        self.__teamHero.getInventaire().ajouterItem(item)
+                        time.sleep(1)
         for persoEnnemie in self.__teamEnnemi.getPersonnages():
             i = randint(0,100)
             if(i<persoEnnemie.getChanceRejoindre()):
@@ -305,6 +315,7 @@ class Combat():
                 else:
                     print("Mais l'équipe est déjà au complet...")
                 time.sleep(1)
+
 
     
     def getch(self):
