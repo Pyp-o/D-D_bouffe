@@ -6,7 +6,7 @@ start
 repeat
 	:lancer Tour;
 
-	while (rester combattant?) is (yes)
+	while (tout le monde a fini son tour?) is (no)
 		if (Hero?) then (yes)
   			split
 				:attaquer;
@@ -24,7 +24,7 @@ repeat
 		else (no)
 			:Choix fait par l'IA;
 		endif
-	endwhile (no)
+	endwhile (yes)
 
 repeat while (une team morte?) is (no)
 

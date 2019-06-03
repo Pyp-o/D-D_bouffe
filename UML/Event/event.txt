@@ -21,40 +21,27 @@ split again
        endif
     split
         :sallePiege;
-        if (combat gagné) then (yes)
-            stop
-        else
+        split
             :lancer combat;
-        endif
+        split again
+            :inflige 5 de dégat à tous les alliés;
+        end split
     split again
-        :gardeManger;
-        if (interragir ?) then (yes)
-            :activer effet;
-        else (no)
-            stop
-         endif
+        :garde manger;
+        :donne 1 ou 2 armes consommables;
+    split again
+        :cuisine;
+        :donne 1 ou 2 armes consommables;
     split again
         :buffet;
-        if (interragir ?) then (yes)
-            :activer effet;
-        else (no)
-            stop
-         endif
+        :donne 1 ou 2 ressources;
     split again
         :levier;
-        if (interragir ?) then (yes)
-            :activer effet;
-        else (no)
-            stop
-         endif
+	:Découvre la salle caché;
     split again
-        :cache;
+        :salle caché;
         if (levier activé ?) then (yes)
-            if (entrer ?) then (yes)
-                :activer effet;
-            else (no)
-                stop
-             endif
+            :donne 1 ou 2 arme ou armure légendaire;
         else (no)
             stop
          endif
