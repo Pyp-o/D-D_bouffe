@@ -1,17 +1,11 @@
 @startuml
 start
     repeat
-        repeat
-        :que voulez-vous faire ?;
-        repeat while (choix impossible) i (yes)
-
         split
             :gestion equipement;
             :afficher equipement;
                 split
-                    :equiper;
-                split again
-                    :desequiper;
+                    :equiper/désequiper;
                  endsplit
         split again
             :utilisation consommables;
@@ -19,12 +13,10 @@ start
             :manger;
 
         split again
-            if (dans cuisine) then (yes)
-                :creer potions;
-                :afficher ressources
-                :combiner;
-            endif
+            :creer potions;
+            :afficher possibilités de potion
+            :combiner;
         endsplit
-        repeat while(terminer) is (no)
+        while (retour) is (yes)
     stop
 @enduml
