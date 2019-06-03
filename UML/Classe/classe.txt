@@ -1,184 +1,174 @@
 @startuml
 
 abstract class SalleEvenement{
-+effetActive : bool
 +declancherEvenement()
 }
 
 abstract class Item{
--nom : string
-+getNom() : string 
++nom : string
 +getDescription() : string
 }
 
 abstract class Personnage{
--nom : string
--listCompetence[] : Competence
--Pvmax : int
--Pv : int
--Pcmax : int
--Pc : int
--agilite : int
--initiative : int
--attaque : int
--defense : int
--statut : Statut
--arme : Arme
--armure : Armure
-+setNom(String nom)
-+getNom() : String
-+setPvmax(int pv)
-+getPvmax() : int
-+setPv(int pv)
-+getPv() : int
-+setPcmax(int pv)
-+getPcmax() : int
-+setPc(int pc)
-+getPc() : int
-+setAttaque(int attaque)
-+getAttaque() : int
-+setDefense(int defense)
-+getDefense() : int
-+setAgilite(int agilite)
-+getAgilite() : int
-+setInitiative(int initiative)
-+getInitiative() : int
-+setArmure(Armure armure)
-+getArmure() : Armure
-+setArme(Arme arme)
-+getArme() : Arme
-+prendreDecision()
++nom : string
++competences : list<Competence>
++Pvmax : int
++Pv : int
++Pcmax : int
++Pc : int
++agilite : int
++initiative : int
++attaque : int
++defense : int
++statut : Statut
++arme : Arme
++armure : Armure
++afficherStat()
++AfficherPersonnage()
 }
 
 abstract class Statut{
--tourRestnt : int
-+setTourRestant(int tour)
-+getTourRestant() : int
++tourRestant : int
++nom : String
 +activerStatut(Combattant combattant)
 +retirerStatut(Combattant combattant)
 }
 
 
 abstract class Competence{
--nom : string
--cout : int
--description : string
--groupe : bool
--tauxReussite : int
-+getTauxReussite() : int
-+getNom() : string
-+getDescription() : string
-+setCout(int cout)
-+getCout() : int
++nom : string
++cout : int
++description : string
++groupe : bool
++tauxReussite : int
 +activerCompetence(Combattant combattant, Team allie, Team ennemi)
++affcigerCompetence()
 }
 
 class CompetenceHeal{
 -soin : int
-+CompetenceHeal(...)
+}
+
+class CompetenceInvocation{
+-invoc : Combattant
+}
+
+class CompetenceRecrutement{
+-tauxSupp : int
 }
 
 class CompetenceAttaque{
 -degat : int
-+CompetenceAttaque(...)
+-degatFixe : int
+-statut : Statut
 }
 
 class CompetenceBuff{
 -degatBuff : int
--armureBuff : int
+-defenseBuff : int
 -agiliteBuff : int
-+CompetenceBuff(...)
+-forEnnemi : bool
 }
 
 Class CompetenceStatut{
+-forEnnemi : bool
 -statut : Statut
-+CompetenceStatut(...)
 }
 
 abstract class Equipement{
--porteur : Personnage
-+setPorteur(Personnge perso)
-+getPorteur() : Personnage
-+retirerPorteur()
++porteur : Personnage
++afficherEquipement()
 }
 
 class Moteur{
-+map : Map
-+teamHero : Team
-
-+Moteur()
--main()
--initMap()
--initHeros()
--lancerTour()
-}
-
-class MiniMap{
-+MiniMap(Map map)
-+decouvrir(int x, int y)
-+afficher()
+-map : Map
+-etage : int
+-tailleMapX : int
+-tailleMapY : int
+-bossTue : bool
+-teamHero : Hero
++getTeamHero() : Team
++nouvelleEtage()
++initTeam()
++tour()
++gérerEvent(String event)
++loot(String rarete)
++combatDeBoss()
++getEnnemi() : Ennemi
++selectPerso(list<int> choix)
 }
 
 class Combat{
 -teamHero : Team
 -teamEnnemi : Team
--ordre : Personnage
-+Combat(Team heros, Team ennemis)
+-teamCombattantsEnnemi : list<Combattant>
+-teamCombattantsHero : list<Combattant>
+-teamHeroMorte : bool
+-teamEnnemieMorte : bool
++fuiteReussi : bool
+-tour : int
 -lancerCombat()
--finDuTour()
--combattantSuivant() : Combattant
--finDuCombat()
--fuir() : bool
+-tourCombattant(Combattant)
+-choixJoueur(Combattant)
+-fuir(Combattant)
+-heroUtiliserCompetence(Combattant)
+-heroAttaque(Combattant)
+-choixIA(Combattant)
+-resetTour()
+-isFinDeTour() : bool
+-creationCombattant()
+-definitionOrdrePassage()
+-getProchainCombattant() : Combattant
+-testTeamMorte()
+-finCombat()
 }
 
 Class Ennemi{
--chanceRejoindre : int
-+getChancRejoindre() : int
-+setChance_rejoindre(int chance)
++chanceRejoindre : int
++rejointHero : bool
++loot : list<Item>
++chanceLoot : list<Int>
 }
 
 class Combattant{
--teamHero : bool
--combattant : Personnage
--tourFini : bool
--statuts : Statut[]
-+setTourFini(bool tourFini)
-+getTourFini() : bool
++teamHero : bool
++perso : Personnage
++tourFini : bool
++statuts : list<Statut>
++ordre : int
 +attaquer(Personnage combattant)
 +seDefendre()
-+isTeamHero() : bool
-+ajouterStatut(Statut)
-+retirerStatut(Statut)
++activerStatut()
 }
 
 class Team{
--listPerso[] : Personnage
-+Team()
-+ajouterPersonnage(Personnage perso)
-+enleverPersonnage(Personnage perso)
++personnages : list<Personnage>
++inventaire : Inventaire
++getLenPersonnage() : int
 }
 
 class Arme{
--degat : int
-+setDegat(int degat)
-+getDegat() : int
++degat : int
 }
 
 class Armure{
--bloquage : int
-+getBloquage() : int
++bloquage : int
 }
 
 class Consommable{
--soin : int
--energie : int
--faitRevivre : bool
-+Consommable(int soin, int energie, bool faitRevivre)
++soin : int
++energie : int
++faitRevivre : bool
++PVMax : int
++PCMax : int
++attaque : int
++defense : int
++agilite : int
++initiative : int
 +utiliser(Personnage perso)
 }
 
 class ArmeConsommable{
-+ArmeConsommable(int degat, int soin, int energie, bool faitRevivre)
 }
 
 class Ressource{
@@ -186,69 +176,88 @@ class Ressource{
 }
 
 class Inventaire{
--items[] : Items
-+ajouterItem(Item item)
-+retirerItem(Item item)
-+getItems() : Items[]
++items : list<Items>
 +afficherEquipement()
-+afficherEquipementEquipe()
++afficherEquipementEquipe(Personnage)
++afficherEquipementDesequipe()
 +afficherConsommables()
++getEquipementEquipe(Personnage)
++getEquipementDesequipe()
 +getConsommables()
-+choixAction()
-+select()
-getch()
-+
++Equiper(Personnage)
++Desequiper(Personnage)
++Manger(Personnage)
++CreerPotion()
++choixAction(list<Personnage>)
++selectPerso() : Personnage
++selectAction()
++selectEquipement(list<Equipement>)
 }
 
 class Map{
--salles[][] : Salle
--positionX : int
--positionY : int
++tailleX : int
++tailleY : int
++salles[][] : Salle
++positionX : int
++positionY : int
++levierActive : bool
 +Map(tailleX, tailleY)
 +genererMap()
 +recupérerSalle(int x, int y)
 +seDeplacer()
-+getPositionX() : Int
-+getPositionY() : int
++creerSalle()
++creationSalleFrontiere()
++display()
++createSalleEvent()
++recuérerSalleActuelle()
++declancherEvent() : String
+
 }
 
 class Salle{
--isExplore : bool
--x : int
--y : int
-+Salle(int x, int y)
-+getX() : int
-+getY() : int
-+isExplore() : bool
-+setExplore(bool isExplore)
++isExplore : bool
++x : int
++y : int
++salleGauche : Salle
++salleDroite : Salle
++salleHaut : Salle
++salleBas: Salle
++declancherEvent() : String
+
 }
 
 class SalleSortie{
--bossTué : bool
 }
 
 class SalleCuisine{
--cuisine : bool
+-visite : bool
 }
 
 class SalleBuffet{
--eventActive : bool
+-visite : bool
 }
 
 class SalleGardeManger{
--eventActive : bool
+-visite : bool
 }
 
 class SalleLevier{
--eventActive : bool
--levierActive : bool
 }
 
 class SalleCache{
--eventActive : bool
+-visite : bool
+}
+
+class Ralenti{
+-activer : bool
+}
+class Ivre{
+-activer : bool
 }
 
 Personnage "1" -- "*" Competence
+CompetenceInvocation --|> Competence
+CompetenceRecrutement --|> Competence
 CompetenceHeal --|> Competence
 CompetenceAttaque --|> Competence
 CompetenceBuff --|> Competence
@@ -262,7 +271,6 @@ Endormi --|> Statut
 Combattant --|> Personnage
 Personnage <|-- Hero
 Personnage <|-- Ennemi
-Ennemi <|-- Boss
 Equipement --|> Item
 Arme --|> Equipement
 Armure --|> Equipement
@@ -272,10 +280,8 @@ ArmeConsommable --|> Consommable
 ArmeConsommable --|> Arme
 Ressource --|> Item
 Moteur "1" -- "*" Team
-MiniMap "1" -- "1" Moteur
 Moteur "1" -- "0" Combat
 Combat "*" -- "*" Team
-Moteur "1" -- "1" InterfaceGraphique
 Moteur "1" -- "1" Map
 Map "1" *-- "*" Salle
 SalleEntree --|> SalleEvenement

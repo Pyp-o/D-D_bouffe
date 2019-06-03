@@ -47,7 +47,7 @@ class Combattant(Personnage):
     def getPersonnage(self):
         return self.__perso
 
-    def seDefendre(self):
+    def seDefendre(self):	#TODO
         print("je me defend")
 
     def isTeamHero(self):
